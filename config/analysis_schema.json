@@ -1,0 +1,102 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "summary",
+    "main_thesis",
+    "arguments",
+    "mechanisms",
+    "evidence",
+    "indicators",
+    "concepts",
+    "authors_mentioned",
+    "periods",
+    "geographies",
+    "key_quotes"
+  ],
+  "properties": {
+    "summary": {
+      "type": "string"
+    },
+    "main_thesis": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "arguments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mechanisms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "description",
+          "type",
+          "source"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "source": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "indicators": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "concepts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "authors_mentioned": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "periods": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "geographies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "key_quotes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

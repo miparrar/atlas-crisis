@@ -1,0 +1,20 @@
+# Generated research artifacts
+corpus/
+data/analysis/
+data/manifests/
+logs/
+
+# Temporary files
+.tmp/
+*.tmp
+
+# R
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+renv/library/
+renv/staging/
+
+# OS/editor
+.DS_Store

@@ -1,0 +1,126 @@
+version: 1
+
+sources:
+  - id: michael_roberts
+    author: Michael Roberts
+    tradition: marxist
+    publication: Michael Roberts Blog
+    base_url: https://thenextrecession.wordpress.com/
+    discovery: rss
+    access: public
+    enabled: true
+    selectors:
+      title: "h1.entry-title"
+      body: "div.entry-content"
+      date: "time.entry-date"
+
+  - id: paul_krugman
+    author: Paul Krugman
+    tradition: new_keynesian
+    publication: Paul Krugman
+    base_url: https://paulkrugman.substack.com/
+    discovery: sitemap
+    access: mixed
+    enabled: true
+    selectors:
+      title: "h1"
+      body: "article"
+      date: "time"
+
+  - id: thomas_piketty
+    author: Thomas Piketty
+    tradition: inequality_political_economy
+    publication: Blog de Thomas Piketty
+    base_url: https://www.lemonde.fr/blog/piketty/
+    discovery: manual
+    access: mixed_or_paywalled
+    enabled: false
+    note: "Relevant to the intellectual corpus, but excluded from the automatic pilot until access is handled cleanly."
+
+  - id: dani_rodrik
+    author: Dani Rodrik
+    tradition: institutionalist_development
+    publication: Dani Rodrik's Weblog
+    base_url: https://rodrik.typepad.com/
+    discovery: archive
+    access: public
+    enabled: false
+
+  - id: adam_tooze
+    author: Adam Tooze
+    tradition: economic_history_macrofinance
+    publication: Chartbook
+    base_url: https://adamtooze.substack.com/
+    discovery: sitemap
+    access: mixed
+    enabled: false
+
+  - id: brad_delong
+    author: Brad DeLong
+    tradition: new_keynesian_economic_history
+    publication: Grasping Reality
+    base_url: https://braddelong.substack.com/
+    discovery: sitemap
+    access: mixed
+    enabled: false
+
+  - id: steve_keen
+    author: Steve Keen
+    tradition: post_keynesian
+    publication: Building a New Economics
+    base_url: https://profstevekeen.substack.com/
+    discovery: sitemap
+    access: mixed
+    enabled: true
+    selectors:
+      title: "h1"
+      body: "article"
+      date: "time"
+
+  - id: simon_wren_lewis
+    author: Simon Wren-Lewis
+    tradition: new_keynesian
+    publication: Mainly Macro
+    base_url: https://mainlymacro.blogspot.com/
+    discovery: rss
+    access: public
+    enabled: false
+    selectors:
+      title: "h3.post-title, h1"
+      body: "div.post-body"
+      date: "h2.date-header, time"
+
+  - id: bill_mitchell
+    author: Bill Mitchell
+    tradition: modern_monetary_theory
+    publication: William Mitchell - Modern Monetary Theory
+    base_url: https://billmitchell.org/blog/
+    discovery: rss
+    access: public
+    enabled: true
+    selectors:
+      title: "h1"
+      body: "div.entry-content, article"
+      date: "time, .entry-date"
+
+  - id: john_cochrane
+    author: John H. Cochrane
+    tradition: new_classical_fiscal_theory
+    publication: The Grumpy Economist
+    base_url: https://www.grumpy-economist.com/
+    discovery: sitemap
+    access: mixed
+    enabled: true
+    selectors:
+      title: "h1"
+      body: "article"
+      date: "time"
+
+  - id: noah_smith
+    author: Noah Smith
+    tradition: eclectic_mainstream
+    publication: Noahpinion
+    base_url: https://www.noahpinion.blog/
+    discovery: sitemap
+    access: mixed
+    enabled: false
