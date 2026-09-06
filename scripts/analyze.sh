@@ -36,10 +36,15 @@ meta="data/analysis/${stem}.meta.json"
 
 mkdir -p "$(dirname "$output")"
 
-if [[ -f "$output" && -f "$meta" ]] && command -v jq >/dev/null 2>&1; then
-  cached_hash="$(jq -r '.content_sha256 // empty' "$meta")"
-  schema_hash="$(sha256sum "$schema" | cut -d' ' -f1)"
-  cached_schema_hash="$(jq -r '.schema_sha256 // empty' "$meta")"
+schema_hash="$(sha256sum "$schema" | cut -d' ' -f1)"
+
+if [[ -f "$output" && -f "$meta" ]]; then
+  cached_hash="$(
+    sed -n 's/.*"content_sha256": "\([^"]*\)".*/\1/p' "$meta"
+  )"
+  cached_schema_hash="$(
+    sed -n 's/.*"schema_sha256": "\([^"]*\)".*/\1/p' "$meta"
+  )"
 
   if [[ "$cached_hash" == "$content_hash" && "$cached_schema_hash" == "$schema_hash" ]]; then
     printf 'cached: %s\n' "$input"
@@ -66,12 +71,7 @@ if [[ ! -s "$tmp_output" ]]; then
   exit 1
 fi
 
-if command -v jq >/dev/null 2>&1; then
-  jq empty "$tmp_output"
-fi
-
 mv "$tmp_output" "$output"
-schema_hash="$(sha256sum "$schema" | cut -d' ' -f1)"
 codex_version="$(codex --version 2>/dev/null || true)"
 
 cat > "$meta" <<EOF
