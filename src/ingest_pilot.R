@@ -16,8 +16,15 @@ sources_cfg <- read_yaml("config/sources.yml")
 pilot_cfg <- read_yaml("config/pilot.yml")
 
 sources <- sources_cfg$sources |>
-  map_dfr(as_tibble) |>
-  select(id, author, publication, tradition, selectors)
+  map_dfr((source) {
+    tibble(
+      id = source$id,
+      author = source$author,
+      publication = source$publication,
+      tradition = source$tradition,
+      selectors = list(source$selectors)
+    )
+  })
 
 pilot_keys <- pilot_cfg$pilots[[pilot_id]]
 
@@ -37,7 +44,7 @@ documents <- pilot_keys |>
   }) |>
   left_join(sources, by = c("source_id" = "id"))
 
-pick_text <- function(html, selector) {
+pick_text <- function(html, selector, squash = TRUE) {
   if (is.null(selector) || is.na(selector)) {
     return(NA_character_)
   }
@@ -49,9 +56,14 @@ pick_text <- function(html, selector) {
     return(NA_character_)
   }
 
-  node |>
-    html_text2() |>
-    str_squish()
+  text <- node |>
+    html_text2()
+
+  if (squash) {
+    str_squish(text)
+  } else {
+    str_trim(text)
+  }
 }
 
 normalize_body <- function(text) {
@@ -79,7 +91,7 @@ ingest_one <- function(document_id, source_id, url, author, publication, traditi
     resp_body_html()
 
   title <- pick_text(html, selectors$title)
-  body <- pick_text(html, selectors$body)
+  body <- pick_text(html, selectors$body, squash = FALSE)
   published_at <- pick_text(html, selectors$date)
 
   if (is.na(body) || nchar(body) < 300) {
@@ -89,11 +101,10 @@ ingest_one <- function(document_id, source_id, url, author, publication, traditi
   body <- normalize_body(body)
   content_sha256 <- digest(body, algo = "sha256", serialize = FALSE)
 
-  slug <- if (!is.na(title) && nzchar(title)) {
-    slugify(title)
-  } else {
-    document_id
-  }
+  title <- coalesce(title, document_id)
+  published_at <- coalesce(published_at, "")
+
+  slug <- slugify(title)
 
   output_dir <- file.path("corpus", "posts", source_id)
   dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
@@ -105,7 +116,7 @@ ingest_one <- function(document_id, source_id, url, author, publication, traditi
     paste0('source_id: "', source_id, '"'),
     paste0('author: "', str_replace_all(author, '"', '\\"'), '"'),
     paste0('title: "', str_replace_all(title, '"', '\\"'), '"'),
-    paste0('published_at: "', str_replace_all(coalesce(published_at, ""), '"', '\\"'), '"'),
+    paste0('published_at: "', str_replace_all(published_at, '"', '\\"'), '"'),
     paste0('source_url: "', url, '"'),
     paste0('retrieved_at: "', format(Sys.time(), tz = "UTC", usetz = TRUE), '"'),
     paste0('content_sha256: "', content_sha256, '"'),

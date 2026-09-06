@@ -8,14 +8,16 @@ if (length(args) != 1) {
 }
 
 manifest_path <- args[[1]]
+
 documents <- read_lines(manifest_path) |>
   discard(~ .x == "")
 
 analysis_path <- function(document_path) {
-  document_path |>
+  relative <- document_path |>
     str_remove("^corpus/posts/") |>
-    str_replace("\\.md$", ".json") |>
-    file.path("data/analysis", .)
+    str_replace("\\.md$", ".json")
+
+  file.path("data", "analysis", relative)
 }
 
 validate_one <- function(document_path) {
@@ -28,7 +30,11 @@ validate_one <- function(document_path) {
   document <- read_file(document_path)
   analysis <- fromJSON(output, simplifyVector = FALSE)
 
-  quotes <- analysis$key_quotes %||% list()
+  quotes <- if (is.null(analysis$key_quotes)) {
+    list()
+  } else {
+    analysis$key_quotes
+  }
 
   invalid_quotes <- quotes |>
     keep(~ !str_detect(document, fixed(.x)))
