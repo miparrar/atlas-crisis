@@ -10,7 +10,7 @@ if (length(args) != 1) {
 manifest_path <- args[[1]]
 
 documents <- read_lines(manifest_path) |>
-  discard(~ .x == "")
+  discard(\(x) x == "")
 
 analysis_path <- function(document_path) {
   relative <- document_path |>
@@ -37,7 +37,7 @@ validate_one <- function(document_path) {
   }
 
   invalid_quotes <- quotes |>
-    keep(~ !str_detect(document, fixed(.x)))
+    keep(\(quote) !str_detect(document, fixed(quote)))
 
   if (length(invalid_quotes) > 0) {
     stop("non-verbatim quote detected in: ", output)

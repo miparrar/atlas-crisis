@@ -16,7 +16,7 @@ sources_cfg <- read_yaml("config/sources.yml")
 pilot_cfg <- read_yaml("config/pilot.yml")
 
 sources <- sources_cfg$sources |>
-  map_dfr((source) {
+  map_dfr(\(source) {
     tibble(
       id = source$id,
       author = source$author,
@@ -33,7 +33,7 @@ if (is.null(pilot_keys)) {
 }
 
 documents <- pilot_keys |>
-  map_dfr((key) {
+  map_dfr(\(key) {
     entry <- pilot_cfg$documents[[key]]
 
     tibble(
@@ -68,7 +68,7 @@ pick_text <- function(html, selector, squash = TRUE) {
 
 normalize_body <- function(text) {
   text |>
-    str_replace_all("\r\n?", "\n") |>
+    str_replace_all("\\r\\n?", "\n") |>
     str_replace_all("[ \t]+", " ") |>
     str_replace_all("\n{3,}", "\n\n") |>
     str_trim()
