@@ -16,15 +16,16 @@ sources_cfg <- read_yaml("config/sources.yml")
 pilot_cfg <- read_yaml("config/pilot.yml")
 
 sources <- sources_cfg$sources |>
-  map_dfr(\(source) {
+  map(\(source_cfg) {
     tibble(
-      id = source$id,
-      author = source$author,
-      publication = source$publication,
-      tradition = source$tradition,
-      selectors = list(source$selectors)
+      id = source_cfg[["id"]],
+      author = source_cfg[["author"]],
+      publication = source_cfg[["publication"]],
+      tradition = source_cfg[["tradition"]],
+      selectors = list(source_cfg[["selectors"]])
     )
-  })
+  }) |>
+  list_rbind()
 
 pilot_keys <- pilot_cfg$pilots[[pilot_id]]
 
@@ -33,15 +34,16 @@ if (is.null(pilot_keys)) {
 }
 
 documents <- pilot_keys |>
-  map_dfr(\(key) {
-    entry <- pilot_cfg$documents[[key]]
+  map(\(document_key) {
+    entry <- pilot_cfg$documents[[document_key]]
 
     tibble(
-      document_id = key,
-      source_id = entry$source_id,
-      url = entry$url
+      document_id = document_key,
+      source_id = entry[["source_id"]],
+      url = entry[["url"]]
     )
   }) |>
+  list_rbind() |>
   left_join(sources, by = c("source_id" = "id"))
 
 pick_text <- function(html, selector, squash = TRUE) {
@@ -69,7 +71,7 @@ pick_text <- function(html, selector, squash = TRUE) {
 normalize_body <- function(text) {
   text |>
     str_replace_all("\\r\\n?", "\n") |>
-    str_replace_all("[ \t]+", " ") |>
+    str_replace_all("[ \\t]+", " ") |>
     str_replace_all("\n{3,}", "\n\n") |>
     str_trim()
 }
@@ -136,7 +138,8 @@ ingest_one <- function(document_id, source_id, url, author, publication, traditi
 }
 
 manifest <- documents |>
-  pmap_dfr(ingest_one)
+  pmap(ingest_one) |>
+  list_rbind()
 
 manifest_dir <- file.path("data", "manifests")
 dir.create(manifest_dir, recursive = TRUE, showWarnings = FALSE)
