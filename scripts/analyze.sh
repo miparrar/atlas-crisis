@@ -16,18 +16,8 @@ if ! command -v codex >/dev/null 2>&1; then
 fi
 
 content_hash="$(
-  awk -F': ' '
-    /^content_sha256:/ {
-      gsub(/"/, "", $2)
-      print $2
-      exit
-    }
-  ' "$input"
+  Rscript -e 'args <- commandArgs(TRUE); source("src/analysis_contract.R"); document <- read_canonical_document(args[[1]]); cat(document$metadata$content_sha256)' "$input"
 )"
-
-if [[ -z "$content_hash" ]]; then
-  content_hash="$(sha256sum "$input" | cut -d' ' -f1)"
-fi
 
 relative="${input#corpus/posts/}"
 stem="${relative%.md}"
@@ -37,6 +27,7 @@ meta="data/analysis/${stem}.meta.json"
 mkdir -p "$(dirname "$output")"
 
 schema_hash="$(sha256sum "$schema" | cut -d' ' -f1)"
+prompt_hash="$(sha256sum "$prompt_template" | cut -d' ' -f1)"
 
 if [[ -f "$output" && -f "$meta" ]]; then
   cached_hash="$(
@@ -46,7 +37,13 @@ if [[ -f "$output" && -f "$meta" ]]; then
     sed -n 's/.*"schema_sha256": "\([^"]*\)".*/\1/p' "$meta"
   )"
 
-  if [[ "$cached_hash" == "$content_hash" && "$cached_schema_hash" == "$schema_hash" ]]; then
+  cached_prompt_hash="$(
+    sed -n 's/.*"prompt_sha256": "\([^"]*\)".*/\1/p' "$meta"
+  )"
+
+  if [[ "$cached_hash" == "$content_hash" && "$cached_schema_hash" == "$schema_hash" && "$cached_prompt_hash" == "$prompt_hash" ]] &&
+      Rscript -e 'args <- commandArgs(TRUE); source("src/analysis_contract.R"); document <- read_canonical_document(args[[1]]); schema <- jsonlite::fromJSON("config/analysis_schema.json", simplifyVector = FALSE); analysis <- jsonlite::fromJSON(args[[2]], simplifyVector = FALSE); validate_analysis(analysis, document, schema)' "$input" "$output" >/dev/null 2>&1
+  then
     printf 'cached: %s\n' "$input"
     exit 0
   fi
@@ -71,6 +68,8 @@ if [[ ! -s "$tmp_output" ]]; then
   exit 1
 fi
 
+Rscript -e 'args <- commandArgs(TRUE); source("src/analysis_contract.R"); document <- read_canonical_document(args[[1]]); schema <- jsonlite::fromJSON("config/analysis_schema.json", simplifyVector = FALSE); analysis <- jsonlite::fromJSON(args[[2]], simplifyVector = FALSE); validate_analysis(analysis, document, schema)' "$input" "$tmp_output"
+
 mv "$tmp_output" "$output"
 codex_version="$(codex --version 2>/dev/null || true)"
 
@@ -79,6 +78,7 @@ cat > "$meta" <<EOF
   "document": "$input",
   "content_sha256": "$content_hash",
   "schema_sha256": "$schema_hash",
+  "prompt_sha256": "$prompt_hash",
   "codex_version": "$codex_version"
 }
 EOF
