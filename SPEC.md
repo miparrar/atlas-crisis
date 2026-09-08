@@ -49,6 +49,12 @@ Each source records:
 
 The intellectual corpus may include sources that are not yet technically ingestible. Technical availability must not determine theoretical pluralism.
 
+The initial curatorial selection is Michael Roberts (Michael Roberts Blog), Adam Tooze (Chartbook), and Paul Krugman (his Substack publication), recorded in `initial_source_ids`. Other catalog entries remain candidates for later stages. Tradition labels are descriptive and non-exhaustive; they must not constrain extraction.
+
+For these sources, record the RSS feed, archive URL, platform, language, verification date, access notes, extraction readiness, and whether monitoring is active. RSS identifies recent posts; it does not establish complete historical coverage or full-text availability. Select substantive authored posts about economic crisis broadly, with publicly accessible full text. Exclude reader comments, site controls, partial previews, and audiovisual or link-only entries without substantive authored text.
+
+Automatic discovery is restricted to `initial_source_ids` entries with `monitor: true`. The baseline round selects the latest feed entry for each source. Subsequent rounds process every entry that precedes the last confirmed URL in the current feed. If that URL is absent, discovery fails explicitly rather than assuming continuity. The earlier cumulative pilots remain technical regression fixtures and are separate from the monitored catalog.
+
 ## 4. Document contract
 
 Each ingested post is stored locally as Markdown under `corpus/posts/`.
@@ -56,11 +62,15 @@ Each ingested post is stored locally as Markdown under `corpus/posts/`.
 Front matter must contain at least:
 
 - `source_id`;
+- `document_id`;
 - `author`;
+- `publication`;
 - `title`;
 - `published_at` when available;
 - `source_url`;
+- `discovered_at`;
 - `retrieved_at`;
+- `access_status`;
 - `content_sha256`.
 
 `content_sha256` hashes only the normalized document body, not volatile retrieval metadata.
@@ -86,27 +96,27 @@ R must not call OpenAI, ellmer, LangChain, or another LLM client for batch docum
 
 ## 6. Structured analysis
 
-For each document, extract:
+Contract version 2 produces an academic reading sheet in Spanish, with original-language quotations. Each document records a summary, analytical usability status, limitations, and a single reading organized around the article's central problem. The model first extracts relevant material and then reorganizes it in this order:
 
-- summary;
-- main thesis;
-- arguments;
-- causal mechanisms;
-- evidence;
-- indicators;
-- concepts;
-- authors mentioned;
-- periods;
-- geographies;
-- key quotations.
+1. phenomenon: what phenomenon or problem the author identifies;
+2. explanation: how the author explains or interprets it, including causal relations, conditions, uncertainty and alternatives;
+3. constitutive_elements: actors, relations, processes, institutions, variables or concepts and their role in the explanation;
+4. evidence: empirical or historical material the author uses, its cited source, and whether it is available in the text or merely referred to;
+5. theory: concepts, propositions, authors or frameworks used, discussed or rejected, with explicit versus inferred attribution.
 
-The JSON Schema in `config/analysis_schema.json` is the authoritative output contract.
+Secondary tensions and derivations are integrated into the central reconstruction rather than emitted as independent problems. Every populated analytical item includes the minimum non-empty supporting quotations needed from the normalized body. Do not infer theory from an author's catalog tradition. Preserve the distinction between author claims, alternatives rejected by the author, and extractor inferences. Missing explanation is null; missing elements, evidence or theory use empty arrays. Context such as periods, geographies and indicators belongs in the relevant descriptions, only when supported by the document.
+
+A partial or analytically insufficient document has `problem: null` and records its limitations. The status `analizable` describes the usability of the supplied text, not verified completeness of the original or human approval. Human review remains necessary for interpretation, attribution and evidence quality.
+
+The JSON Schema in `config/analysis_schema.json` is the authoritative output contract. `prompts/analyze.md` defines extraction instructions. The static HTML site provides a home page, author indexes and article readings. Each reading follows the five dimensions and exposes supporting quotations and provenance; it is generated locally from validated JSON and Markdown. The visual reference is Spicy Takes' author-to-post navigation and layered summaries and quotations, adapted to an academic reading workflow.
 
 ## 7. Incrementality
 
-A document is reprocessed only when its `content_sha256` changes or the analysis contract changes.
+The normalized source URL is the stable publication identity. A new URL creates a document; an existing URL reuses its corpus path. A document is reprocessed when its verified `content_sha256`, JSON Schema hash, or prompt hash changes. Retrieval timestamps alone must not invalidate the semantic analysis cache.
 
-Retrieval timestamps alone must not invalidate the semantic analysis cache.
+A cached JSON file is reusable only if it still passes schema, document-hash, and exact-quotation validation. Legacy analysis files do not satisfy version 2 and must be regenerated before validation or rendering.
+
+Feed state is transactional. Discovery writes a pending state; the confirmed state and cumulative monitored catalog advance only after the complete pending batch has been ingested, analyzed, and validated.
 
 ## 8. Pilot progression
 
@@ -149,3 +159,11 @@ Local/generated by default:
 - manifests and logs.
 
 This avoids publishing third-party copyrighted text as part of the Git repository.
+
+## 11. Publication
+
+The publishable artifact is the generated static site under `corpus/reports/`, not the canonical Markdown corpus. Building the site requires only validated local JSON and Markdown; it does not download sources or call an LLM.
+
+The site is organized as a home page, one index per author, and one page per article. It can be served locally for human review before deployment. Remote hosting is configured separately and must publish only the generated site directory.
+
+Generated pages remain local by default. Choosing a hosting provider and making the site public are explicit release decisions, because article pages contain quotations from third-party texts.
