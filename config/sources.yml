@@ -1,31 +1,71 @@
 version: 1
 
+# Selección curatorial inicial, en orden de monitoreo.
+# Solo estas fuentes se consultan automáticamente y únicamente mediante su RSS.
+initial_source_ids:
+  - michael_roberts
+  - adam_tooze
+  - paul_krugman
+
+# Política de selección aplicada durante la ingesta y la revisión humana.
+selection_policy:
+  document_type: authored_blog_or_newsletter_post
+  access: public_full_text
+  topic: economic_crisis_broadly
+  date_range: null # Se definirá al seleccionar los documentos.
+  exclude:
+    - reader_comments
+    - navigation_and_subscription_prompts
+    - partial_previews
+    - audio_or_video_without_authored_text
+    - link_lists_without_substantive_author_commentary
+  tradition_note: "Etiquetas orientativas del proyecto, no exhaustivas; no predeterminan los mecanismos que se extraen."
+
 sources:
   - id: michael_roberts
     author: Michael Roberts
     tradition: marxist
     publication: Michael Roberts Blog
     base_url: https://thenextrecession.wordpress.com/
+    platform: wordpress
+    language: en
     discovery: rss
+    feed_url: https://thenextrecession.wordpress.com/feed/
+    archive_url: https://thenextrecession.wordpress.com/blog/
+    source_verified_at: "2026-09-07"
     access: public
+    access_note: "Blog público; comprobar la integridad del cuerpo por artículo."
     enabled: true
+    monitor: true
+    extraction_status: ready
     selectors:
       title: "h1.entry-title"
       body: "div.entry-content"
       date: "time.entry-date"
+      remove: ".sharedaddy, .sd-sharing-enabled, .jp-relatedposts, script, style, form, nav"
 
   - id: paul_krugman
     author: Paul Krugman
     tradition: new_keynesian
     publication: Paul Krugman
     base_url: https://paulkrugman.substack.com/
-    discovery: sitemap
+    platform: substack
+    language: en
+    about_url: https://paulkrugman.substack.com/about
+    discovery: rss
+    feed_url: https://paulkrugman.substack.com/feed
+    archive_url: https://paulkrugman.substack.com/archive
+    source_verified_at: "2026-09-07"
     access: mixed
+    access_note: "Publicaciones mayoritariamente gratuitas y algunas de pago, según su página About; verificar cada artículo."
     enabled: true
+    monitor: true
+    extraction_status: ready
     selectors:
-      title: "h1"
-      body: "article"
+      title: "h1.post-title"
+      body: ".available-content .body.markup"
       date: "time"
+      remove: "script, style, form, button, .subscription-widget-wrap-editor"
 
   - id: thomas_piketty
     author: Thomas Piketty
@@ -48,12 +88,27 @@ sources:
 
   - id: adam_tooze
     author: Adam Tooze
-    tradition: economic_history_macrofinance
+    tradition: economic_history_political_economy
     publication: Chartbook
     base_url: https://adamtooze.substack.com/
-    discovery: sitemap
+    platform: substack
+    language: en
+    about_url: https://adamtooze.substack.com/about
+    discovery: rss
+    feed_url: https://adamtooze.substack.com/feed
+    archive_url: https://adamtooze.substack.com/archive
+    source_verified_at: "2026-09-07"
     access: mixed
-    enabled: false
+    access_note: "Combina ensayos gratuitos y contenidos para suscriptores de pago, como Top Links; verificar cada artículo."
+    enabled: true
+    monitor: true
+    extraction_status: ready
+    selectors:
+      title: "h1.post-title"
+      body: ".available-content .body.markup"
+      date: "time"
+      remove: "script, style, form, button, .subscription-widget-wrap-editor"
+      truncate_at: "I love putting out Chartbook."
 
   - id: brad_delong
     author: Brad DeLong
