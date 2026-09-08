@@ -2,100 +2,209 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
+    "schema_version",
     "summary",
-    "main_thesis",
-    "arguments",
-    "mechanisms",
-    "evidence",
-    "indicators",
-    "concepts",
-    "authors_mentioned",
-    "periods",
-    "geographies",
-    "key_quotes"
+    "document_status",
+    "limitations",
+    "problem"
   ],
   "properties": {
-    "summary": {
-      "type": "string"
-    },
-    "main_thesis": {
-      "type": [
-        "string",
-        "null"
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "2"
       ]
     },
-    "arguments": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+    "summary": {
+      "type": "string",
+      "minLength": 1
     },
-    "mechanisms": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+    "document_status": {
+      "type": "string",
+      "enum": [
+        "analizable",
+        "parcial",
+        "sin_contenido_analitico"
+      ]
     },
-    "evidence": {
+    "limitations": {
       "type": "array",
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "description",
-          "type",
-          "source"
-        ],
-        "properties": {
-          "description": {
-            "type": "string"
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "problem": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/problem"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Lectura única articulada alrededor del problema central del artículo. Null si el documento no es analizable."
+    }
+  },
+  "description": "Ficha académica en español organizada alrededor de un único problema central. Toda afirmación se vincula con citas literales del cuerpo.",
+  "$defs": {
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "attribution",
+        "supporting_quotes"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attribution": {
+          "type": "string",
+          "enum": [
+            "explicita",
+            "inferencia"
+          ]
+        },
+        "supporting_quotes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
           },
-          "type": {
-            "type": "string"
-          },
-          "source": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
+          "minItems": 1
         }
       }
     },
-    "indicators": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "concepts": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "authors_mentioned": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "periods": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "geographies": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "key_quotes": {
-      "type": "array",
-      "items": {
-        "type": "string"
+    "problem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "phenomenon",
+        "explanation",
+        "constitutive_elements",
+        "evidence",
+        "theory"
+      ],
+      "properties": {
+        "phenomenon": {
+          "$ref": "#/$defs/claim"
+        },
+        "explanation": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/claim"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Interpretación, relaciones causales y condiciones propuestas por el autor. Null si no las desarrolla."
+        },
+        "constitutive_elements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          },
+          "minItems": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "description",
+              "kind",
+              "source",
+              "availability",
+              "supporting_quotes"
+            ],
+            "properties": {
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "availability": {
+                "type": "string",
+                "enum": [
+                  "presente_en_texto",
+                  "referida_no_disponible"
+                ]
+              },
+              "supporting_quotes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              }
+            }
+          },
+          "minItems": 0
+        },
+        "theory": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "description",
+              "attribution",
+              "role",
+              "supporting_quotes"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "attribution": {
+                "type": "string",
+                "enum": [
+                  "explicita",
+                  "inferencia"
+                ]
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "utilizada",
+                  "discutida",
+                  "rechazada"
+                ]
+              },
+              "supporting_quotes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1
+              }
+            }
+          },
+          "minItems": 0
+        }
       }
     }
   }
