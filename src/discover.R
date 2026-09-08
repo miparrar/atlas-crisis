@@ -1,5 +1,6 @@
 # Uso: Rscript src/discover.R <latest|new>
-# Consulta únicamente los RSS de initial_source_ids configurados en sources.yml.
+# Consulta únicamente los RSS de monitored_source_ids configurados en sources.yml.
+source("src/discovery_contract.R")
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) != 1L || !args[[1]] %in% c("latest", "new")) {
   stop("Uso: Rscript src/discover.R <latest|new>")
@@ -41,18 +42,19 @@ read_feed <- function(source) {
     )
   ) |>
     dplyr::filter(nzchar(url), startsWith(url, source$base_url)) |>
-    dplyr::distinct(url, .keep_all = TRUE)
+    dplyr::distinct(url, .keep_all = TRUE) |>
+    filter_discovery_items(source)
 }
 
 config <- yaml::read_yaml("config/sources.yml")
-selected <- purrr::map(config$initial_source_ids, function(source_id) {
+selected <- purrr::map(config$monitored_source_ids, function(source_id) {
   source <- purrr::detect(config$sources, \(item) identical(item$id, source_id))
-  if (is.null(source)) stop("Fuente inicial desconocida: ", source_id)
+  if (is.null(source)) stop("Fuente monitoreada desconocida: ", source_id)
   if (!isTRUE(source$monitor)) stop("Monitoreo no habilitado: ", source_id)
-  if (is.null(source$feed_url)) stop("Fuente inicial sin feed_url: ", source_id)
+  if (is.null(source$feed_url)) stop("Fuente monitoreada sin feed_url: ", source_id)
   source
 })
-feeds <- rlang::set_names(purrr::map(selected, read_feed), config$initial_source_ids)
+feeds <- rlang::set_names(purrr::map(selected, read_feed), config$monitored_source_ids)
 
 state_path <- file.path("data", "discovery", "state.yml")
 state <- if (file.exists(state_path)) yaml::read_yaml(state_path) else list(sources = list())

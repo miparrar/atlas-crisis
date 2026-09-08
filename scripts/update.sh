@@ -10,7 +10,7 @@ fi
 pending_csv="data/discovery/pending.csv"
 pending_state="data/discovery/pending_state.yml"
 pending_manifest="data/manifests/pending.txt"
-catalog="data/manifests/initial_sources.txt"
+catalog="data/manifests/catalog.txt"
 state="data/discovery/state.yml"
 
 Rscript src/discover.R "$mode"

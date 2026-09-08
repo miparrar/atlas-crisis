@@ -1,6 +1,6 @@
 # Uso: Rscript src/check.R (comprobaciones locales sin instalación ni LLM).
-required <- c("renv", "tidyverse", "yaml", "rvest", "httr2", "digest", "jsonlite",
-              "xml2", "stringi")
+required <- c("renv", "yaml", "rvest", "httr2", "digest", "jsonlite", "xml2",
+              "stringi", "readr", "purrr", "stringr", "dplyr", "rlang", "tibble")
 missing <- required[!vapply(required, requireNamespace, logical(1), quietly = TRUE)]
 if (length(missing) > 0L) {
   stop("Faltan paquetes R: ", paste(missing, collapse = ", "), ". Ejecuta make setup.")
@@ -44,48 +44,46 @@ if (anyDuplicated(source_ids)) {
   stop("Identificadores de fuentes duplicados en config/sources.yml.")
 }
 
-if (anyDuplicated(source_config$initial_source_ids) ||
-    !all(source_config$initial_source_ids %in% source_ids)) {
-  stop("initial_source_ids contiene fuentes duplicadas o desconocidas.")
+required_source_fields <- c(
+  "id", "author", "tradition", "publication", "focus", "curatorial_note",
+  "base_url", "discovery", "access", "enabled", "monitor", "extraction_status"
+)
+purrr::walk(sources, function(source) {
+  missing_fields <- setdiff(required_source_fields, names(source))
+  if (length(missing_fields) > 0L) {
+    stop("Fuente incompleta ", source$id, ": ", paste(missing_fields, collapse = ", "))
+  }
+  if (length(source$focus) == 0L) stop("Fuente sin foco curatorial: ", source$id)
+  if (!is.null(source$exclude_title_regex)) {
+    tryCatch(
+      stringr::str_detect("", stringr::regex(source$exclude_title_regex)),
+      error = \(error) stop("Patrón de exclusión inválido para ", source$id, ": ", error$message)
+    )
+  }
+})
+
+monitor_flags <- sources |>
+  purrr::keep(\(source) isTRUE(source$monitor)) |>
+  purrr::map_chr("id")
+if (!setequal(monitor_flags, source_config$monitored_source_ids)) {
+  stop("Los indicadores monitor no coinciden con monitored_source_ids.")
 }
-purrr::walk(source_config$initial_source_ids, function(source_id) {
+
+if (length(source_config$monitored_source_ids) == 0L ||
+    anyDuplicated(source_config$monitored_source_ids) ||
+    !all(source_config$monitored_source_ids %in% source_ids)) {
+  stop("monitored_source_ids está vacío o contiene fuentes duplicadas o desconocidas.")
+}
+purrr::walk(source_config$monitored_source_ids, function(source_id) {
   source <- sources[[match(source_id, source_ids)]]
-  if (!isTRUE(source$monitor)) stop("Fuente inicial sin monitor: ", source_id)
+  if (!isTRUE(source$monitor)) stop("Fuente monitoreada sin monitor: ", source_id)
   required_fields <- c("base_url", "feed_url")
-  if (any(!required_fields %in% names(source))) stop("Fuente inicial incompleta: ", source_id)
+  if (any(!required_fields %in% names(source))) stop("Fuente monitoreada incompleta: ", source_id)
   required_selectors <- c("title", "body", "date")
   if (is.null(source$selectors) || any(!required_selectors %in% names(source$selectors))) {
     stop("Faltan selectores de monitoreo para: ", source_id)
   }
 })
 
-config <- yaml::read_yaml("config/pilot.yml")
-purrr::iwalk(config$documents, function(document, id) {
-  index <- match(document$source_id, source_ids)
-  if (is.na(index)) stop("Fuente desconocida para el documento: ", id)
-  source <- sources[[index]]
-  if (!isTRUE(source$enabled)) stop("Fuente deshabilitada en el piloto: ", id)
-  if (is.null(source$selectors$title) || is.null(source$selectors$body)) {
-    stop("Faltan selectores de extracción para: ", id)
-  }
-  if (!startsWith(document$url, source$base_url)) {
-    stop("URL del piloto fuera de la fuente curada: ", id)
-  }
-})
-
-purrr::iwalk(config$pilots, function(keys, id) {
-  if (length(keys) == 0L || anyDuplicated(keys) ||
-      !all(keys %in% names(config$documents))) {
-    stop("Lista de documentos inválida en el piloto: ", id)
-  }
-})
-
-if (length(config$pilots$pilot_1) != 1L || length(config$pilots$pilot_2) != 2L ||
-    length(config$pilots$pilot_5) != 5L ||
-    !all(config$pilots$pilot_1 %in% config$pilots$pilot_2) ||
-    !all(config$pilots$pilot_2 %in% config$pilots$pilot_5)) {
-  stop("Se esperaban pilotos acumulativos de 1, 2 y 5 documentos.")
-}
-
-message("Dependencias R, sintaxis, esquema, fuentes monitoreadas y pilotos: ok.")
+message("Dependencias R, sintaxis, esquema y catálogo de fuentes: ok.")
 message("Estas comprobaciones no certifican la calidad del corpus ni de los análisis.")
