@@ -1,57 +1,17 @@
-library(tidyverse)
-library(jsonlite)
-
+# Uso: Rscript src/validate_analysis.R <manifest.txt>
+source("src/analysis_contract.R")
 args <- commandArgs(trailingOnly = TRUE)
-
-if (length(args) != 1) {
-  stop("usage: Rscript src/validate_analysis.R <manifest.txt>")
-}
-
-manifest_path <- args[[1]]
-
-documents <- read_lines(manifest_path) |>
-  discard(\(x) x == "")
-
-analysis_path <- function(document_path) {
-  relative <- document_path |>
-    str_remove("^corpus/posts/") |>
-    str_replace("\\.md$", ".json")
-
-  file.path("data", "analysis", relative)
-}
-
-validate_one <- function(document_path) {
-  output <- analysis_path(document_path)
-
-  if (!file.exists(output)) {
-    stop("missing analysis: ", output)
-  }
-
-  document <- read_file(document_path)
-  analysis <- fromJSON(output, simplifyVector = FALSE)
-
-  quotes <- if (is.null(analysis$key_quotes)) {
-    list()
-  } else {
-    analysis$key_quotes
-  }
-
-  invalid_quotes <- quotes |>
-    keep(\(quote) !str_detect(document, fixed(quote)))
-
-  if (length(invalid_quotes) > 0) {
-    stop("non-verbatim quote detected in: ", output)
-  }
-
-  tibble(
-    document = document_path,
-    analysis = output,
-    quotes = length(quotes),
-    valid = TRUE
-  )
-}
-
-results <- documents |>
-  map_dfr(validate_one)
-
+if (length(args) != 1L) stop("Uso: Rscript src/validate_analysis.R <manifest.txt>")
+schema <- jsonlite::fromJSON("config/analysis_schema.json", simplifyVector = FALSE)
+documents <- readr::read_lines(args[[1]]) |> purrr::discard(\(x) x == "")
+if (length(documents) == 0L) stop("Manifiesto vacío")
+results <- purrr::map_dfr(documents, function(path) {
+  output <- analysis_path(path)
+  document <- read_canonical_document(path)
+  analysis <- jsonlite::fromJSON(output, simplifyVector = FALSE)
+  quotes <- validate_analysis(analysis, document, schema)
+  tibble::tibble(document = path, status = analysis$document_status,
+                 problem = !is.null(analysis$problem), quotes = quotes, valid = TRUE)
+})
 print(results)
+message("Contrato, hash y citas comprobados. La calidad interpretativa requiere revisión humana.")
