@@ -1,0 +1,91 @@
+# Uso: Rscript src/check.R (comprobaciones locales sin instalación ni LLM).
+required <- c("renv", "tidyverse", "yaml", "rvest", "httr2", "digest", "jsonlite",
+              "xml2", "stringi")
+missing <- required[!vapply(required, requireNamespace, logical(1), quietly = TRUE)]
+if (length(missing) > 0L) {
+  stop("Faltan paquetes R: ", paste(missing, collapse = ", "), ". Ejecuta make setup.")
+}
+
+lock <- renv::lockfile_read("renv.lock")
+current_r <- paste(R.version$major, R.version$minor, sep = ".")
+major_minor <- function(version) sub("^([0-9]+\\.[0-9]+).*", "\\1", version)
+if (major_minor(current_r) != major_minor(lock$R$Version)) {
+  stop("Versión de R incompatible: se esperaba ", lock$R$Version, "; se encontró ", current_r)
+}
+
+unrecorded <- setdiff(required, names(lock$Packages))
+if (length(unrecorded) > 0L) {
+  stop("Dependencias ausentes de renv.lock: ", paste(unrecorded, collapse = ", "))
+}
+
+mismatched <- names(lock$Packages) |>
+  purrr::keep(function(package) {
+    !requireNamespace(package, quietly = TRUE) ||
+      utils::packageVersion(package) != package_version(lock$Packages[[package]]$Version)
+  })
+if (length(mismatched) > 0L) {
+  stop("Paquetes distintos de renv.lock: ", paste(mismatched, collapse = ", "),
+       ". Ejecuta make setup.")
+}
+
+list.files("src", pattern = "\\.R$", full.names = TRUE) |>
+  purrr::walk(\(path) invisible(parse(file = path)))
+
+schema <- jsonlite::fromJSON("config/analysis_schema.json", simplifyVector = FALSE)
+if (!identical(schema$type, "object") ||
+    !setequal(unlist(schema$required), names(schema$properties))) {
+  stop("Esquema inválido: se esperaba un objeto con todas sus propiedades obligatorias.")
+}
+
+source_config <- yaml::read_yaml("config/sources.yml")
+sources <- source_config$sources
+source_ids <- purrr::map_chr(sources, "id")
+if (anyDuplicated(source_ids)) {
+  stop("Identificadores de fuentes duplicados en config/sources.yml.")
+}
+
+if (anyDuplicated(source_config$initial_source_ids) ||
+    !all(source_config$initial_source_ids %in% source_ids)) {
+  stop("initial_source_ids contiene fuentes duplicadas o desconocidas.")
+}
+purrr::walk(source_config$initial_source_ids, function(source_id) {
+  source <- sources[[match(source_id, source_ids)]]
+  if (!isTRUE(source$monitor)) stop("Fuente inicial sin monitor: ", source_id)
+  required_fields <- c("base_url", "feed_url")
+  if (any(!required_fields %in% names(source))) stop("Fuente inicial incompleta: ", source_id)
+  required_selectors <- c("title", "body", "date")
+  if (is.null(source$selectors) || any(!required_selectors %in% names(source$selectors))) {
+    stop("Faltan selectores de monitoreo para: ", source_id)
+  }
+})
+
+config <- yaml::read_yaml("config/pilot.yml")
+purrr::iwalk(config$documents, function(document, id) {
+  index <- match(document$source_id, source_ids)
+  if (is.na(index)) stop("Fuente desconocida para el documento: ", id)
+  source <- sources[[index]]
+  if (!isTRUE(source$enabled)) stop("Fuente deshabilitada en el piloto: ", id)
+  if (is.null(source$selectors$title) || is.null(source$selectors$body)) {
+    stop("Faltan selectores de extracción para: ", id)
+  }
+  if (!startsWith(document$url, source$base_url)) {
+    stop("URL del piloto fuera de la fuente curada: ", id)
+  }
+})
+
+purrr::iwalk(config$pilots, function(keys, id) {
+  if (length(keys) == 0L || anyDuplicated(keys) ||
+      !all(keys %in% names(config$documents))) {
+    stop("Lista de documentos inválida en el piloto: ", id)
+  }
+})
+
+if (length(config$pilots$pilot_1) != 1L || length(config$pilots$pilot_2) != 2L ||
+    length(config$pilots$pilot_5) != 5L ||
+    !all(config$pilots$pilot_1 %in% config$pilots$pilot_2) ||
+    !all(config$pilots$pilot_2 %in% config$pilots$pilot_5)) {
+  stop("Se esperaban pilotos acumulativos de 1, 2 y 5 documentos.")
+}
+
+message("Dependencias R, sintaxis, esquema, fuentes monitoreadas y pilotos: ok.")
+message("Estas comprobaciones no certifican la calidad del corpus ni de los análisis.")
