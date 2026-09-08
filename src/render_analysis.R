@@ -1,6 +1,7 @@
 # Uso: Rscript src/render_analysis.R <manifest.txt>
 # Genera un sitio HTML estático en corpus/reports/, sin red ni LLM.
 source("src/analysis_contract.R")
+source("src/site_contract.R")
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) != 1L) stop("Uso: Rscript src/render_analysis.R <manifest.txt>")
@@ -203,9 +204,9 @@ render_home <- function(groups, sources, css) {
   }) |>
     paste(collapse = "\n")
   body <- paste0(
-    '<header class="page-header home"><p class="brand">Atlas de la Crisis</p>',
-    "<h1>Interpretaciones de la crisis económica</h1>",
-    '<p class="lede">Lecturas trazables de cómo distintos autores identifican y explican un problema económico central.</p>',
+    '<header class="page-header home"><p class="brand">ATLAS DE LA CRISIS</p>',
+    "<h1>Autores para pensar la crisis contemporánea</h1>",
+    '<p class="lede">Una curaduría de autores con IA. Qué observan, cómo la explican y con qué evidencia.</p>',
     '<p class="site-count">', author_count, if (author_count == 1L) " autor" else " autores",
     " · ", article_count, if (article_count == 1L) " artículo" else " artículos", "</p></header>",
     '<section class="listing" aria-label="Autores"><h2>Autores</h2>', cards, "</section>"
@@ -221,6 +222,7 @@ if (length(documents) == 0L) stop("Manifiesto vacío")
 
 entries <- purrr::map(documents, read_entry, schema = schema)
 groups <- split(entries, purrr::map_chr(entries, "source_id"))
+groups <- purrr::map(groups, order_entries_newest_first)
 source_list <- yaml::read_yaml("config/sources.yml")$sources
 sources <- rlang::set_names(source_list, purrr::map_chr(source_list, "id"))
 unknown_sources <- setdiff(names(groups), names(sources))
