@@ -1,23 +1,21 @@
-required <- c(
-  "tidyverse",
-  "yaml",
-  "rvest",
-  "httr2",
-  "digest",
-  "jsonlite"
-)
-
-installed <- rownames(installed.packages())
-missing <- setdiff(required, installed)
-
-if (length(missing) == 0) {
-  message("R dependencies already installed.")
-  quit(status = 0)
+# Uso: Rscript src/bootstrap.R (desde la raíz del repositorio).
+if (!file.exists("renv.lock") || !file.exists("renv/activate.R")) {
+  stop("Ejecuta desde la raíz del repositorio, con renv.lock y renv/activate.R presentes.")
 }
 
-message("Installing missing R packages: ", paste(missing, collapse = ", "))
+# .Rprofile activa renv normalmente; también admitir la invocación directa.
+if (!requireNamespace("renv", quietly = TRUE)) {
+  source("renv/activate.R")
+}
 
-install.packages(
-  missing,
-  repos = "https://cloud.r-project.org"
-)
+lock <- renv::lockfile_read("renv.lock")
+current_r <- paste(R.version$major, R.version$minor, sep = ".")
+major_minor <- function(version) sub("^([0-9]+\\.[0-9]+).*", "\\1", version)
+
+if (major_minor(current_r) != major_minor(lock$R$Version)) {
+  stop("Versión de R incompatible: renv.lock registra ", lock$R$Version,
+       "; la versión actual es ", current_r)
+}
+
+renv::restore(lockfile = "renv.lock", prompt = FALSE)
+message("Entorno R restaurado desde renv.lock.")
