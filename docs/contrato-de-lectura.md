@@ -18,6 +18,6 @@ Cada afirmación lleva el mínimo de citas literales necesario. Las conexiones d
 
 El sitio ofrece tres niveles: portada de autores, índice de artículos por autor y ficha individual. La ficha entra por una síntesis, recorre las cinco dimensiones y mantiene citas y procedencia plegadas. Los textos parciales quedan sin problema analítico y señalan su limitación.
 
-`make latest` establece la ronda inicial con la publicación más reciente de cada fuente monitoreada; `make update` incorpora las posteriores; `make site` reconstruye el catálogo validado y `make serve` lo sirve localmente. Los pilotos acumulativos de 1, 2 y 5 documentos se conservan como pruebas técnicas del contrato.
+`make latest` establece la ronda inicial con la publicación más reciente de cada fuente monitoreada; `make update` incorpora las posteriores; `make site` reconstruye el catálogo validado y `make serve` lo sirve localmente.
 
 El contrato ejecutable está en [config/analysis_schema.json](../config/analysis_schema.json) y las instrucciones de extracción en [prompts/analyze.md](../prompts/analyze.md). El sitio se genera con R y CSS locales, sin llamadas de red durante el renderizado. La identidad por URL, los hashes, la metadata y la promoción del estado de descubrimiento están documentados en [monitoreo.md](monitoreo.md).

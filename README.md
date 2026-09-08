@@ -1,10 +1,19 @@
 # Atlas de la Crisis
 
-Atlas cartografía interpretaciones de la crisis económica mundial. Reúne textos de autores seleccionados, reconstruye sus explicaciones y conserva el vínculo entre cada afirmación y el pasaje que la respalda.
+El **Atlas de la Crisis** es una curaduría de autores que sigo para comprender la crisis en curso que experimentamos como humanidad, con análisis y extracción asistidos por inteligencia artificial. Surge como una ramificación de un proyecto mayor dedicado al estudio de la crisis capitalista mundial.
 
-El proyecto toma de [Spicy Takes](https://www.spicytakes.org/) el flujo de archivo, análisis y publicación por autor. Cambia el objeto: aquí no se puntúa qué tan provocadora es una cita, sino que se organiza la explicación económica de cada texto.
+El Atlas trabaja con una selección de autores provenientes de distintas corrientes teóricas. El objetivo es comprenderlos en sus propios términos y reconstruir cómo interpretan los problemas que observan.
 
-La selección inicial es **Michael Roberts, Adam Tooze y Paul Krugman**. Las fuentes se definen en [config/sources.yml](config/sources.yml) y se documentan en [docs/fuentes-iniciales.md](docs/fuentes-iniciales.md). La disponibilidad técnica no determina la relevancia intelectual de un autor.
+Cada lectura se organiza como una ficha orientada por cinco preguntas: **qué fenómeno, tensión o interrogante observa el autor; cómo lo explica; qué elementos constituyen esa explicación y qué función cumplen; qué evidencia utiliza para sostenerla; y qué conceptos, proposiciones, autores o marcos teóricos organizan su interpretación**.
+
+En torno a estas preguntas se organiza la **extracción asistida por inteligencia artificial**. La IA se utiliza para identificar y estructurar estos componentes de manera sistemática, procurando preservar los términos del propio autor, distinguir entre explicación, evidencia y teoría, y evitar atribuciones que no estén respaldadas por el texto.
+
+El formato está inspirado en las antiguas tarjetas amarillas de fichas de lectura: unidades breves, sistemáticas y comparables que, acumuladas, permiten construir un mapa de interpretaciones sobre la crisis contemporánea.
+
+La lógica de producción del proyecto está inspirada en [**Spicy Takes**](https://www.spicytakes.org/), de Wes McKinney: curaduría de fuentes combinada con análisis estructurado mediante modelos de lenguaje.
+
+El catálogo curatorial reúne a **Michael Roberts, Adam Tooze, Paul Krugman, Michael Pettis, Ann Pettifor, Kate Mackenzie, Fernando Rugitsky, Grace Blakeley, Branko Milanović, Stephanie Kelton y Rana Foroohar**. Por ahora, solo Michael Roberts, Adam Tooze y Paul Krugman tienen monitoreo e ingesta automática verificados. 
+
 
 ## Flujo
 
@@ -35,7 +44,7 @@ make setup
 make latest
 ```
 
-`make latest` establece la primera ronda: toma la publicación más reciente de Michael Roberts, Adam Tooze y Paul Krugman, y ejecuta ingesta, análisis, validación y sitio.
+`make latest` establece la primera ronda con la publicación más reciente de cada fuente cuyo monitoreo está verificado, y ejecuta ingesta, análisis, validación y sitio.
 
 En las rondas siguientes:
 
@@ -43,10 +52,9 @@ En las rondas siguientes:
 make update
 ```
 
-`make update` consulta solo sus RSS configurados y procesa todas las entradas nuevas desde la última ronda válida. El URL identifica el artículo; el hash del cuerpo, del esquema y del prompt decide si debe analizarse otra vez. El estado del feed avanza únicamente después de una validación completa.
+`make update` consulta solo los RSS configurados en `monitored_source_ids` y procesa todas las entradas nuevas desde la última ronda válida. El URL identifica el artículo; el hash del cuerpo, del esquema y del prompt decide si debe analizarse otra vez. El estado del feed avanza únicamente después de una validación completa.
 
-Los objetivos `pilot-1`, `pilot-2` y `pilot-5` se conservan como pruebas técnicas acumulativas. La operación regular está explicada en [docs/monitoreo.md](docs/monitoreo.md).
-Para programar `make update` todos los días a las 08:00, hora local:
+La operación regular está explicada en [docs/monitoreo.md](docs/monitoreo.md). Para programar `make update` todos los días a las 08:00, hora local:
 
 ```bash
 make install-monitor
