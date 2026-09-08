@@ -1,8 +1,8 @@
-version: 1
+version: 2
 
-# Selección curatorial inicial, en orden de monitoreo.
-# Solo estas fuentes se consultan automáticamente y únicamente mediante su RSS.
-initial_source_ids:
+# Fuentes con monitoreo e ingesta automática ya verificados.
+# El catálogo curatorial completo está en `sources`.
+monitored_source_ids:
   - michael_roberts
   - adam_tooze
   - paul_krugman
@@ -24,8 +24,10 @@ selection_policy:
 sources:
   - id: michael_roberts
     author: Michael Roberts
-    tradition: marxist
-    publication: Michael Roberts Blog
+    tradition: marxist_profitability_accumulation
+    publication: The Next Recession
+    focus: [rentabilidad, inversión, beneficios, crisis, deuda, inteligencia artificial]
+    curatorial_note: "Marxismo clásico centrado en la tasa de ganancia y la acumulación como hipótesis estructural de fondo."
     base_url: https://thenextrecession.wordpress.com/
     platform: wordpress
     language: en
@@ -44,52 +46,12 @@ sources:
       date: "time.entry-date"
       remove: ".sharedaddy, .sd-sharing-enabled, .jp-relatedposts, script, style, form, nav"
 
-  - id: paul_krugman
-    author: Paul Krugman
-    tradition: new_keynesian
-    publication: Paul Krugman
-    base_url: https://paulkrugman.substack.com/
-    platform: substack
-    language: en
-    about_url: https://paulkrugman.substack.com/about
-    discovery: rss
-    feed_url: https://paulkrugman.substack.com/feed
-    archive_url: https://paulkrugman.substack.com/archive
-    source_verified_at: "2026-09-07"
-    access: mixed
-    access_note: "Publicaciones mayoritariamente gratuitas y algunas de pago, según su página About; verificar cada artículo."
-    enabled: true
-    monitor: true
-    extraction_status: ready
-    selectors:
-      title: "h1.post-title"
-      body: ".available-content .body.markup"
-      date: "time"
-      remove: "script, style, form, button, .subscription-widget-wrap-editor"
-
-  - id: thomas_piketty
-    author: Thomas Piketty
-    tradition: inequality_political_economy
-    publication: Blog de Thomas Piketty
-    base_url: https://www.lemonde.fr/blog/piketty/
-    discovery: manual
-    access: mixed_or_paywalled
-    enabled: false
-    note: "Relevant to the intellectual corpus, but excluded from the automatic pilot until access is handled cleanly."
-
-  - id: dani_rodrik
-    author: Dani Rodrik
-    tradition: institutionalist_development
-    publication: Dani Rodrik's Weblog
-    base_url: https://rodrik.typepad.com/
-    discovery: archive
-    access: public
-    enabled: false
-
   - id: adam_tooze
     author: Adam Tooze
     tradition: economic_history_political_economy
     publication: Chartbook
+    focus: [macroeconomía mundial, guerras, China, Europa, inteligencia artificial, energía]
+    curatorial_note: "Cartografía la coyuntura mundial conectando datos, acontecimientos y transformaciones geopolíticas."
     base_url: https://adamtooze.substack.com/
     platform: substack
     language: en
@@ -99,7 +61,7 @@ sources:
     archive_url: https://adamtooze.substack.com/archive
     source_verified_at: "2026-09-07"
     access: mixed
-    access_note: "Combina ensayos gratuitos y contenidos para suscriptores de pago, como Top Links; verificar cada artículo."
+    access_note: "Combina ensayos gratuitos y contenidos para suscriptores de pago; verificar cada artículo."
     enabled: true
     monitor: true
     extraction_status: ready
@@ -109,73 +71,178 @@ sources:
       date: "time"
       remove: "script, style, form, button, .subscription-widget-wrap-editor"
       truncate_at: "I love putting out Chartbook."
+    exclude_title_regex: "^Top Links\\b"
 
-  - id: brad_delong
-    author: Brad DeLong
-    tradition: new_keynesian_economic_history
-    publication: Grasping Reality
-    base_url: https://braddelong.substack.com/
-    discovery: sitemap
-    access: mixed
-    enabled: false
-
-  - id: steve_keen
-    author: Steve Keen
-    tradition: post_keynesian
-    publication: Building a New Economics
-    base_url: https://profstevekeen.substack.com/
-    discovery: sitemap
-    access: mixed
-    enabled: true
-    selectors:
-      title: "h1"
-      body: "article"
-      date: "time"
-
-  - id: simon_wren_lewis
-    author: Simon Wren-Lewis
-    tradition: new_keynesian
-    publication: Mainly Macro
-    base_url: https://mainlymacro.blogspot.com/
+  - id: paul_krugman
+    author: Paul Krugman
+    tradition: new_keynesian_political_economy
+    publication: Paul Krugman
+    focus: [comercio, empleo industrial, política fiscal, inflación, desigualdad, economía política estadounidense]
+    curatorial_note: "Aporta una lectura neokeynesiana de la coyuntura, las políticas macroeconómicas y la economía política de Estados Unidos."
+    base_url: https://paulkrugman.substack.com/
+    platform: substack
+    language: en
+    about_url: https://paulkrugman.substack.com/about
     discovery: rss
-    access: public
-    enabled: false
+    feed_url: https://paulkrugman.substack.com/feed
+    archive_url: https://paulkrugman.substack.com/archive
+    source_verified_at: "2026-09-07"
+    access: mixed
+    access_note: "Combina publicaciones públicas y contenidos de pago; verificar cada artículo."
+    enabled: true
+    monitor: true
+    extraction_status: ready
     selectors:
-      title: "h3.post-title, h1"
-      body: "div.post-body"
-      date: "h2.date-header, time"
+      title: "h1.post-title"
+      body: ".available-content .body.markup"
+      date: "time"
+      remove: "script, style, form, button, .subscription-widget-wrap-editor"
 
-  - id: bill_mitchell
-    author: Bill Mitchell
+  - id: michael_pettis
+    author: Michael Pettis
+    tradition: global_macroeconomic_imbalances
+    publication: Michael Pettis
+    focus: [China, sobreproducción, consumo, ahorro, comercio]
+    curatorial_note: "Estudia los desequilibrios macroeconómicos globales y la transmisión internacional del modelo de crecimiento chino."
+    base_url: https://michaelpettis858496.substack.com/
+    platform: substack
+    language: en
+    about_url: https://michaelpettis858496.substack.com/about
+    discovery: manual
+    archive_url: https://michaelpettis858496.substack.com/archive
+    source_verified_at: "2026-09-08"
+    access: mixed_unverified
+    access_note: "Publicación identificada; verificar acceso por artículo, RSS y selectores antes de automatizar."
+    enabled: false
+    monitor: false
+    extraction_status: pending_verification
+
+  - id: ann_pettifor
+    author: Ann Pettifor
+    tradition: international_financial_political_economy
+    publication: System Change
+    focus: [deuda, crédito, dólar, bancos centrales, burbujas, ecología, desigualdad]
+    curatorial_note: "Examina la arquitectura financiera internacional y sus vínculos con el poder político, la ecología y la desigualdad."
+    base_url: https://annpettifor.substack.com/
+    platform: substack
+    language: en
+    about_url: https://annpettifor.substack.com/about
+    discovery: manual
+    archive_url: https://annpettifor.substack.com/archive
+    source_verified_at: "2026-09-08"
+    access: mixed_unverified
+    access_note: "La publicación y su archivo están identificados; verificar acceso por artículo, RSS y selectores antes de automatizar."
+    enabled: false
+    monitor: false
+    extraction_status: pending_verification
+
+  - id: kate_mackenzie
+    author: Kate Mackenzie
+    tradition: climate_energy_geopolitical_economy
+    publication: The Polycrisis
+    focus: [clima, energía, materias primas, China, geopolítica, desarrollo]
+    curatorial_note: "Conecta energía, transición ecológica, desarrollo y rivalidad geopolítica; la publicación incluye coautoría con Tim Sahay."
+    base_url: https://thepolycrisis.org/
+    platform: independent_newsletter
+    language: en
+    discovery: manual
+    archive_url: https://thepolycrisis.org/
+    source_verified_at: "2026-09-08"
+    access: public_candidate
+    access_note: "El sitio expone ensayos y despachos, pero deben verificarse autoría, integridad y mecanismo de descubrimiento por entrada."
+    enabled: false
+    monitor: false
+    extraction_status: pending_verification
+
+  - id: fernando_rugitsky
+    author: Fernando Rugitsky
+    tradition: latin_american_development_political_economy
+    publication: Meridional
+    focus: [América Latina, desarrollo, trabajo, estructura productiva, commodities, clima]
+    curatorial_note: "Lee las transformaciones mundiales desde la periferia latinoamericana y las contradicciones del capitalismo contemporáneo."
+    base_url: https://phenomenalworld.org/analysis/meridional/
+    platform: phenomenal_world
+    language: en
+    discovery: manual
+    archive_url: https://phenomenalworld.org/analysis/meridional/
+    source_verified_at: "2026-09-08"
+    access: public_candidate
+    access_note: "La presentación de la columna es pública; verificar archivo, autoría e integridad de cada entrega antes de automatizar."
+    enabled: false
+    monitor: false
+    extraction_status: pending_verification
+
+  - id: grace_blakeley
+    author: Grace Blakeley
+    tradition: marxist_institutional_political_economy
+    publication: Grace Blakeley
+    focus: [propiedad, empresas, financiarización, inteligencia artificial, Estado, política británica]
+    curatorial_note: "Se concentra en la organización institucional y política del capitalismo, el control empresarial y la socialización de riesgos."
+    base_url: https://graceblakeley.substack.com/
+    platform: substack
+    language: en
+    about_url: https://graceblakeley.substack.com/about
+    discovery: manual
+    archive_url: https://graceblakeley.substack.com/archive
+    source_verified_at: "2026-09-08"
+    access: mixed_or_paywalled
+    access_note: "La publicación anuncia acceso completo para suscriptores de pago; incluir únicamente entradas públicas completas."
+    enabled: false
+    monitor: false
+    extraction_status: pending_verification
+
+  - id: branko_milanovic
+    author: Branko Milanović
+    tradition: global_inequality_comparative_capitalism
+    publication: Global Inequality and More 3.0
+    focus: [desigualdad, clases, capitalismo global, China, distribución]
+    curatorial_note: "Aporta una mirada comparativa e histórica sobre ganadores y perdedores de las transformaciones del capitalismo mundial."
+    base_url: https://branko2f7.substack.com/
+    platform: substack
+    language: en
+    about_url: https://branko2f7.substack.com/about
+    discovery: manual
+    archive_url: https://branko2f7.substack.com/archive
+    source_verified_at: "2026-09-08"
+    access: mixed_unverified
+    access_note: "La publicación ofrece suscripción y archivo; verificar acceso por artículo, RSS y selectores antes de automatizar."
+    enabled: false
+    monitor: false
+    extraction_status: pending_verification
+
+  - id: stephanie_kelton
+    author: Stephanie Kelton
     tradition: modern_monetary_theory
-    publication: William Mitchell - Modern Monetary Theory
-    base_url: https://billmitchell.org/blog/
-    discovery: rss
-    access: public
-    enabled: true
-    selectors:
-      title: "h1"
-      body: "div.entry-content, article"
-      date: "time, .entry-date"
-
-  - id: john_cochrane
-    author: John H. Cochrane
-    tradition: new_classical_fiscal_theory
-    publication: The Grumpy Economist
-    base_url: https://www.grumpy-economist.com/
-    discovery: sitemap
+    publication: The Lens
+    focus: [política fiscal, déficit, dinero, empleo, bancos centrales]
+    curatorial_note: "Aporta el contrapunto de la teoría monetaria moderna sobre restricciones fiscales, deuda pública, empleo y política económica."
+    base_url: https://stephaniekelton.substack.com/
+    platform: substack
+    language: en
+    about_url: https://stephaniekelton.substack.com/about
+    discovery: manual
+    archive_url: https://stephaniekelton.substack.com/archive
+    source_verified_at: "2026-09-08"
     access: mixed
-    enabled: true
-    selectors:
-      title: "h1"
-      body: "article"
-      date: "time"
-
-  - id: noah_smith
-    author: Noah Smith
-    tradition: eclectic_mainstream
-    publication: Noahpinion
-    base_url: https://www.noahpinion.blog/
-    discovery: sitemap
-    access: mixed
+    access_note: "La publicación reserva parte del contenido a suscriptores de pago; incluir únicamente entradas públicas completas."
     enabled: false
+    monitor: false
+    extraction_status: pending_verification
+
+  - id: rana_foroohar
+    author: Rana Foroohar
+    tradition: industrial_policy_geoeconomics
+    publication: Financial Times
+    focus: [política industrial, cadenas productivas, Estados Unidos, grandes tecnológicas, relocalización, competencia entre bloques]
+    curatorial_note: "Sigue el desplazamiento desde la globalización financiera hacia la política industrial, la relocalización y la competencia tecnológica."
+    base_url: https://www.ft.com/rana-foroohar
+    platform: financial_times
+    language: en
+    discovery: manual
+    archive_url: https://www.ft.com/rana-foroohar
+    source_verified_at: "2026-09-08"
+    access: mixed_or_paywalled
+    access_note: "El archivo combina contenido visible y premium; no eludir el muro de pago e incluir solo artículos públicos completos."
+    enabled: false
+    monitor: false
+    extraction_status: pending_verification
