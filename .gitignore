@@ -1,6 +1,7 @@
 # Generated research artifacts
 corpus/
 data/analysis/
+data/discovery/
 data/manifests/
 logs/
 
