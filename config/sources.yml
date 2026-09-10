@@ -6,6 +6,7 @@ monitored_source_ids:
   - michael_roberts
   - adam_tooze
   - paul_krugman
+  - kate_mackenzie
 
 # Política de selección aplicada durante la ingesta y la revisión humana.
 selection_policy:
@@ -145,14 +146,21 @@ sources:
     base_url: https://thepolycrisis.org/
     platform: independent_newsletter
     language: en
-    discovery: manual
-    archive_url: https://thepolycrisis.org/
-    source_verified_at: "2026-09-08"
-    access: public_candidate
-    access_note: "El sitio expone ensayos y despachos, pero deben verificarse autoría, integridad y mecanismo de descubrimiento por entrada."
-    enabled: false
-    monitor: false
-    extraction_status: pending_verification
+    discovery: rss
+    feed_url: https://thepolycrisis.org/rss/
+    archive_url: https://thepolycrisis.org/author/kate/
+    source_verified_at: "2026-09-09"
+    access: public
+    access_note: "El sitio Ghost expone RSS y texto completo; verificar autoría y excluir podcasts, videos y entradas de enlaces por entrada."
+    enabled: true
+    monitor: true
+    extraction_status: ready
+    selectors:
+      title: "h1"
+      body: "div.post-content"
+      date: "time"
+      remove: "script, style, form, nav, .gh-post-upgrade-cta, .kg-card.kg-bookmark-card"
+    exclude_title_regex: '(?i)(podcast|book club|\|)'
 
   - id: fernando_rugitsky
     author: Fernando Rugitsky

@@ -12,7 +12,7 @@ El formato está inspirado en las antiguas tarjetas amarillas de fichas de lectu
 
 La lógica de producción del proyecto está inspirada en [**Spicy Takes**](https://www.spicytakes.org/), de Wes McKinney: curaduría de fuentes combinada con análisis estructurado mediante modelos de lenguaje.
 
-El catálogo curatorial reúne a **Michael Roberts, Adam Tooze, Paul Krugman, Michael Pettis, Ann Pettifor, Kate Mackenzie, Fernando Rugitsky, Grace Blakeley, Branko Milanović, Stephanie Kelton y Rana Foroohar**. Por ahora, solo Michael Roberts, Adam Tooze y Paul Krugman tienen monitoreo e ingesta automática verificados. 
+El catálogo curatorial reúne a **Michael Roberts, Adam Tooze, Paul Krugman, Michael Pettis, Ann Pettifor, Kate Mackenzie, Fernando Rugitsky, Grace Blakeley, Branko Milanović, Stephanie Kelton y Rana Foroohar**. Michael Roberts, Adam Tooze, Paul Krugman y Kate Mackenzie tienen monitoreo e ingesta automática verificados; las demás fuentes permanecen pendientes de verificación técnica. 
 
 
 ## Flujo

@@ -23,6 +23,7 @@ Un artículo puede contener aspectos, tensiones o derivaciones distintas, pero n
 
 Trazabilidad y síntesis:
 - Cada afirmación, evidencia y referencia teórica debe incluir supporting_quotes literales, contiguas y no vacías del cuerpo.
+- Cada supporting_quote debe ser una subcadena exacta del cuerpo: conserva comillas, asteriscos Markdown, guiones, apóstrofos, mayúsculas, espacios y puntuación; no agregues comillas exteriores ni corrijas, completes o recortes el texto. Antes de devolver el JSON, comprueba cada cita carácter por carácter contra el documento; si no puedes hacerlo, omite esa cita o el elemento. Por ejemplo, si el cuerpo dice "You see, many governments...", no uses "Many governments...".
 - Usa el conjunto mínimo de citas que respalde cada descripción. Evita repetir una cita en varios campos salvo que sea indispensable.
 - Marca attribution = "explicita" cuando la formulación se reconstruye directamente del texto e "inferencia" cuando exige una conexión interpretativa. No uses inferencias para añadir hechos o causas externas.
 - Fusiona elementos relacionados. Si un campo carece de respaldo, utiliza null o [] donde el esquema lo permite; nunca lo rellenes por simetría.
