@@ -1,0 +1,211 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chartbook 473 Germany’s democratic earthquake: the AfD breakthrough in Sachsen-Anhalt and the question of an “alternative to the Alternative”. · Atlas de la Crisis</title><style>:root {
+  --ink: #202421;
+  --muted: #66706a;
+  --line: #dfe3df;
+  --accent: #17645d;
+  --warm: #7b5628;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font: 17px/1.65 system-ui, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
+}
+main {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 56px 0 72px;
+}
+h1, h2, h3 { line-height: 1.2; }
+h1 {
+  max-width: 720px;
+  margin: 14px 0 18px;
+  font: 400 clamp(34px, 7vw, 54px)/1.08 Georgia, serif;
+  letter-spacing: -.025em;
+}
+h2 { margin: 0; font-size: 22px; }
+h3 { margin: 0 0 18px; font-size: 18px; }
+p { margin: 0 0 14px; }
+.brand {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brand a { color: inherit; text-decoration: none; }
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.byline a:first-child { color: inherit; text-decoration: none; }
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary {
+  margin: 44px 0 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.summary h2 { margin-bottom: 12px; }
+.summary p { font: 20px/1.6 Georgia, serif; }
+.lede {
+  max-width: 680px;
+  color: var(--muted);
+  font: 20px/1.55 Georgia, serif;
+}
+.site-count { margin-top: 18px; color: var(--muted); font-size: 13px; }
+.listing { margin-top: 48px; }
+.listing > h2 { margin-bottom: 12px; }
+.author-link, .article-link {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.author-link h2, .article-link h2 { margin-bottom: 6px; }
+.author-link h2 a, .article-link h2 a {
+  color: var(--ink);
+  text-decoration-color: var(--line);
+}
+.author-link p, .article-link p { margin-bottom: 6px; }
+.author-link .meta, .article-link .meta { margin-left: 0; }
+.limitations {
+  margin: 0 0 36px;
+  padding: 16px 0 16px 18px;
+  border-left: 2px solid var(--warm);
+  color: #574c3d;
+  font-size: 14px;
+}
+.limitations ul { margin: 6px 0 0; padding-left: 20px; }
+.section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+.section h3 span {
+  display: inline-block;
+  width: 34px;
+  color: var(--accent);
+  font: 700 12px system-ui, sans-serif;
+}
+.item + .item { margin-top: 22px; }
+.item p:last-of-type { margin-bottom: 0; }
+.item-title { font-weight: 700; }
+.meta {
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.item > p.meta { margin-left: 0; }
+.inference, .unavailable {
+  display: inline-block;
+  margin: 0 0 7px 10px;
+  color: var(--warm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.item > .inference:first-child { margin-left: 0; }
+.empty { color: var(--muted); font-style: italic; }
+details { margin-top: 10px; }
+summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+blockquote {
+  margin: 14px 0 6px;
+  padding-left: 16px;
+  border-left: 2px solid var(--line);
+  color: #4c554f;
+  font: 16px/1.6 Georgia, serif;
+  overflow-wrap: anywhere;
+}
+footer {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.provenance dl {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 5px 12px;
+}
+.provenance dt { font-weight: 700; }
+.provenance dd { margin: 0; }
+.provenance code { font-size: 11px; }
+
+@media (max-width: 560px) {
+  main { width: min(100% - 32px, 760px); padding-top: 34px; }
+  .byline { display: grid; gap: 2px; }
+  .summary { margin-top: 34px; }
+  .provenance dl { grid-template-columns: 1fr; gap: 2px; }
+  .provenance dd { margin-bottom: 8px; }
+}
+
+@media print {
+  body { font-size: 11pt; }
+  main { width: 100%; padding: 0; }
+  h1 { font-size: 28pt; }
+  .summary p { font-size: 13pt; }
+  .status { border-color: #999; }
+  .section { break-inside: avoid; }
+  details > * { display: block; }
+  footer { font-size: 9pt; }
+}
+</style></head><body><main><header class="page-header"><p class="brand"><a href="../index.html">Atlas de la Crisis</a></p><h1>Chartbook 473 Germany’s democratic earthquake: the AfD breakthrough in Sachsen-Anhalt and the question of an “alternative to the Alternative”.</h1><p class="byline"><a href="index.html"><strong>Adam Tooze</strong></a><span>Sep 07, 2026</span><a href="https://adamtooze.substack.com/p/chartbook-473-germanys-democratic">Texto original ↗</a></p><p class="status">Pendiente de revisión humana</p></header><section class="summary"><h2>Síntesis</h2><p>Adam Tooze interpreta el avance electoral de la AfD en Sachsen-Anhalt como el resultado de la descomposición de una mayoría progresista potencial y de la posterior movilización de un voto de protesta xenófobo, antiestablishment y orientado a producir identidad política. La explicación vincula la pérdida de confianza provocada por las reformas Hartz IV con el deterioro económico regional, pero sostiene que las motivaciones declaradas de los votantes se organizan principalmente alrededor de la seguridad, los extranjeros y el rechazo del orden político establecido. El problema estratégico resultante es si una alternativa progresista puede ofrecer algo más que mejores políticas socioeconómicas: una identidad política capaz de disputar el terreno ocupado por la AfD.</p></section><aside class="limitations"><strong>Limitaciones</strong><ul><li>El cuerpo incorpora publicaciones y mensajes de redes sociales incrustados, además de referencias a fuentes y trabajos empíricos cuyo material completo no está disponible en el documento.</li>
+<li>Las referencias a Julius Koelzer, DIW, Isabella Weber y otras fuentes se conservan únicamente como menciones del autor; no se inspeccionan materiales externos.</li>
+<li>El artículo presenta cifras electorales y socioeconómicas, pero no incluye las figuras o tablas asociadas a algunas referencias de fuente.</li></ul></aside><article class="problem"><section class="section"><h3><span>01</span>Fenómeno o problema</h3><div class="item"><p>El fenómeno central es el avance electoral extraordinario de la AfD en Sachsen-Anhalt y la crisis de la democracia alemana que ese resultado expresa, especialmente en relación con el colapso de una posible mayoría progresista y la movilización de antiguos no votantes.</p><details class="quotes"><summary>4 citas de respaldo</summary><blockquote>Germany’s democracy has suffered an earthquake.</blockquote>
+<blockquote>The crisis of German democracy has long been forecast. It now seems to be upon us.</blockquote>
+<blockquote>So what needs to be explained is not so much the deep continuity of nationalist sentiment, so much as the collapse of a potential progressive majority.</blockquote>
+<blockquote>The main driver and beneficiary of this electoral mobilization is the AfD. Of its huge surge in support by far the largest part came from previous non-voters.</blockquote></details></div></section><section class="section"><h3><span>02</span>Explicación o interpretación</h3><div class="item"><p>El autor sostiene que la ruptura de la confianza política se produjo durante la década de 2000, cuando las reformas Hartz IV del gobierno Red-Green aumentaron la presión sobre los beneficiarios de ayudas y acompañaron un aumento de la desigualdad. Ese proceso debilitó las energías progresistas y la participación electoral. Posteriormente, la AfD reactivó la participación mediante un voto de protesta contra el establishment democrático, articulado con xenofobia, pertenencia nacional y regional y una demanda de acción radical. Aunque las dificultades económicas crean un trasfondo de descontento y pueden influir en la percepción de empleos y recursos escasos, el autor infiere que no explican por sí solas el voto a la AfD: las razones declaradas para votar por ella se centran sobre todo en la seguridad, los extranjeros, la política woke y la distancia respecto de las élites. Por ello, considera insuficiente responder únicamente con mejores políticas de bienestar, estabilidad de precios o reformas económicas, y plantea como cuestión abierta la necesidad de una alternativa capaz de producir identidad política.</p><details class="quotes"><summary>6 citas de respaldo</summary><blockquote>She argues that the breakdown of trust happened in the 2000s due to the Red-Green government’s dramatic assault on the German model of welfare and labour market administration - known as the “Hartz IV reforms”.</blockquote>
+<blockquote>These changes, that began to be rolled out in 2003, dramatically increased pressure on welfare recipients and went hand in hand with a surge in the pre-tax gini of inequality.</blockquote>
+<blockquote>In political terms, Hensel argues, they shocked East Germans out of any illusion of a common, shared community of fate.</blockquote>
+<blockquote>It seems hard to disagree with the basic diagnosis that what we are witnessing is a highly mobilized protest vote against the German democratic establishment couched in terms of a xenophobia and an embrace of national and regional belonging.</blockquote>
+<blockquote>But if you ask them what they think about the AfD and why they voted for it, economic issues are barely mentioned. What comes first is security, foreigners, woke politics, remoteness etc.</blockquote>
+<blockquote>The more obvious conclusion is that to contest the political terrain with the AfD, if that is indeed something we want to do, we need to offer not more of the same (just better), but an “alternative to the Alternative”</blockquote></details></div></section><section class="section"><h3><span>03</span>Elementos constitutivos</h3><div class="item"><p>La pérdida de confianza en el Estado social y en una comunidad política compartida, atribuida a las reformas Hartz IV, constituye la condición histórica de la desmovilización progresista.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Initially, this was profoundly alienating and demotivating. The left-progressive energies of the late 1990s and early 2000s, dissipated.</blockquote></details></div>
+<div class="item"><p>La baja participación electoral previa funciona como indicador de esa desmovilización y como contraste con la posterior activación política.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Sachsen-Anhalt’s previous claim to fame in electoral history dated to 2006, when it set the record for the lowest popular participation in a regional election, with a turnout of only 44.4 percent.</blockquote>
+<blockquote>From the lows of 2006, turnout surged at the weekend to 78 percent, up from barely 60 percent in 2021.</blockquote></details></div>
+<div class="item"><p>La AfD moviliza principalmente a antiguos no votantes y convierte la protesta contra el establishment en participación electoral, con especial intensidad en las zonas rurales.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>As heroric empirical work by political scientist Julius Koelzer has shown, this mobilization is most dramatic in the rural areas of the state.</blockquote></details></div>
+<div class="item"><p>El trasfondo socioeconómico regional incluye crecimiento lento, desempleo relativamente alto, declive de sectores industriales, envejecimiento y pérdida de población; el autor lo presenta como una fuente de descontento, no como explicación suficiente del voto.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>Even by Germany’s modest standards, growth in Sachsen-Anhalt is slow. Unemployment is relatively high.</blockquote>
+<blockquote>Population is aging and declining.</blockquote>
+<blockquote>And it is easy to find answers there for deep seated discontent.</blockquote></details></div>
+<div class="item"><p>La identidad política de la AfD combina xenofobia, pertenencia nacional y regional, rechazo del mainstream y una promesa de ruptura radical; la extremidad pública funciona como señal de autenticidad y mecanismo de incorporación comunitaria.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>The racism and xenophobia of the AfD are real. But they are all the more powerful because they serve as a kind of commitment device.</blockquote>
+<blockquote>They establish an identity beyond the “Berlin Republic” mainstream and invite voters to join them.</blockquote>
+<blockquote>The AfD has worked assiduously to foster and build that community.</blockquote></details></div>
+<div class="item"><p>La alternativa progresista planteada por el autor tendría que disputar no solo las condiciones materiales, sino también la capacidad de la AfD para ofrecer pertenencia e identidad.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>it must address not just the material realities of relative economic disadvantage, but above all the “outsider” credentials of the AfD.</blockquote>
+<blockquote>That can produce identity.</blockquote></details></div></section><section class="section"><h3><span>04</span>Evidencia</h3><div class="item"><p>Resultado electoral de Sachsen-Anhalt: la AfD obtuvo una pluralidad del 44 por ciento en un estado de algo más de dos millones de habitantes.</p><p class="meta">resultado electoral · Fuente no identificada</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>In its regional elections at the weekend, the tiny state of Sachsen-Anhalt - population of just over 2 million souls - gave a stonking 44 percent plurality to the AfD (Alternative für Deutschland).</blockquote></details></div>
+<div class="item"><p>Serie de participación electoral utilizada para mostrar el contraste entre la desmovilización de 2006, la participación de 2021 y la movilización reciente.</p><p class="meta">estadística electoral · Fuente no identificada</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Sachsen-Anhalt’s previous claim to fame in electoral history dated to 2006, when it set the record for the lowest popular participation in a regional election, with a turnout of only 44.4 percent.</blockquote>
+<blockquote>From the lows of 2006, turnout surged at the weekend to 78 percent, up from barely 60 percent in 2021.</blockquote></details></div>
+<div class="item"><p>Trabajo empírico de Julius Koelzer sobre la concentración rural de la movilización de la AfD.</p><p class="meta">estudio empírico referido · Julius Koelzer<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>As heroric empirical work by political scientist Julius Koelzer has shown, this mobilization is most dramatic in the rural areas of the state.</blockquote></details></div>
+<div class="item"><p>Diferencias de voto por autodefinición ocupacional y dificultades financieras: 60 por ciento entre quienes se identifican como trabajadores y 65 por ciento entre quienes declaran dificultades económicas; solo 30 por ciento entre personas con educación superior.</p><p class="meta">estadística electoral y sociodemográfica · Fuente no identificada</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>60 percent of whom vote for the AfD - and to those who say they are having financial difficulties - 65 percent vote for the AfD.</blockquote>
+<blockquote>Meanwhile, only 30 percent of those with higher education vote for AfD.</blockquote></details></div>
+<div class="item"><p>Referencia a fuentes sobre las preocupaciones declaradas por votantes de la AfD y sobre sus razones explícitas para votar por el partido.</p><p class="meta">encuesta o análisis de opinión referido · Isabella Weber; DIW<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>If you ask AfD voters what they worry about, along with their xenophobic concerns about “too many foreigners”, they will mention the cost of living and their concerns for their standard of living.</blockquote>
+<blockquote>Source: DIW</blockquote></details></div>
+<div class="item"><p>Descripción del deterioro económico regional y de la transformación de su base industrial histórica.</p><p class="meta">indicadores económicos e historia industrial · Fuente no identificada</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Sachsen Anhalt’s economy was once a major hub of “central German”, state-backed industrialism.</blockquote>
+<blockquote>To say the least, these are not sectors that are doing well.</blockquote></details></div></section><section class="section"><h3><span>05</span>Teoría</h3><div class="item"><p class="item-title">Narrativa de Jana Hensel sobre Hartz IV y la ruptura de la confianza<span class="meta">Utilizada</span></p><p>Marco interpretativo que explica la pérdida de confianza de los alemanes orientales mediante el impacto de las reformas Hartz IV sobre el bienestar, el mercado laboral y la idea de una comunidad de destino compartido.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>To answer this question, I broadly find convincing the kind of narrative offered by East German journalist and commentator, Jana Hensel.</blockquote>
+<blockquote>She argues that the breakdown of trust happened in the 2000s due to the Red-Green government’s dramatic assault on the German model of welfare and labour market administration - known as the “Hartz IV reforms”.</blockquote></details></div>
+<div class="item"><p class="item-title">“Democratization of democracy” de Philip Manow<span class="meta">Utilizada</span></p><p>Concepto utilizado para interpretar el auge populista como una forma de movilización y ampliación de la participación democrática, aunque articulada por la protesta y la pertenencia nacional o regional.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Not for nothing, political economist Philip Manow speaks of the “democratization of democracy” brought about by Germany’s populist surge.</blockquote></details></div>
+<div class="item"><p class="item-title">“Nativist producerist deservism” de Jonas Junack<span class="meta">Utilizada</span></p><p>Caracterización del horizonte socioeconómico de la AfD como una combinación de prioridad a los nativos, defensa de los productores frente a élites y dependientes, y distinción moral entre quienes merecen apoyo y quienes son considerados intrusos o aprovechados.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Insofar as you are voting for a socio-economic vision in voting for the AfD, it is one aptly thoughly clumsily characterized as „nativist producerist deservism“ (Jonas Junack).</blockquote></details></div>
+<div class="item"><p class="item-title">“Anti-fascist economics” de Isabella Weber y programa reformista de Marcel Fratzscher<span class="meta">Discutida</span></p><p>Propuestas que representan la búsqueda de una respuesta económica audaz, mediante controles de precios o un programa de reformas más amplio, pero que el autor somete a la pregunta de si pueden fundar identidades políticas nuevas.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>When my colleague at Surplus magazine Isabella Weber calls for an “anti-fascist economics, or when Marcel Fratzscher of the DIW calls for a major reform program that is “even more far-reaching” than that 25 years ago with Agenda 2010, they are speaking to the need for bold and radical action.</blockquote>
+<blockquote>But after Sachsen-Anhalt, the central question must be: are such policies enough to found new political identities beyond the current mainstream of Berlin politics?</blockquote></details></div></section></article><footer><details class="provenance"><summary>Procedencia</summary><p>Extracción automática. Las citas se comprobaron contra el documento local; la interpretación y la evidencia requieren revisión humana.</p><dl><dt>Documento</dt><dd>corpus/posts/adam_tooze/chartbook-473-germany-s-democratic-earthquake-the-afd-breakthrough-in-sachsen-anhalt-and-t-55e9f6d35f.md</dd><dt>Recuperado</dt><dd>2026-09-09 21:17:24 UTC</dd><dt>SHA-256</dt><dd><code>3805cc468892b90f338c53b0934a83d7b080b017d2e0f0623ce98d89f41e924a</code></dd><dt>Contrato</dt><dd>v2</dd></dl></details></footer></main></body></html>

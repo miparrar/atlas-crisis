@@ -1,0 +1,196 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Where’s the Beef (Coming From)? · Atlas de la Crisis</title><style>:root {
+  --ink: #202421;
+  --muted: #66706a;
+  --line: #dfe3df;
+  --accent: #17645d;
+  --warm: #7b5628;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font: 17px/1.65 system-ui, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
+}
+main {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 56px 0 72px;
+}
+h1, h2, h3 { line-height: 1.2; }
+h1 {
+  max-width: 720px;
+  margin: 14px 0 18px;
+  font: 400 clamp(34px, 7vw, 54px)/1.08 Georgia, serif;
+  letter-spacing: -.025em;
+}
+h2 { margin: 0; font-size: 22px; }
+h3 { margin: 0 0 18px; font-size: 18px; }
+p { margin: 0 0 14px; }
+.brand {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brand a { color: inherit; text-decoration: none; }
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.byline a:first-child { color: inherit; text-decoration: none; }
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary {
+  margin: 44px 0 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.summary h2 { margin-bottom: 12px; }
+.summary p { font: 20px/1.6 Georgia, serif; }
+.lede {
+  max-width: 680px;
+  color: var(--muted);
+  font: 20px/1.55 Georgia, serif;
+}
+.site-count { margin-top: 18px; color: var(--muted); font-size: 13px; }
+.listing { margin-top: 48px; }
+.listing > h2 { margin-bottom: 12px; }
+.author-link, .article-link {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.author-link h2, .article-link h2 { margin-bottom: 6px; }
+.author-link h2 a, .article-link h2 a {
+  color: var(--ink);
+  text-decoration-color: var(--line);
+}
+.author-link p, .article-link p { margin-bottom: 6px; }
+.author-link .meta, .article-link .meta { margin-left: 0; }
+.limitations {
+  margin: 0 0 36px;
+  padding: 16px 0 16px 18px;
+  border-left: 2px solid var(--warm);
+  color: #574c3d;
+  font-size: 14px;
+}
+.limitations ul { margin: 6px 0 0; padding-left: 20px; }
+.section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+.section h3 span {
+  display: inline-block;
+  width: 34px;
+  color: var(--accent);
+  font: 700 12px system-ui, sans-serif;
+}
+.item + .item { margin-top: 22px; }
+.item p:last-of-type { margin-bottom: 0; }
+.item-title { font-weight: 700; }
+.meta {
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.item > p.meta { margin-left: 0; }
+.inference, .unavailable {
+  display: inline-block;
+  margin: 0 0 7px 10px;
+  color: var(--warm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.item > .inference:first-child { margin-left: 0; }
+.empty { color: var(--muted); font-style: italic; }
+details { margin-top: 10px; }
+summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+blockquote {
+  margin: 14px 0 6px;
+  padding-left: 16px;
+  border-left: 2px solid var(--line);
+  color: #4c554f;
+  font: 16px/1.6 Georgia, serif;
+  overflow-wrap: anywhere;
+}
+footer {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.provenance dl {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 5px 12px;
+}
+.provenance dt { font-weight: 700; }
+.provenance dd { margin: 0; }
+.provenance code { font-size: 11px; }
+
+@media (max-width: 560px) {
+  main { width: min(100% - 32px, 760px); padding-top: 34px; }
+  .byline { display: grid; gap: 2px; }
+  .summary { margin-top: 34px; }
+  .provenance dl { grid-template-columns: 1fr; gap: 2px; }
+  .provenance dd { margin-bottom: 8px; }
+}
+
+@media print {
+  body { font-size: 11pt; }
+  main { width: 100%; padding: 0; }
+  h1 { font-size: 28pt; }
+  .summary p { font-size: 13pt; }
+  .status { border-color: #999; }
+  .section { break-inside: avoid; }
+  details > * { display: block; }
+  footer { font-size: 9pt; }
+}
+</style></head><body><main><header class="page-header"><p class="brand"><a href="../index.html">Atlas de la Crisis</a></p><h1>Where’s the Beef (Coming From)?</h1><p class="byline"><a href="index.html"><strong>Paul Krugman</strong></a><span>Sep 08, 2026</span><a href="https://paulkrugman.substack.com/p/wheres-the-beef-coming-from">Texto original ↗</a></p><p class="status">Pendiente de revisión humana</p></header><section class="summary"><h2>Síntesis</h2><p>Krugman interpreta la decisión de Donald Trump de permitir importaciones de carne molida sin arancel como un caso que combina influencia indebida, improvisación administrativa y debilitamiento de la regulación alimentaria. A partir de este episodio, sostiene que la hostilidad del gobierno hacia la experticia está erosionando funciones estatales esenciales que permiten confiar en la seguridad de los productos y en el funcionamiento de una economía avanzada.</p></section><aside class="limitations"><strong>Limitaciones</strong><ul><li>El documento es una transcripción y no aporta enlaces, documentos oficiales ni datos cuantitativos que permitan inspeccionar de manera independiente los acontecimientos relatados.</li>
+<li>El autor reconoce incertidumbre sobre el proceso decisorio porque la reunión relevante fue a puerta cerrada y emplea formulaciones tentativas sobre el origen de la carne y los posibles beneficios financieros personales de Trump.</li></ul></aside><article class="problem"><section class="section"><h3><span>01</span>Fenómeno o problema</h3><div class="item"><p>Krugman analiza la autorización anunciada por Trump para importar 300.000 toneladas de carne molida sin arancel, inicialmente sin precisar su procedencia, y la controversia resultante sobre seguridad alimentaria, trazabilidad y cumplimiento de estándares.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>So you may have seen that last month Trump announced, given that we have high beef prices, that he was going to allow the tariff-free import of 300,000 tons of ground beef.</blockquote>
+<blockquote>There has been a substantial uproar over these imports of ground beef because of concerns about safety.</blockquote></details></div></section><section class="section"><h3><span>02</span>Explicación o interpretación</h3><div class="item"><p>El autor atribuye la política a la combinación de influencia privada sobre Trump y ausencia de deliberación técnica. Interpreta la importación y la posterior propuesta de flexibilizar el procesamiento para los ganaderos como decisiones improvisadas que desconocen que la regulación pública sostiene la confianza en la seguridad de la carne. El caso expresa, para Krugman, una retirada más amplia del Estado de sus funciones esenciales, impulsada menos por una doctrina coherente que por la hostilidad hacia la experticia y una formulación de políticas condicionada por el acceso personal y las contribuciones financieras.</p><details class="quotes"><summary>4 citas de respaldo</summary><blockquote>It’s got this sort of characteristic combination of raw corruption and raw incompetence.</blockquote>
+<blockquote>In a normal administration, any kind of decision like this involves a process in which multiple agencies get a chance to weigh in and in which somebody who knows something gets to say, look, there are real problems with this idea. But obviously that didn’t happen here.</blockquote>
+<blockquote>Like I said, it’s all the same story here: This retreat from even the most essential roles of government.</blockquote>
+<blockquote>They’re not doing this, I think, out of a philosophical concern. I don’t think they have a theory that says that we really don’t need these things. They just don’t think about it at all. They don’t do expertise. They don’t do thinking, really. And a lot of policy is just based upon who last spoke to Donald Trump and who has given him money.</blockquote></details></div></section><section class="section"><h3><span>03</span>Elementos constitutivos</h3><div class="item"><p>La influencia privada constituye el componente de corrupción de la explicación: el anuncio siguió inmediatamente a una reunión cerrada entre Trump y un empresario brasileño de la industria cárnica que era un donante importante.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>It turns out that the initial plan to allow the beef imports was announced the day after a closed door meeting between Trump and a Brazilian meat packing billionaire who is a major donor to Trump.</blockquote>
+<blockquote>So this certainly looks like undue influence. We don’t know exactly how it happened because it was a closed-door meeting.</blockquote></details></div>
+<div class="item"><span class="inference">Inferencia</span><p>La exclusión de agencias y especialistas del proceso decisorio constituye el componente institucional de la incompetencia: impidió que se examinaran previamente los riesgos comerciales y sanitarios.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Shouldn’t there have been somebody from the Agriculture Department, somebody from the U.S. Trade Representative’s Office, but certainly someone from food safety to pass judgment or give some warning?</blockquote>
+<blockquote>This is an administration that does not like experts. Does not listen to expertise.</blockquote></details></div>
+<div class="item"><p>Los ganaderos necesitan estándares públicos porque la confianza de los consumidores en la seguridad de la carne beneficia incluso a los productores; por ello, rechazaron que la respuesta gubernamental consistiera en permitirles operar con menor regulación.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>But it turned out that the ranchers hate that too, because what they want is for people to believe that beef is safe. They want to be assured that there are quality standards being upheld.</blockquote>
+<blockquote>But it turns out that the ranchers want regulation. They want customers to know that the beef that they buy is safe.</blockquote></details></div>
+<div class="item"><p>La mezcla de recortes de carne de distintos orígenes reduce la trazabilidad para el consumidor, que no podría conocer la procedencia ni las condiciones de cría y procesamiento.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>This would be trimmings of beef that get ground up and mixed in with other beef. And basically, if you get a package of hamburger in the United States under this rule, you will have basically no idea where it came from. You’ll have no idea under what conditions the cattle were raised or how the meat was processed.</blockquote></details></div>
+<div class="item"><p>La seguridad alimentaria es presentada como un bien público y una función estatal indispensable, pues la complejidad y la carga informativa impiden que consumidores y empresas la garanticen individualmente.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>The government needs to provide public goods. The government needs to provide things that the private sector cannot do for itself, which is obviously things like national defense, things like public safety, and it turns out also things like ensuring the safety of the food supply, just like ensuring the safety of the water supply.</blockquote>
+<blockquote>And the informational burden of trying to figure out whether the people responsible for your package of hamburger are actually following safe procedures, that’s beyond everybody.</blockquote></details></div></section><section class="section"><h3><span>04</span>Evidencia</h3><div class="item"><p>El autor presenta la proximidad temporal entre una reunión cerrada con un empresario cárnico brasileño, donante de Trump, y el anuncio de la política como indicio de influencia indebida.</p><p class="meta">secuencia temporal narrada · Fuente no identificada</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>It turns out that the initial plan to allow the beef imports was announced the day after a closed door meeting between Trump and a Brazilian meat packing billionaire who is a major donor to Trump.</blockquote></details></div>
+<div class="item"><p>La preocupación de ganaderos, legisladores y especialistas en seguridad alimentaria, junto con el rechazo de los ganaderos a una menor regulación de su propio procesamiento, respalda la tesis de que los estándares públicos sostienen la confianza en el mercado.</p><p class="meta">reacciones de actores afectados y expertos · Fuente no identificada</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>And it turns out it’s not just, you know, not just woke liberal types but ranchers, lawmakers and food safety experts who were very concerned about the plan and were not reassured when Trump said the meat is “very clean and very good.”</blockquote>
+<blockquote>But it turned out that the ranchers hate that too, because what they want is for people to believe that beef is safe.</blockquote></details></div>
+<div class="item"><p>El autor invoca la prohibición europea de importaciones brasileñas por incumplimiento de sus estándares sobre antibióticos como evidencia de que existen riesgos regulatorios concretos.</p><p class="meta">medida regulatoria referida · European Union<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>In fact, just the other day, the European Union banned beef imports from Brazil because Brazil was not adhering to EU standards on the use of antibiotics.</blockquote></details></div></section><section class="section"><h3><span>05</span>Teoría</h3><div class="item"><p class="item-title">Bienes públicos y funciones esenciales del gobierno<span class="meta">Utilizada</span></p><p>Krugman utiliza la noción de bienes públicos para sostener que la seguridad de los alimentos y del agua requiere acción estatal porque el sector privado no puede proporcionarla adecuadamente por sí solo.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>But there are certain roles that government must play. The government needs to provide public goods. The government needs to provide things that the private sector cannot do for itself, which is obviously things like national defense, things like public safety, and it turns out also things like ensuring the safety of the food supply, just like ensuring the safety of the water supply.</blockquote></details></div>
+<div class="item"><p class="item-title">Asimetría o carga de información en la seguridad alimentaria<span class="meta">Utilizada</span></p><p>El autor sostiene que los consumidores no pueden verificar individualmente los procedimientos de producción de la carne, por lo que la regulación reduce una carga informativa que excede sus capacidades prácticas.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>And this is not something that you can leave up to the private sector. It’s not something where you can do your own research. It’s a very complicated world out there.</blockquote>
+<blockquote>And the informational burden of trying to figure out whether the people responsible for your package of hamburger are actually following safe procedures, that’s beyond everybody.</blockquote></details></div>
+<div class="item"><p class="item-title">Distinción tradicional izquierda-derecha sobre el alcance del gobierno<span class="meta">Discutida</span></p><p>Krugman discute el marco que entiende la diferencia entre izquierda y derecha como una controversia normativa sobre cuánto debe intervenir el gobierno, pero separa de esa disputa ciertas funciones estatales que considera indispensables.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Normally, when we think about, or as we used to think about, left versus right, there is a question about the role of government. How big a role should government play? And ultimately, it’s a values question, normally.</blockquote>
+<blockquote>But there are certain roles that government must play.</blockquote></details></div></section></article><footer><details class="provenance"><summary>Procedencia</summary><p>Extracción automática. Las citas se comprobaron contra el documento local; la interpretación y la evidencia requieren revisión humana.</p><dl><dt>Documento</dt><dd>corpus/posts/paul_krugman/where-s-the-beef-coming-from-4a03865ed7.md</dd><dt>Recuperado</dt><dd>2026-09-08 14:57:46 UTC</dd><dt>SHA-256</dt><dd><code>4dadf915ffe7952b7bdeb13120d996e242320e57a62d56773c710dabd4cba543</code></dd><dt>Contrato</dt><dd>v2</dd></dl></details></footer></main></body></html>

@@ -1,0 +1,207 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Bond bust · Atlas de la Crisis</title><style>:root {
+  --ink: #202421;
+  --muted: #66706a;
+  --line: #dfe3df;
+  --accent: #17645d;
+  --warm: #7b5628;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font: 17px/1.65 system-ui, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
+}
+main {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 56px 0 72px;
+}
+h1, h2, h3 { line-height: 1.2; }
+h1 {
+  max-width: 720px;
+  margin: 14px 0 18px;
+  font: 400 clamp(34px, 7vw, 54px)/1.08 Georgia, serif;
+  letter-spacing: -.025em;
+}
+h2 { margin: 0; font-size: 22px; }
+h3 { margin: 0 0 18px; font-size: 18px; }
+p { margin: 0 0 14px; }
+.brand {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brand a { color: inherit; text-decoration: none; }
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.byline a:first-child { color: inherit; text-decoration: none; }
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary {
+  margin: 44px 0 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.summary h2 { margin-bottom: 12px; }
+.summary p { font: 20px/1.6 Georgia, serif; }
+.lede {
+  max-width: 680px;
+  color: var(--muted);
+  font: 20px/1.55 Georgia, serif;
+}
+.site-count { margin-top: 18px; color: var(--muted); font-size: 13px; }
+.listing { margin-top: 48px; }
+.listing > h2 { margin-bottom: 12px; }
+.author-link, .article-link {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.author-link h2, .article-link h2 { margin-bottom: 6px; }
+.author-link h2 a, .article-link h2 a {
+  color: var(--ink);
+  text-decoration-color: var(--line);
+}
+.author-link p, .article-link p { margin-bottom: 6px; }
+.author-link .meta, .article-link .meta { margin-left: 0; }
+.limitations {
+  margin: 0 0 36px;
+  padding: 16px 0 16px 18px;
+  border-left: 2px solid var(--warm);
+  color: #574c3d;
+  font-size: 14px;
+}
+.limitations ul { margin: 6px 0 0; padding-left: 20px; }
+.section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+.section h3 span {
+  display: inline-block;
+  width: 34px;
+  color: var(--accent);
+  font: 700 12px system-ui, sans-serif;
+}
+.item + .item { margin-top: 22px; }
+.item p:last-of-type { margin-bottom: 0; }
+.item-title { font-weight: 700; }
+.meta {
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.item > p.meta { margin-left: 0; }
+.inference, .unavailable {
+  display: inline-block;
+  margin: 0 0 7px 10px;
+  color: var(--warm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.item > .inference:first-child { margin-left: 0; }
+.empty { color: var(--muted); font-style: italic; }
+details { margin-top: 10px; }
+summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+blockquote {
+  margin: 14px 0 6px;
+  padding-left: 16px;
+  border-left: 2px solid var(--line);
+  color: #4c554f;
+  font: 16px/1.6 Georgia, serif;
+  overflow-wrap: anywhere;
+}
+footer {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.provenance dl {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 5px 12px;
+}
+.provenance dt { font-weight: 700; }
+.provenance dd { margin: 0; }
+.provenance code { font-size: 11px; }
+
+@media (max-width: 560px) {
+  main { width: min(100% - 32px, 760px); padding-top: 34px; }
+  .byline { display: grid; gap: 2px; }
+  .summary { margin-top: 34px; }
+  .provenance dl { grid-template-columns: 1fr; gap: 2px; }
+  .provenance dd { margin-bottom: 8px; }
+}
+
+@media print {
+  body { font-size: 11pt; }
+  main { width: 100%; padding: 0; }
+  h1 { font-size: 28pt; }
+  .summary p { font-size: 13pt; }
+  .status { border-color: #999; }
+  .section { break-inside: avoid; }
+  details > * { display: block; }
+  footer { font-size: 9pt; }
+}
+</style></head><body><main><header class="page-header"><p class="brand"><a href="../index.html">Atlas de la Crisis</a></p><h1>Bond bust</h1><p class="byline"><a href="index.html"><strong>Michael Roberts</strong></a><span>September 4, 2026</span><a href="https://thenextrecession.wordpress.com/2026/09/04/bond-bust/">Texto original ↗</a></p><p class="status">Pendiente de revisión humana</p></header><section class="summary"><h2>Síntesis</h2><p>Michael Roberts interpreta el aumento mundial de los rendimientos de los bonos desde 2020 como un fenómeno explicado principalmente por la inflación, junto con el endeudamiento público, la política monetaria y la incertidumbre; rechaza que implique un inminente impago soberano y sostiene que una eventual crisis surgiría primero en el sector privado.</p></section><aside class="limitations"><strong>Limitaciones</strong><ul><li>El artículo remite a una figura y a un gráfico que no están disponibles en el documento suministrado.</li>
+<li>Se menciona el artículo de Henrique de Abreu Grazziotin, pero su contenido no está disponible; por ello no se reconstruye esa evidencia.</li></ul></aside><article class="problem"><section class="section"><h3><span>01</span>Fenómeno o problema</h3><div class="item"><p>El fenómeno central es el aumento pronunciado de los rendimientos de los bonos gubernamentales en los principales mercados desde el fin de la caída pandémica, hasta niveles no observados desde la crisis financiera global de 2008-9, lo que plantea si este “bond bust” anticipa una crisis económica.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>Government bond yields have risen sharply since the end of the pandemic slump to return to levels not seen since the global financial crash of 2008-9.</blockquote>
+<blockquote>That is what is happening now in all the major government bond markets globally. Prices are falling in the secondary bond market and so inversely yields are rising.</blockquote>
+<blockquote>In my view, this is the main cause of the current ‘bond bust’ or sharply rising yields.</blockquote></details></div></section><section class="section"><h3><span>02</span>Explicación o interpretación</h3><div class="item"><p>El autor sostiene que la causa principal del aumento de los rendimientos es la inflación, porque reduce el rendimiento real esperado de los bonos y provoca caídas de precios en el mercado secundario. Añade como factores el incremento de la oferta de deuda pública, la posibilidad de nuevas subidas de tipos de interés y la incertidumbre sobre futuras crisis. Rechaza que el fenómeno exprese principalmente un auge económico impulsado por la inversión privada o la inteligencia artificial. Considera que la inflación podría remitir y reducir los rendimientos, mientras que una crisis derivada de tipos elevados afectaría primero al sector privado y no al gobierno.</p><details class="quotes"><summary>6 citas de respaldo</summary><blockquote>Historically, bond yield surges are usually due to rises in inflation.</blockquote>
+<blockquote>In my view, this is the main cause of the current ‘bond bust’ or sharply rising yields.</blockquote>
+<blockquote>But this argument does not hold water empirically.</blockquote>
+<blockquote>For now, the bond bust or the apparent crisis expressed in rising bond yields mainly reflects rising inflation, along with the risk that central banks will increase the cost of borrowing by raising rates in an attempt to control inflation.</blockquote>
+<blockquote>If and when inflation subsides, so will bond yields.</blockquote>
+<blockquote>But that crisis will emerge in the private sector, not in the government sector, which will be used to bail out the former.</blockquote></details></div></section><section class="section"><h3><span>03</span>Elementos constitutivos</h3><div class="item"><p>La inflación reduce el valor real de los pagos fijos de los bonos; por ello, los compradores exigen precios secundarios más bajos y los rendimientos aumentan.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Rising prices make bond purchasers think that the nominal annual fixed interest they will get from the bond will be devalued over time by inflation, so the real return they get will fall.</blockquote>
+<blockquote>So bond holders will only buy bonds in the secondary market at lower prices to compensate.</blockquote></details></div>
+<div class="item"><p>El aumento de los déficits y de la deuda pública obliga a los gobiernos a emitir más bonos, de modo que la oferta crece más rápido que la demanda y presiona al alza los tipos y rendimientos.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>To cover these deficits and to ‘roll over’ bonds that are ending their term, governments must issue more bonds.</blockquote>
+<blockquote>So supply rises faster than demand by purchasers. That forces governments to offer higher interest rates and yields in the secondary market rise.</blockquote></details></div>
+<div class="item"><p>Las posibles subidas de los tipos oficiales por parte de los bancos centrales elevarían los costes de endeudamiento de gobiernos, hogares y empresas, y aumentarían el servicio de la deuda pública.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>If these hikes materialise, they will not curb inflation, but simply add to the borrowing costs of the government and so add to the level of debt, and also spread through the economy, increasing the cost of borrowing for households (mortgages) and businesses (loans).</blockquote></details></div>
+<div class="item"><p>La incertidumbre sobre el futuro económico lleva a los inversores a exigir una prima adicional por mantener bonos de largo plazo, elevando sus rendimientos.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Bond investors demand a higher ‘term premium’ —extra interest— for locking their money away in long-term bonds for 10 or 30 years because they fear future economic crises.</blockquote></details></div>
+<div class="item"><p>La llamada “financial repression” permite a gobiernos y bancos centrales respaldar el pago de la deuda mediante expansión monetaria, aunque el autor sostiene que puede depreciar la moneda, aumentar la inflación importada y terminar elevando los rendimientos.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>Governments and central banks can always promise to meet any debt repayments by ‘printing money’ to do so.</blockquote>
+<blockquote>But such measures of financial repression have consequences.</blockquote>
+<blockquote>Financial repression is self defeating and a policy of desperation only in a crisis.</blockquote></details></div>
+<div class="item"><p>El autor distingue entre el sector público y el privado: una caída de la rentabilidad general puede comprimir los beneficios netos cuando suben los intereses y desencadenar una crisis privada, mientras el Estado rescata al sector privado.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>But when the general rate of profit falls, net profit gets squeezed if interest rates continue to rise and then a crisis can eventually ensue.</blockquote>
+<blockquote>But that crisis will emerge in the private sector, not in the government sector, which will be used to bail out the former.</blockquote></details></div></section><section class="section"><h3><span>04</span>Evidencia</h3><div class="item"><p>El artículo presenta el aumento global de los rendimientos y señala que han alcanzado su nivel más alto desde 2008.</p><p class="meta">indicador de mercado · Fuente no identificada</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Global bond yields have risen to their highest since 2008.</blockquote></details></div>
+<div class="item"><p>Se aportan referencias nacionales sobre el aumento de los costes de endeudamiento británicos y del rendimiento del bono japonés a diez años.</p><p class="meta">indicadores nacionales · Fuente no identificada</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>The UK’s long-term borrowing costs have jumped even more to their highest level since early 1998, while Japan’s ten-year yield has reached 3% for the first time in 30 years.</blockquote></details></div>
+<div class="item"><p>El autor usa la previsión del FMI sobre la inflación mundial para respaldar la tesis de una inflación persistentemente elevada.</p><p class="meta">previsión macroeconómica · IMF<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>According to the IMF, annual global headline inflation is expected reach 4.7% this year.</blockquote></details></div>
+<div class="item"><p>Se atribuye el aumento de la inflación a costes de materias primas y transporte, interrupciones de las cadenas de suministro y el conflicto en Oriente Medio, incluido el encarecimiento del petróleo.</p><p class="meta">explicación de costes · Fuente no identificada</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>It has been mainly driven by rising costs of raw materials and transportation started by the post-pandemic global supply chain bottlenecks.</blockquote>
+<blockquote>More recently that has been accelerated by the conflict in the Middle East, particularly Iran and the closure of the Strait of Hormuz, which has pushed oil prices 50% higher.</blockquote></details></div>
+<div class="item"><p>Se utilizan datos sobre el gasto anualizado en intereses de la deuda federal estadounidense para mostrar el aumento del coste de servicio de la deuda.</p><p class="meta">dato fiscal · Fuente no identificada</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>In the US, the estimated annualized interest expense on US federal debt is up to a record $1.38 trillion.</blockquote>
+<blockquote>This is equivalent to 4.2% of US GDP, the highest percentage since 1997.</blockquote></details></div>
+<div class="item"><p>El autor cita la medición de la Reserva Federal sobre la prima por plazo para cuantificar su contribución reciente al rendimiento de los bonos.</p><p class="meta">indicador financiero · US Fed<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>This term premium, as measured by the US Fed, has added about 0.6% pts to the bond yield in the last year.</blockquote></details></div>
+<div class="item"><p>El texto remite a una figura sobre la evolución de las ratios de deuda pública durante rescates, crisis y austeridad, pero la figura no está disponible.</p><p class="meta">figura referida · Fuente no identificada<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Those were the periods when government debt ratios rocketed (see figure below, blue block).</blockquote>
+<blockquote>In the periods in between, policies of austerity were applied (particularly cutting welfare benefits and investment in infrastructure), along with some recovery in economic growth, so debt ratios were more or less stable (see figure, orange block).</blockquote></details></div>
+<div class="item"><p>El artículo remite a un gráfico procedente de un trabajo de Henrique de Abreu Grazziotin para apoyar la relación entre rentabilidad, tipos de interés y crisis; el gráfico y el trabajo no están disponibles.</p><p class="meta">gráfico y estudio referidos · Henrique de Abreu Grazziotin<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>The graph below is from Henrique de Abreu Grazziotin’s paper here.</blockquote></details></div></section><section class="section"><h3><span>05</span>Teoría</h3><div class="item"><p class="item-title">Financial repression<span class="meta">Utilizada</span></p><p>Concepto utilizado para describir la intervención de gobiernos y bancos centrales destinada a garantizar el pago de la deuda mediante expansión monetaria y apoyo al mercado de bonos.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>But there won’t be any government bond defaults, because governments can always resort to what economists call ‘financial repression’.</blockquote></details></div>
+<div class="item"><p class="item-title">Marx, Capital Volume 3<span class="meta">Utilizada</span></p><p>El autor utiliza una proposición sobre el ciclo económico: en la expansión aumenta la rentabilidad del capital y los tipos pueden subir sin comprimir los beneficios netos; cuando cae la tasa general de ganancia, el aumento de los intereses puede precipitar una crisis.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>It’s true, as Marx expained (Capital Volume 3), that in periods of expansion in the business cycle, the rate of profit on capital invested will rise, allowing interest rates to rise without squeezing net profit (the ‘profit of enterprise’).</blockquote></details></div>
+<div class="item"><p class="item-title">Argumento del auge económico y la inversión<span class="meta">Rechazada</span></p><p>Posición atribuida a Steve Miran y Matthew Klein según la cual los rendimientos crecientes reflejan una economía en expansión, una mayor demanda de crédito y el fin de los “lost decades”; el autor la discute y rechaza como explicación principal.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Steve Miran argues that the ‘fast growing’ (!) US economy and the AI boom are driving up bond yields for the right reasons – ie increasing demand for credit to invest.</blockquote>
+<blockquote>“The simplest explanation is also the most benign: traders are becoming increasingly confident that the lost decades are over,” says Klein, “higher interest rates can help</blockquote></details></div></section></article><footer><details class="provenance"><summary>Procedencia</summary><p>Extracción automática. Las citas se comprobaron contra el documento local; la interpretación y la evidencia requieren revisión humana.</p><dl><dt>Documento</dt><dd>corpus/posts/michael_roberts/bond-bust.md</dd><dt>Recuperado</dt><dd>2026-09-09 21:17:24 UTC</dd><dt>SHA-256</dt><dd><code>92e0c8b24ca11f50b6c1929808e0d1c34f51d46c39e67987ff46da7487b30dee</code></dd><dt>Contrato</dt><dd>v2</dd></dl></details></footer></main></body></html>

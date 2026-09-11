@@ -1,0 +1,214 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Is Keynesianism dead? · Atlas de la Crisis</title><style>:root {
+  --ink: #202421;
+  --muted: #66706a;
+  --line: #dfe3df;
+  --accent: #17645d;
+  --warm: #7b5628;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font: 17px/1.65 system-ui, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
+}
+main {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 56px 0 72px;
+}
+h1, h2, h3 { line-height: 1.2; }
+h1 {
+  max-width: 720px;
+  margin: 14px 0 18px;
+  font: 400 clamp(34px, 7vw, 54px)/1.08 Georgia, serif;
+  letter-spacing: -.025em;
+}
+h2 { margin: 0; font-size: 22px; }
+h3 { margin: 0 0 18px; font-size: 18px; }
+p { margin: 0 0 14px; }
+.brand {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brand a { color: inherit; text-decoration: none; }
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.byline a:first-child { color: inherit; text-decoration: none; }
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary {
+  margin: 44px 0 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.summary h2 { margin-bottom: 12px; }
+.summary p { font: 20px/1.6 Georgia, serif; }
+.lede {
+  max-width: 680px;
+  color: var(--muted);
+  font: 20px/1.55 Georgia, serif;
+}
+.site-count { margin-top: 18px; color: var(--muted); font-size: 13px; }
+.listing { margin-top: 48px; }
+.listing > h2 { margin-bottom: 12px; }
+.author-link, .article-link {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.author-link h2, .article-link h2 { margin-bottom: 6px; }
+.author-link h2 a, .article-link h2 a {
+  color: var(--ink);
+  text-decoration-color: var(--line);
+}
+.author-link p, .article-link p { margin-bottom: 6px; }
+.author-link .meta, .article-link .meta { margin-left: 0; }
+.limitations {
+  margin: 0 0 36px;
+  padding: 16px 0 16px 18px;
+  border-left: 2px solid var(--warm);
+  color: #574c3d;
+  font-size: 14px;
+}
+.limitations ul { margin: 6px 0 0; padding-left: 20px; }
+.section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+.section h3 span {
+  display: inline-block;
+  width: 34px;
+  color: var(--accent);
+  font: 700 12px system-ui, sans-serif;
+}
+.item + .item { margin-top: 22px; }
+.item p:last-of-type { margin-bottom: 0; }
+.item-title { font-weight: 700; }
+.meta {
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.item > p.meta { margin-left: 0; }
+.inference, .unavailable {
+  display: inline-block;
+  margin: 0 0 7px 10px;
+  color: var(--warm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.item > .inference:first-child { margin-left: 0; }
+.empty { color: var(--muted); font-style: italic; }
+details { margin-top: 10px; }
+summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+blockquote {
+  margin: 14px 0 6px;
+  padding-left: 16px;
+  border-left: 2px solid var(--line);
+  color: #4c554f;
+  font: 16px/1.6 Georgia, serif;
+  overflow-wrap: anywhere;
+}
+footer {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.provenance dl {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 5px 12px;
+}
+.provenance dt { font-weight: 700; }
+.provenance dd { margin: 0; }
+.provenance code { font-size: 11px; }
+
+@media (max-width: 560px) {
+  main { width: min(100% - 32px, 760px); padding-top: 34px; }
+  .byline { display: grid; gap: 2px; }
+  .summary { margin-top: 34px; }
+  .provenance dl { grid-template-columns: 1fr; gap: 2px; }
+  .provenance dd { margin-bottom: 8px; }
+}
+
+@media print {
+  body { font-size: 11pt; }
+  main { width: 100%; padding: 0; }
+  h1 { font-size: 28pt; }
+  .summary p { font-size: 13pt; }
+  .status { border-color: #999; }
+  .section { break-inside: avoid; }
+  details > * { display: block; }
+  footer { font-size: 9pt; }
+}
+</style></head><body><main><header class="page-header"><p class="brand"><a href="../index.html">Atlas de la Crisis</a></p><h1>Is Keynesianism dead?</h1><p class="byline"><a href="index.html"><strong>Michael Roberts</strong></a><span>September 10, 2026</span><a href="https://thenextrecession.wordpress.com/2026/09/10/is-keynesianism-dead/">Texto original ↗</a></p><p class="status">Pendiente de revisión humana</p></header><section class="summary"><h2>Síntesis</h2><p>El artículo examina si el alto endeudamiento público vuelve obsoletas las políticas keynesianas de estímulo. Michael Roberts rechaza tanto la austeridad de Andy Haldane como el keynesianismo convencional y sostiene que el crecimiento depende principalmente de la inversión productiva y de la rentabilidad del capital; además, atribuye el aumento de la deuda pública a las crisis y al endeudamiento privado.</p></section><aside class="limitations"><strong>Limitaciones</strong><ul><li>El texto remite a “World in Crisis, p26 Figure 1.10”, pero la figura no está disponible en el documento.</li>
+<li>Se mencionan estudios de Ilzetzki, Mendoza y Végh, de Rogoff y Reinhart y de la EU Commission; el artículo resume sus resultados, pero no proporciona los estudios completos.</li>
+<li>El cuerpo contiene errores tipográficos, que se conservan en las citas literales.</li></ul></aside><article class="problem"><section class="section"><h3><span>01</span>Fenómeno o problema</h3><div class="item"><p>El problema central es si las elevadas ratios de deuda pública en las principales economías capitalistas hacen que el estímulo fiscal keynesiano deje de impulsar el crecimiento y, por tanto, deba ser sustituido por austeridad o “expansionary consolidation”.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Haldane argues that Keynesian policies of macro-management ie increased government spending and lower taxes to boost economic growth are ‘defunct’ in the current world of high public debt, because Keynesian measures will drive up debt not growth.</blockquote>
+<blockquote>For Haldane, ‘fiscal consolidation’ (ie austerity) will help boost growth. For the Keynesians, ‘fiscal stimulus’ (government spending) will boost growth. In my view, both are wrong.</blockquote></details></div></section><section class="section"><h3><span>02</span>Explicación o interpretación</h3><div class="item"><p>Roberts sostiene que la deuda pública aumentó principalmente durante las crisis financieras y recesiones, cuando los gobiernos rescataron instituciones financieras y apoyaron a empresas, y no por un exceso general de gasto social. Rechaza la tesis de que la deuda pública cause directamente un menor crecimiento y propone que el problema decisivo en una economía capitalista es la rentabilidad del capital: la inversión productiva y el crecimiento dependen de expectativas de rentabilidad, mientras que el endeudamiento privado y financiero constituye una causa más plausible de las crisis. Por ello, ni la austeridad ni el estímulo keynesiano convencional bastan; el crecimiento requeriría elevar la inversión productiva, algo que Roberts considera improbable mientras esta dependa de la rentabilidad privada y los sectores estratégicos permanezcan en manos privadas.</p><details class="quotes"><summary>4 citas de respaldo</summary><blockquote>But if you look at the time series for public debt to GDP, you can clearly see that the sharpest and ‘step change’ rises took place in conjunction with financial crashes and recessions in the capitalist economy.</blockquote>
+<blockquote>My issue here is that the problem with the multiplier is not that it does not work in a world of high public debt, but that it does not work in a capitalist economy if the profitabilty of capital does not rise from government spendng.</blockquote>
+<blockquote>And if we look for rising debt as a cause of slower growth and financial crises, private sector debt, in particular excessive corporate debt and financial debt ie what Marx called fictitious capital, is a much more iikely culprit than public debt.</blockquote>
+<blockquote>What boosts growth is investment in the productive (value-creating) sectors of the economy, and what boosts productive investment is increased profitability for the capitalist sector</blockquote></details></div></section><section class="section"><h3><span>03</span>Elementos constitutivos</h3><div class="item"><p>La tesis de Haldane sobre la “expansionary consolidation” sostiene que los gobiernos deben reducir el gasto o aumentar los impuestos para permitir la expansión del sector privado y evitar que la deuda eleve los rendimientos de los bonos y el coste del endeudamiento.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Haldane says, instead of spending more, governments need to save more ie by cutting spending and/or raising taxes so that the private sector can expand.</blockquote>
+<blockquote>the idea that trimming state debt can actually encourage private spending and confidence</blockquote></details></div>
+<div class="item"><p>El aumento de la deuda pública se vincula a rescates financieros, apoyo a empresas durante la pandemia, mayores costes de intereses y bajo crecimiento, más que al gasto en prestaciones sociales.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>It was these that forced governments to bail out the banks and other financial institutions in 2008-9 and to fund employers and businesses in the COVID pandemic slump.</blockquote>
+<blockquote>Annual deficits have been higher since the end of the pandemic slump and this is due to the rise in interest costs as debt levels built up and interest rates rose, along with very poor economic growth in most major economies.</blockquote>
+<blockquote>this cannot be blamed on welfare spending.</blockquote></details></div>
+<div class="item"><p>El multiplicador keynesiano entiende el gasto público como un impulsor de consumo, inversión y crecimiento del PIB real, pero Roberts considera que su efecto es débil cuando no aumenta la rentabilidad del capital.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>The Keynesier multiplier argues that increased government spending boosts consumption and investment and so will lead to increased real GDP growth.</blockquote>
+<blockquote>the difference between the Keynesian multiplier (the ratio of change in publc spending to growth) and the Marxist multiplier (i.e. the ratio of the change in profits to growth)</blockquote>
+<blockquote>what matters in a capitalist economy is not the movement of ‘aggregate demand’, but the movement of the profitability of capital.</blockquote></details></div>
+<div class="item"><p>La rentabilidad del capital y la inversión productiva ocupan el lugar causal central en la explicación alternativa de Roberts.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>In the Marxist multiplier, profitability is central…. The question is whether n rounds of subsequent investments generate a rate of profit higher than, lower than, or equal to the original average rate of profit”.</blockquote>
+<blockquote>What boosts growth is investment in the productive (value-creating) sectors of the economy, and what boosts productive investment is increased profitability for the capitalist sector</blockquote></details></div>
+<div class="item"><p>El endeudamiento privado, especialmente el corporativo y financiero, se presenta como un mecanismo más probable de las crisis y del bajo crecimiento que la deuda pública.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>private sector debt, in particular excessive corporate debt and financial debt ie what Marx called fictitious capital, is a much more iikely culprit than public debt.</blockquote>
+<blockquote>Rather than productive investment, a lot of debt in recent years has been used to fund financial operations like refinancings and shareholder payouts.</blockquote></details></div>
+<div class="item"><p>La inflación y el crecimiento real mediante mayor inversión aparecen como vías para reducir la carga relativa de la deuda, aunque ambas desplazan costes o enfrentan límites políticos y económicos.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>There are several ways to reduce the debt ratio burden: higher inflation, which reduces the real value of the debt and raises nominal GDP.</blockquote>
+<blockquote>The other way to lower the debt ratio is to increase growth in real GDP through higher investment.</blockquote>
+<blockquote>But that won’t happen as long as investment depends on the profitability expectations (‘animal spirits’) of the capitalist sector.</blockquote></details></div></section><section class="section"><h3><span>04</span>Evidencia</h3><div class="item"><p>Datos de la OECD sobre gasto social, pensiones, salud, prestaciones y subsidios industriales y militares, utilizados para cuestionar que el gasto social explique el alto endeudamiento público.</p><p class="meta">estadística comparativa · OECD</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>In the OECD, public social expenditure amounted to less than 10% of GDP in 1960, but has more than doubled to just over 20% on average across the OECD since.</blockquote>
+<blockquote>This spending is tiny compared to government subsidies to industry (1.5%, now at the highest level the global financial crash of 2008) and defence (now averaging 2.0-2.5% and targeted to rise to 3.0-5.0% of GDP by the end of this decade).</blockquote></details></div>
+<div class="item"><p>Estimaciones de la Resolution Foundation sobre el gasto británico en seguridad social y bienestar entre 2007-08, 2012-13 y 2025-26, usadas para mostrar que el gasto social no explica el aumento de la deuda.</p><p class="meta">estimación institucional · Resolution Foundation</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>The Resolution Foundation think-tank estimates that total social security or welfare spending in Britain in 2025-26 will be 10.8 per cent of GDP.</blockquote>
+<blockquote>But compared to 2012-13 (the peak in the post-GFC recession), total welfare spending has fallen by 1.2 per cent of GDP.</blockquote></details></div>
+<div class="item"><p>Series temporales de deuda pública respecto del PIB y datos sobre déficits presupuestarios, empleadas para vincular los mayores aumentos de deuda y déficit con crisis, recesiones, rescates y pérdida de ingresos fiscales.</p><p class="meta">serie temporal y comparación macroeconómica · Fuente no identificada</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>the sharpest and ‘step change’ rises took place in conjunction with financial crashes and recessions in the capitalist economy.</blockquote>
+<blockquote>the biggest deficits were in the period of the two economic crises as governments paid out more on unemployment and other benefits while receving less tax revenues.</blockquote></details></div>
+<div class="item"><p>Estudios sobre multiplicadores fiscales y recuperación posterior a 2009, utilizados para sostener que los déficits mayores no se asociaron claramente con una recuperación más rápida.</p><p class="meta">estudios comparativos · Several studies; EU Commission</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Several studies show the so-called Keynesian multiplier (the ratio of real GDP growth to an increase in government spending or budget deficit) is poorly correlated with the economic recovery after 2009.</blockquote>
+<blockquote>The EU Commission found that the Keynesian multiplier was well below 1 in the post-Great Recession period.</blockquote></details></div>
+<div class="item"><p>Estudio de 44 países citado para respaldar la posibilidad de un multiplicador fiscal negativo cuando la deuda pública supera el 60% del PIB; Roberts lo presenta como el argumento de Haldane.</p><p class="meta">estudio internacional · Ilzetzki, Mendoza and Végh</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>In a study of 44 countries, Ilzetzki, Mendoza and Végh find evidence of fiscal stimulus depressing growth — a negative fiscal multiplier — when countries’ public debt exceeds 60 per cent of GDP.</blockquote></details></div>
+<div class="item"><p>El estudio empírico asociado a Rogoff y Reinhart se menciona como evidencia de un umbral de deuda pública, pero Roberts afirma que fue posteriormente desacreditado por errores de codificación y estadísticos.</p><p class="meta">estudio empírico discutido · Rogoff and Reinhart, This Time is Different</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>The empirical study behind this claim was subsquently exposed as riddled with coding and statistical errors.</blockquote></details></div>
+<div class="item"><p>Datos de la OECD sobre emisión de bonos corporativos e inversión empresarial entre 2009 y 2023, utilizados para argumentar que el endeudamiento privado financió operaciones financieras más que inversión productiva.</p><p class="meta">estadística sobre deuda e inversión · OECD</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Cumulative bond issuance by non-financial companies in 2009-23 was USD 12.9 trillion higher than the pre-2008 trend, while corporate investment was USD 8.4 trillion lower.</blockquote>
+<blockquote>Rather than productive investment, a lot of debt in recent years has been used to fund financial operations like refinancings and shareholder payouts.</blockquote></details></div>
+<div class="item"><p>Figura citada para comparar el multiplicador keynesiano y el multiplicador marxista de la rentabilidad, pero no incluida en el documento.</p><p class="meta">figura · World in Crisis, p26 Figure 1.10<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>The Keynesian multiplier is a feeble driver of growth compared to the Marxist multiplier of profitability (see World in Crisis, p26 Figure 1.10).</blockquote></details></div></section><section class="section"><h3><span>05</span>Teoría</h3><div class="item"><p class="item-title">Keynesianismo<span class="meta">Discutida</span></p><p>Marco que interpreta el gasto público y los impuestos como instrumentos de gestión macroeconómica capaces de impulsar la demanda, el consumo, la inversión y el crecimiento mediante el multiplicador.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Keynesian theory, namely that economic slumps or stagnation can be overcome by increased public spending</blockquote>
+<blockquote>The Keynesier multiplier argues that increased government spending boosts consumption and investment and so will lead to increased real GDP growth.</blockquote></details></div>
+<div class="item"><p class="item-title">Multiplicador marxista de la rentabilidad<span class="meta">Utilizada</span></p><p>Marco adoptado por Roberts para sostener que la rentabilidad y el efecto de las inversiones sucesivas sobre la tasa de ganancia son centrales para explicar el crecimiento capitalista.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>In the Marxist multiplier, profitability is central…. The question is whether n rounds of subsequent investments generate a rate of profit higher than, lower than, or equal to the original average rate of profit”.</blockquote>
+<blockquote>what matters in a capitalist economy is not the movement of ‘aggregate demand’, but the movement of the profitability of capital.</blockquote></details></div>
+<div class="item"><p class="item-title">Fictitious capital<span class="meta">Utilizada</span></p><p>Concepto atribuido a Marx y utilizado para caracterizar el endeudamiento financiero y corporativo como una forma de deuda privada vinculada a las crisis.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>financial debt ie what Marx called fictitious capital, is a much more iikely culprit than public debt.</blockquote></details></div>
+<div class="item"><p class="item-title">Rogoff y Reinhart sobre deuda y crecimiento<span class="meta">Rechazada</span></p><p>Tesis según la cual ratios elevadas de deuda pública, originalmente asociadas a un umbral del 90% del PIB, reducirían el crecimiento y conducirían eventualmente a una crisis financiera; Roberts la rechaza por los errores del estudio empírico subyacente.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Rogoff and Reinhart who argued in their (in)famous book, This Time is Different, that economies with high public debt ratios (they argued a threshold of 90% of GDP) would have lower growth and eventually a financial crisis.</blockquote>
+<blockquote>The empirical study behind this claim was subsquently exposed as riddled with coding and statistical errors.</blockquote></details></div></section></article><footer><details class="provenance"><summary>Procedencia</summary><p>Extracción automática. Las citas se comprobaron contra el documento local; la interpretación y la evidencia requieren revisión humana.</p><dl><dt>Documento</dt><dd>corpus/posts/michael_roberts/is-keynesianism-dead-43e080bbe7.md</dd><dt>Recuperado</dt><dd>2026-09-10 14:45:13 UTC</dd><dt>SHA-256</dt><dd><code>80e66a23f3c4f93652ff68379dbc3547e480e7da85da15f7249e31cce28df07c</code></dd><dt>Contrato</dt><dd>v2</dd></dl></details></footer></main></body></html>

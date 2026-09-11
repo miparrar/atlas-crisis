@@ -1,0 +1,177 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Michael Roberts · Atlas de la Crisis</title><style>:root {
+  --ink: #202421;
+  --muted: #66706a;
+  --line: #dfe3df;
+  --accent: #17645d;
+  --warm: #7b5628;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font: 17px/1.65 system-ui, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
+}
+main {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 56px 0 72px;
+}
+h1, h2, h3 { line-height: 1.2; }
+h1 {
+  max-width: 720px;
+  margin: 14px 0 18px;
+  font: 400 clamp(34px, 7vw, 54px)/1.08 Georgia, serif;
+  letter-spacing: -.025em;
+}
+h2 { margin: 0; font-size: 22px; }
+h3 { margin: 0 0 18px; font-size: 18px; }
+p { margin: 0 0 14px; }
+.brand {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brand a { color: inherit; text-decoration: none; }
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.byline a:first-child { color: inherit; text-decoration: none; }
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary {
+  margin: 44px 0 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.summary h2 { margin-bottom: 12px; }
+.summary p { font: 20px/1.6 Georgia, serif; }
+.lede {
+  max-width: 680px;
+  color: var(--muted);
+  font: 20px/1.55 Georgia, serif;
+}
+.site-count { margin-top: 18px; color: var(--muted); font-size: 13px; }
+.listing { margin-top: 48px; }
+.listing > h2 { margin-bottom: 12px; }
+.author-link, .article-link {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.author-link h2, .article-link h2 { margin-bottom: 6px; }
+.author-link h2 a, .article-link h2 a {
+  color: var(--ink);
+  text-decoration-color: var(--line);
+}
+.author-link p, .article-link p { margin-bottom: 6px; }
+.author-link .meta, .article-link .meta { margin-left: 0; }
+.limitations {
+  margin: 0 0 36px;
+  padding: 16px 0 16px 18px;
+  border-left: 2px solid var(--warm);
+  color: #574c3d;
+  font-size: 14px;
+}
+.limitations ul { margin: 6px 0 0; padding-left: 20px; }
+.section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+.section h3 span {
+  display: inline-block;
+  width: 34px;
+  color: var(--accent);
+  font: 700 12px system-ui, sans-serif;
+}
+.item + .item { margin-top: 22px; }
+.item p:last-of-type { margin-bottom: 0; }
+.item-title { font-weight: 700; }
+.meta {
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.item > p.meta { margin-left: 0; }
+.inference, .unavailable {
+  display: inline-block;
+  margin: 0 0 7px 10px;
+  color: var(--warm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.item > .inference:first-child { margin-left: 0; }
+.empty { color: var(--muted); font-style: italic; }
+details { margin-top: 10px; }
+summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+blockquote {
+  margin: 14px 0 6px;
+  padding-left: 16px;
+  border-left: 2px solid var(--line);
+  color: #4c554f;
+  font: 16px/1.6 Georgia, serif;
+  overflow-wrap: anywhere;
+}
+footer {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.provenance dl {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 5px 12px;
+}
+.provenance dt { font-weight: 700; }
+.provenance dd { margin: 0; }
+.provenance code { font-size: 11px; }
+
+@media (max-width: 560px) {
+  main { width: min(100% - 32px, 760px); padding-top: 34px; }
+  .byline { display: grid; gap: 2px; }
+  .summary { margin-top: 34px; }
+  .provenance dl { grid-template-columns: 1fr; gap: 2px; }
+  .provenance dd { margin-bottom: 8px; }
+}
+
+@media print {
+  body { font-size: 11pt; }
+  main { width: 100%; padding: 0; }
+  h1 { font-size: 28pt; }
+  .summary p { font-size: 13pt; }
+  .status { border-color: #999; }
+  .section { break-inside: avoid; }
+  details > * { display: block; }
+  footer { font-size: 9pt; }
+}
+</style></head><body><main><header class="page-header"><p class="brand"><a href="../index.html">Atlas de la Crisis</a></p><h1>Michael Roberts</h1><p class="lede">The Next Recession</p><p class="site-count">2 artículos</p></header><section class="listing" aria-label="Artículos"><article class="article-link"><h2><a href="is-keynesianism-dead-43e080bbe7.html">Is Keynesianism dead?</a></h2><p class="meta">September 10, 2026 · Pendiente de revisión humana</p><p>El artículo examina si el alto endeudamiento público vuelve obsoletas las políticas keynesianas de estímulo. Michael Roberts rechaza tanto la austeridad de Andy Haldane como el keynesianismo convencional y sostiene que el crecimiento depende principalmente de la inversión productiva y de la rentabilidad del capital; además, atribuye el aumento de la deuda pública a las crisis y al endeudamiento privado.</p></article>
+<article class="article-link"><h2><a href="bond-bust.html">Bond bust</a></h2><p class="meta">September 4, 2026 · Pendiente de revisión humana</p><p>Michael Roberts interpreta el aumento mundial de los rendimientos de los bonos desde 2020 como un fenómeno explicado principalmente por la inflación, junto con el endeudamiento público, la política monetaria y la incertidumbre; rechaza que implique un inminente impago soberano y sostiene que una eventual crisis surgiría primero en el sector privado.</p></article></section></main></body></html>

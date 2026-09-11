@@ -1,0 +1,187 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Bessent and the Bonds · Atlas de la Crisis</title><style>:root {
+  --ink: #202421;
+  --muted: #66706a;
+  --line: #dfe3df;
+  --accent: #17645d;
+  --warm: #7b5628;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font: 17px/1.65 system-ui, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
+}
+main {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 56px 0 72px;
+}
+h1, h2, h3 { line-height: 1.2; }
+h1 {
+  max-width: 720px;
+  margin: 14px 0 18px;
+  font: 400 clamp(34px, 7vw, 54px)/1.08 Georgia, serif;
+  letter-spacing: -.025em;
+}
+h2 { margin: 0; font-size: 22px; }
+h3 { margin: 0 0 18px; font-size: 18px; }
+p { margin: 0 0 14px; }
+.brand {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brand a { color: inherit; text-decoration: none; }
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.byline a:first-child { color: inherit; text-decoration: none; }
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary {
+  margin: 44px 0 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.summary h2 { margin-bottom: 12px; }
+.summary p { font: 20px/1.6 Georgia, serif; }
+.lede {
+  max-width: 680px;
+  color: var(--muted);
+  font: 20px/1.55 Georgia, serif;
+}
+.site-count { margin-top: 18px; color: var(--muted); font-size: 13px; }
+.listing { margin-top: 48px; }
+.listing > h2 { margin-bottom: 12px; }
+.author-link, .article-link {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.author-link h2, .article-link h2 { margin-bottom: 6px; }
+.author-link h2 a, .article-link h2 a {
+  color: var(--ink);
+  text-decoration-color: var(--line);
+}
+.author-link p, .article-link p { margin-bottom: 6px; }
+.author-link .meta, .article-link .meta { margin-left: 0; }
+.limitations {
+  margin: 0 0 36px;
+  padding: 16px 0 16px 18px;
+  border-left: 2px solid var(--warm);
+  color: #574c3d;
+  font-size: 14px;
+}
+.limitations ul { margin: 6px 0 0; padding-left: 20px; }
+.section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+.section h3 span {
+  display: inline-block;
+  width: 34px;
+  color: var(--accent);
+  font: 700 12px system-ui, sans-serif;
+}
+.item + .item { margin-top: 22px; }
+.item p:last-of-type { margin-bottom: 0; }
+.item-title { font-weight: 700; }
+.meta {
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.item > p.meta { margin-left: 0; }
+.inference, .unavailable {
+  display: inline-block;
+  margin: 0 0 7px 10px;
+  color: var(--warm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.item > .inference:first-child { margin-left: 0; }
+.empty { color: var(--muted); font-style: italic; }
+details { margin-top: 10px; }
+summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+blockquote {
+  margin: 14px 0 6px;
+  padding-left: 16px;
+  border-left: 2px solid var(--line);
+  color: #4c554f;
+  font: 16px/1.6 Georgia, serif;
+  overflow-wrap: anywhere;
+}
+footer {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.provenance dl {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 5px 12px;
+}
+.provenance dt { font-weight: 700; }
+.provenance dd { margin: 0; }
+.provenance code { font-size: 11px; }
+
+@media (max-width: 560px) {
+  main { width: min(100% - 32px, 760px); padding-top: 34px; }
+  .byline { display: grid; gap: 2px; }
+  .summary { margin-top: 34px; }
+  .provenance dl { grid-template-columns: 1fr; gap: 2px; }
+  .provenance dd { margin-bottom: 8px; }
+}
+
+@media print {
+  body { font-size: 11pt; }
+  main { width: 100%; padding: 0; }
+  h1 { font-size: 28pt; }
+  .summary p { font-size: 13pt; }
+  .status { border-color: #999; }
+  .section { break-inside: avoid; }
+  details > * { display: block; }
+  footer { font-size: 9pt; }
+}
+</style></head><body><main><header class="page-header"><p class="brand"><a href="../index.html">Atlas de la Crisis</a></p><h1>Bessent and the Bonds</h1><p class="byline"><a href="index.html"><strong>Paul Krugman</strong></a><span>Sep 10, 2026</span><a href="https://paulkrugman.substack.com/p/bessent-and-the-bonds">Texto original ↗</a></p><p class="status">Pendiente de revisión humana</p></header><section class="summary"><h2>Síntesis</h2><p>Paul Krugman interpreta el aumento de las tasas de interés de largo plazo como una respuesta de mercado al incremento de la demanda de fondos asociado al auge de la inteligencia artificial, no principalmente como un efecto de la política de la administración Trump. En ese contexto, sostiene que las declaraciones de Scott Bessent sobre su capacidad para contener las tasas deterioran su credibilidad.</p></section><aside class="limitations"><strong>Limitaciones</strong><ul><li>El cuerpo anuncia y alude a figuras sobre el gasto en tecnologías de la información y la comparación histórica de tasas, pero esas figuras no están presentes en el material suministrado.</li>
+<li>El texto es un artículo breve y no desarrolla de manera extensa alternativas explicativas ni una metodología propia.</li></ul></aside><article class="problem"><section class="section"><h3><span>01</span>Fenómeno o problema</h3><div class="item"><p>El fenómeno central es el aumento generalizado de las tasas de interés de largo plazo y la dificultad de Scott Bessent para contenerlas mediante declaraciones públicas, en contraste con la estabilidad relativa del yen.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>They have, however, tested his attempts to push down U.S. interest rates — and as the headline at the top of this post says, those efforts are failing with flying colors.</blockquote>
+<blockquote>The truth, however, is that rates are rising everywhere.</blockquote></details></div></section><section class="section"><h3><span>02</span>Explicación o interpretación</h3><div class="item"><p>Krugman sostiene que el aumento de las tasas no parece explicarse principalmente por la política de la administración Trump, porque también ocurre en otras economías. Su explicación más sencilla es un aumento de la demanda de fondos provocado por el auge de la inteligencia artificial y por una expansión de la inversión en tecnologías de la información. En consecuencia, considera que Bessent no puede revertir la tendencia mediante amenazas o declaraciones grandilocuentes y que esas declaraciones consumen su credibilidad.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>The simplest story consistent with the facts is that we’re seeing a surge in demand for funds as a result of the AI boom.</blockquote>
+<blockquote>This looks like the natural market response to the rush to invest in AI.</blockquote>
+<blockquote>It is, however, foolish of Bessent to imagine that he can beat rising rates back by talking big while waving his tiny, tiny stick. All he’s doing is further draining his rapidly diminishing reserves of credibility.</blockquote></details></div></section><section class="section"><h3><span>03</span>Elementos constitutivos</h3><div class="item"><p>La elevación de las tasas es presentada como un fenómeno internacional, no exclusivamente estadounidense.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>US, German, French, Italian, United Kingdom and Japanese 30-year yields rose by 45-79 basis points in the six months to 28 August, with the US in the middle at 58bp.</blockquote></details></div>
+<div class="item"><p>El auge de la inteligencia artificial incrementa la demanda de fondos mediante una expansión del gasto de inversión en tecnologías de la información.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>We are in the midst of a surge in spending on information technology (information processing equipment and software) that is on track to be even bigger than the boom of the late 1990s:</blockquote></details></div>
+<div class="item"><p>La comparación con el auge de finales de los años noventa sirve para sostener que tasas elevadas pueden coexistir con baja inflación y superávit presupuestario.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>And it’s worth noting that long-term interest rates were even higher then than they are now, even though inflation was low and we had a budget surplus:</blockquote></details></div>
+<div class="item"><p>Las declaraciones de Bessent constituyen una respuesta política que, según Krugman, no tiene capacidad suficiente para revertir la presión alcista y además erosiona su credibilidad.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>I am the house now … And you can bet against me if you want.</blockquote>
+<blockquote>It is, however, foolish of Bessent to imagine that he can beat rising rates back by talking big while waving his tiny, tiny stick.</blockquote></details></div></section><section class="section"><h3><span>04</span>Evidencia</h3><div class="item"><p>Comparación internacional de los rendimientos de bonos soberanos a treinta años durante los seis meses previos al 28 de agosto; se utiliza para mostrar que el alza de las tasas no es exclusivamente estadounidense.</p><p class="meta">datos comparativos citados · Bruegel</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>US, German, French, Italian, United Kingdom and Japanese 30-year yields rose by 45-79 basis points in the six months to 28 August, with the US in the middle at 58bp.</blockquote></details></div>
+<div class="item"><p>Referencia comparativa al auge de inversión de finales de los años noventa, a sus tasas de largo plazo, baja inflación y superávit presupuestario; las figuras anunciadas para respaldar la comparación no están disponibles.</p><p class="meta">comparación histórica y figuras aludidas · Fuente no identificada<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>We are in the midst of a surge in spending on information technology (information processing equipment and software) that is on track to be even bigger than the boom of the late 1990s:</blockquote>
+<blockquote>And it’s worth noting that long-term interest rates were even higher then than they are now, even though inflation was low and we had a budget surplus:</blockquote></details></div></section><section class="section"><h3><span>05</span>Teoría</h3><div class="item"><p class="item-title">Demanda de fondos asociada al auge de la inteligencia artificial<span class="meta">Utilizada</span></p><p>Marco explicativo según el cual el aumento de la inversión en inteligencia artificial y tecnologías de la información eleva la demanda de fondos y produce una respuesta alcista de las tasas de interés de largo plazo.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>The simplest story consistent with the facts is that we’re seeing a surge in demand for funds as a result of the AI boom.</blockquote></details></div>
+<div class="item"><p class="item-title">Respuesta natural del mercado<span class="meta">Utilizada</span></p><p>Interpretación de las tasas elevadas como resultado de la reacción del mercado a la carrera por invertir en inteligencia artificial, más que como un efecto específico de la política de la administración Trump.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>This looks like the natural market response to the rush to invest in AI.</blockquote></details></div></section></article><footer><details class="provenance"><summary>Procedencia</summary><p>Extracción automática. Las citas se comprobaron contra el documento local; la interpretación y la evidencia requieren revisión humana.</p><dl><dt>Documento</dt><dd>corpus/posts/paul_krugman/bessent-and-the-bonds-eac4f29ff5.md</dd><dt>Recuperado</dt><dd>2026-09-10 14:45:13 UTC</dd><dt>SHA-256</dt><dd><code>aac4819ca02cc51cbee10a04c3f2342422529dc77ab597dd5d732d4ad60fb806</code></dd><dt>Contrato</dt><dd>v2</dd></dl></details></footer></main></body></html>

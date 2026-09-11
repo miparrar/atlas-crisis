@@ -1,0 +1,203 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Trade wars are EV wars · Atlas de la Crisis</title><style>:root {
+  --ink: #202421;
+  --muted: #66706a;
+  --line: #dfe3df;
+  --accent: #17645d;
+  --warm: #7b5628;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font: 17px/1.65 system-ui, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
+}
+main {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 56px 0 72px;
+}
+h1, h2, h3 { line-height: 1.2; }
+h1 {
+  max-width: 720px;
+  margin: 14px 0 18px;
+  font: 400 clamp(34px, 7vw, 54px)/1.08 Georgia, serif;
+  letter-spacing: -.025em;
+}
+h2 { margin: 0; font-size: 22px; }
+h3 { margin: 0 0 18px; font-size: 18px; }
+p { margin: 0 0 14px; }
+.brand {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brand a { color: inherit; text-decoration: none; }
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.byline a:first-child { color: inherit; text-decoration: none; }
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary {
+  margin: 44px 0 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.summary h2 { margin-bottom: 12px; }
+.summary p { font: 20px/1.6 Georgia, serif; }
+.lede {
+  max-width: 680px;
+  color: var(--muted);
+  font: 20px/1.55 Georgia, serif;
+}
+.site-count { margin-top: 18px; color: var(--muted); font-size: 13px; }
+.listing { margin-top: 48px; }
+.listing > h2 { margin-bottom: 12px; }
+.author-link, .article-link {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.author-link h2, .article-link h2 { margin-bottom: 6px; }
+.author-link h2 a, .article-link h2 a {
+  color: var(--ink);
+  text-decoration-color: var(--line);
+}
+.author-link p, .article-link p { margin-bottom: 6px; }
+.author-link .meta, .article-link .meta { margin-left: 0; }
+.limitations {
+  margin: 0 0 36px;
+  padding: 16px 0 16px 18px;
+  border-left: 2px solid var(--warm);
+  color: #574c3d;
+  font-size: 14px;
+}
+.limitations ul { margin: 6px 0 0; padding-left: 20px; }
+.section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+.section h3 span {
+  display: inline-block;
+  width: 34px;
+  color: var(--accent);
+  font: 700 12px system-ui, sans-serif;
+}
+.item + .item { margin-top: 22px; }
+.item p:last-of-type { margin-bottom: 0; }
+.item-title { font-weight: 700; }
+.meta {
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.item > p.meta { margin-left: 0; }
+.inference, .unavailable {
+  display: inline-block;
+  margin: 0 0 7px 10px;
+  color: var(--warm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.item > .inference:first-child { margin-left: 0; }
+.empty { color: var(--muted); font-style: italic; }
+details { margin-top: 10px; }
+summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+blockquote {
+  margin: 14px 0 6px;
+  padding-left: 16px;
+  border-left: 2px solid var(--line);
+  color: #4c554f;
+  font: 16px/1.6 Georgia, serif;
+  overflow-wrap: anywhere;
+}
+footer {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.provenance dl {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 5px 12px;
+}
+.provenance dt { font-weight: 700; }
+.provenance dd { margin: 0; }
+.provenance code { font-size: 11px; }
+
+@media (max-width: 560px) {
+  main { width: min(100% - 32px, 760px); padding-top: 34px; }
+  .byline { display: grid; gap: 2px; }
+  .summary { margin-top: 34px; }
+  .provenance dl { grid-template-columns: 1fr; gap: 2px; }
+  .provenance dd { margin-bottom: 8px; }
+}
+
+@media print {
+  body { font-size: 11pt; }
+  main { width: 100%; padding: 0; }
+  h1 { font-size: 28pt; }
+  .summary p { font-size: 13pt; }
+  .status { border-color: #999; }
+  .section { break-inside: avoid; }
+  details > * { display: block; }
+  footer { font-size: 9pt; }
+}
+</style></head><body><main><header class="page-header"><p class="brand"><a href="../index.html">Atlas de la Crisis</a></p><h1>Trade wars are EV wars</h1><p class="byline"><a href="index.html"><strong>Kate Mackenzie</strong></a><span>25 Aug 2026</span><a href="https://thepolycrisis.org/trade-wars-are-ev-wars/">Texto original ↗</a></p><p class="status">Pendiente de revisión humana</p></header><section class="summary"><h2>Síntesis</h2><p>El artículo examina cómo los países de poder medio intentan preservar margen de negociación frente a la coerción comercial estadounidense y captar capacidades asociadas a la transición hacia vehículos eléctricos. Sostiene que ese margen depende de la política interna, de la integración productiva y de la capacidad de convertir mercados, recursos o cooperación técnica en instrumentos de negociación.</p></section><aside class="limitations"><strong>Limitaciones</strong><ul><li>Se menciona una fuente gráfica sobre la integración de las cadenas de suministro automotrices, pero la figura no está disponible en el cuerpo suministrado.</li>
+<li>El texto concluye con una sección de enlaces y no desarrolla más sus implicaciones.</li>
+<li>Parte de la evidencia procede de citas periodísticas, entrevistas y una publicación incrustada cuya documentación primaria no se adjunta.</li></ul></aside><article class="problem"><section class="section"><h3><span>01</span>Fenómeno o problema</h3><div class="item"><p>El problema central es cómo los países de poder medio pueden responder a la presión comercial de Estados Unidos y, simultáneamente, reducir dependencias productivas y obtener capacidades tecnológicas en sectores estratégicos como los vehículos eléctricos.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>The outcome will probably be taken as a broad lesson for other middle powers dealing with the US. But countries watching how Canada fares will have to closely consider the domestic politics of both countries, not just the specifics of their trade relationships.</blockquote>
+<blockquote>Chinese companies have been doing a lot of foreign direct investment over the past few years; particularly building EV, battery and other clean energy tech facilities.</blockquote></details></div></section><section class="section"><h3><span>02</span>Explicación o interpretación</h3><div class="item"><p>El autor interpreta que la capacidad de negociación de los países de poder medio no depende únicamente de la relación comercial bilateral, sino también de la política doméstica, la integración de las cadenas de suministro y la posibilidad de diversificar mercados o utilizar recursos estratégicos. En el caso brasileño, la capacidad de negociación se refuerza cuando un mercado local exige adaptación técnica, aunque esa colaboración no equivale necesariamente a una transferencia tecnológica fundamental.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>But countries watching how Canada fares will have to closely consider the domestic politics of both countries, not just the specifics of their trade relationships.</blockquote>
+<blockquote>The authors write that Brazil’s &quot;flex-fuel&quot; car market in itself became a bargaining chip; the market is big enough to make adapting to it worthwhile, and doing so required local engineering expertise, which meant &quot;capability formation and bargaining power reinforced one another.&quot;</blockquote>
+<blockquote>The joint engineering on the flex-fuel engine is thus an example of localised adaptation rather than fundamental technology transfer: it remains within parameters set by BYD, rather than driven by Brazilian regulatory demands.</blockquote></details></div></section><section class="section"><h3><span>03</span>Elementos constitutivos</h3><div class="item"><p>La política interna condiciona la posibilidad de sostener una confrontación comercial, porque el gobierno debe conservar apoyo público y contener a sectores industriales y regionales afectados.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Carney&#39;s speech drew widespread domestic support from across the political spectrum.</blockquote>
+<blockquote>Public opinion in Canada is broadly supportive of a strong stand on the US, but critical industrial and regional constituencies still have to be mollified.</blockquote></details></div>
+<div class="item"><p>La dependencia comercial y la integración de las cadenas de suministro, especialmente en la industria automotriz, limitan la rapidez y el alcance de la diversificación.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>None of this would be fast enough or big enough to replace the entire Canada-U.S. trade relationship, which is not just big but deeply integrated across supply chains – especially automotive:</blockquote></details></div>
+<div class="item"><p>La diversificación de mercados, inversiones y alianzas institucionales constituye una estrategia para reducir la dependencia estadounidense, aunque no reemplaza de inmediato la relación existente.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Carney’s government had, since it came to power almost a year earlier, been scoping out alternatives to the U.S. market for various industries: brokering agricultural tariff-reduction deals with China; courting Chinese EV companies for investment after the partial U.S. repeal of the IRA caused write-offs across Canada’s auto industry; and becoming a full partner of Europe’s SAFE defense spending initiative so Canadian companies will be eligible suppliers for a €150 billion scheme.</blockquote></details></div>
+<div class="item"><p>Los recursos energéticos pueden funcionar como instrumento de presión, pero su uso entra en tensión con la imagen de Canadá como proveedor confiable.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Over the weekend, Carney even subtly threatened to use Canada’s energy weapon against the U.S.:</blockquote>
+<blockquote>Just a couple of weeks ago, he&#39;d rejected calls to use energy as a bargaining chip, citing the importance of being a reliable supplier.</blockquote></details></div>
+<div class="item"><p>En la inversión extranjera china en vehículos eléctricos, el tamaño y las características del mercado receptor pueden convertirse en una baza negociadora que impulse capacidades locales.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>The authors write that Brazil’s &quot;flex-fuel&quot; car market in itself became a bargaining chip; the market is big enough to make adapting to it worthwhile, and doing so required local engineering expertise</blockquote></details></div>
+<div class="item"><p>La colaboración técnica puede generar capacidades laborales transferibles, pero la posibilidad de que produzca efectos de difusión permanece abierta por la reciente creación de la planta.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Workers and engineers who acquire EV-specific capabilities, such as battery management systems, electric drivetrain diagnostics, and charging infrastructure, could in principle transfer these skills to Brazilian-owned firms, startups, or supplier networks, thereby activating a labour mobility spillover.</blockquote>
+<blockquote>Such dynamics, however, remain prospective. Given how recently the plant was established, more time is needed to observe whether and how labour transitions materialise.</blockquote></details></div>
+<div class="item"><p>El control propietario de BYD sobre tecnologías centrales limita el alcance de la transferencia y mantiene la adaptación dentro de los parámetros fijados por la empresa.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>BYD retains proprietary control over its battery chemistry, its blade battery technology, and its core software systems, none of which appear subject to explicit transfer requirements [from an interview].</blockquote></details></div></section><section class="section"><h3><span>04</span>Evidencia</h3><div class="item"><p>Estimación académica sobre los efectos laborales de los aranceles estadounidenses sobre las exportaciones canadienses.</p><p class="meta">estimación académica referida por el autor · Fuente no identificada</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>One academic estimates that although they’d only raise total aggregate tariffs on all exports by 2.5%, they would cost the country 90,000 jobs.</blockquote></details></div>
+<div class="item"><p>Entrevista sobre la crisis de la industria automotriz canadiense y las estrategias sindicales para reducir la dependencia de Estados Unidos.</p><p class="meta">entrevista · Phenomenal World interview with Sam Gindin on Canadian auto industry crisis and how unions are thinking of reducing dependence on the U.S.<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Source: Phenomenal World interview with Sam Gindin on Canadian auto industry crisis and how unions are thinking of reducing dependence on the U.S.</blockquote></details></div>
+<div class="item"><p>Declaraciones y cobertura periodística sobre las concesiones exigidas o consideradas por Canadá en la negociación comercial con Estados Unidos.</p><p class="meta">cobertura y declaraciones periodísticas · Bloomberg News; The New York Times; The Guardian</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>The details of exactly what the U.S. demanded and what Canada considered beyond the pale are difficult to ascertain.</blockquote>
+<blockquote>As Rachel Ziemba points out, important details are often left to be negotiated at the last minute, under high pressure.</blockquote>
+<blockquote>But as details of the agreement began to leak to Canadian media, there was growing alarm that Carney and his negotiators were conceding too much in exchange for lower tariffs on steel, aluminium and cars.</blockquote></details></div>
+<div class="item"><p>Publicación de Albert Pinto sobre la dependencia estadounidense de la energía canadiense, presentada como posible instrumento de presión.</p><p class="meta">publicación en redes sociales incrustada · Albert Pinto</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Can fuels US growth, supplying 99% of their natural gas imports, 85% of their electricity imports,60% of their crude oil imports</blockquote></details></div>
+<div class="item"><p>Análisis sobre la respuesta china a la guerra arancelaria estadounidense y las dificultades estadounidenses para desarrollar cadenas alternativas de tierras raras.</p><p class="meta">análisis periodístico referido por el autor · Alan Beattie<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Until now, China had been the only country to forcefully retaliate against the US tariff war with its rare earth counterweapon, which was largely successful in getting a backdown on tariffs.</blockquote>
+<blockquote>And, as Alan Beattie wrote last week, the US has largely failed in efforts to build up its own alternative rare-earth supply chains.</blockquote></details></div>
+<div class="item"><p>Documento del TIDE centre de Oxford University sobre las condiciones de negociación y la industrialización verde en países en desarrollo, con un estudio de caso sobre la planta de BYD en Bahia.</p><p class="meta">artículo académico y estudio de caso · TIDE centre at Oxford University; Net Zero Industrial Policy Lab<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>A new paper from the TIDE centre at Oxford University looks at “bargaining chips” and green industrialisation in developing countries.</blockquote>
+<blockquote>The authors set out a kind of framework – drawing on the database of Chinese green FDI from the Net Zero Industrial Policy Lab (i.e., Tim’s group at Johns Hopkins) – but then they hone in on the case study of the BYD factory in Bahia, Brazil.</blockquote></details></div></section><section class="section"><h3><span>05</span>Teoría</h3><div class="item"><p class="item-title">“Bargaining chips” y green industrialisation<span class="meta">Utilizada</span></p><p>Marco que organiza el análisis de cómo los países en desarrollo utilizan características de sus mercados, capacidades y políticas industriales para negociar beneficios de la inversión extranjera verde.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>A new paper from the TIDE centre at Oxford University looks at “bargaining chips” and green industrialisation in developing countries.</blockquote></details></div>
+<div class="item"><p class="item-title">Capability formation and bargaining power<span class="meta">Utilizada</span></p><p>Proposición según la cual la formación de capacidades locales puede aumentar el poder de negociación, mientras que un mayor poder de negociación puede favorecer la formación de capacidades.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>capability formation and bargaining power reinforced one another.</blockquote></details></div>
+<div class="item"><p class="item-title">Labour mobility spillover<span class="meta">Discutida</span></p><p>Posible mecanismo de difusión por el cual trabajadores y técnicos formados en una empresa extranjera trasladan capacidades específicas hacia empresas, startups o redes de proveedores nacionales.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>thereby activating a labour mobility spillover.</blockquote>
+<blockquote>Such dynamics, however, remain prospective.</blockquote></details></div>
+<div class="item"><p class="item-title">“Spillover success” y “extractive enclave”<span class="meta">Discutida</span></p><p>Alternativas conceptuales para clasificar los resultados de la inversión extranjera; el autor señala que el caso de Bahia no encaja fácilmente en ninguna de las dos categorías.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>The TIDE authors conclude the Bahia project can’t be easily categorized as either “spillover success” or “extractive enclave.”</blockquote></details></div></section></article><footer><details class="provenance"><summary>Procedencia</summary><p>Extracción automática. Las citas se comprobaron contra el documento local; la interpretación y la evidencia requieren revisión humana.</p><dl><dt>Documento</dt><dd>corpus/posts/kate_mackenzie/trade-wars-are-ev-wars-b7dc9fe4cd.md</dd><dt>Recuperado</dt><dd>2026-09-09 21:17:25 UTC</dd><dt>SHA-256</dt><dd><code>89cbcf4d633991d2ec683b16577f1767fea1a55b8c2a673365df6870689b07eb</code></dd><dt>Contrato</dt><dd>v2</dd></dl></details></footer></main></body></html>

@@ -1,0 +1,198 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Neo-Nazis and the Impotence of Trumponomics · Atlas de la Crisis</title><style>:root {
+  --ink: #202421;
+  --muted: #66706a;
+  --line: #dfe3df;
+  --accent: #17645d;
+  --warm: #7b5628;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font: 17px/1.65 system-ui, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
+}
+main {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 56px 0 72px;
+}
+h1, h2, h3 { line-height: 1.2; }
+h1 {
+  max-width: 720px;
+  margin: 14px 0 18px;
+  font: 400 clamp(34px, 7vw, 54px)/1.08 Georgia, serif;
+  letter-spacing: -.025em;
+}
+h2 { margin: 0; font-size: 22px; }
+h3 { margin: 0 0 18px; font-size: 18px; }
+p { margin: 0 0 14px; }
+.brand {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brand a { color: inherit; text-decoration: none; }
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.byline a:first-child { color: inherit; text-decoration: none; }
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary {
+  margin: 44px 0 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.summary h2 { margin-bottom: 12px; }
+.summary p { font: 20px/1.6 Georgia, serif; }
+.lede {
+  max-width: 680px;
+  color: var(--muted);
+  font: 20px/1.55 Georgia, serif;
+}
+.site-count { margin-top: 18px; color: var(--muted); font-size: 13px; }
+.listing { margin-top: 48px; }
+.listing > h2 { margin-bottom: 12px; }
+.author-link, .article-link {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.author-link h2, .article-link h2 { margin-bottom: 6px; }
+.author-link h2 a, .article-link h2 a {
+  color: var(--ink);
+  text-decoration-color: var(--line);
+}
+.author-link p, .article-link p { margin-bottom: 6px; }
+.author-link .meta, .article-link .meta { margin-left: 0; }
+.limitations {
+  margin: 0 0 36px;
+  padding: 16px 0 16px 18px;
+  border-left: 2px solid var(--warm);
+  color: #574c3d;
+  font-size: 14px;
+}
+.limitations ul { margin: 6px 0 0; padding-left: 20px; }
+.section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+.section h3 span {
+  display: inline-block;
+  width: 34px;
+  color: var(--accent);
+  font: 700 12px system-ui, sans-serif;
+}
+.item + .item { margin-top: 22px; }
+.item p:last-of-type { margin-bottom: 0; }
+.item-title { font-weight: 700; }
+.meta {
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.item > p.meta { margin-left: 0; }
+.inference, .unavailable {
+  display: inline-block;
+  margin: 0 0 7px 10px;
+  color: var(--warm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.item > .inference:first-child { margin-left: 0; }
+.empty { color: var(--muted); font-style: italic; }
+details { margin-top: 10px; }
+summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+blockquote {
+  margin: 14px 0 6px;
+  padding-left: 16px;
+  border-left: 2px solid var(--line);
+  color: #4c554f;
+  font: 16px/1.6 Georgia, serif;
+  overflow-wrap: anywhere;
+}
+footer {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.provenance dl {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 5px 12px;
+}
+.provenance dt { font-weight: 700; }
+.provenance dd { margin: 0; }
+.provenance code { font-size: 11px; }
+
+@media (max-width: 560px) {
+  main { width: min(100% - 32px, 760px); padding-top: 34px; }
+  .byline { display: grid; gap: 2px; }
+  .summary { margin-top: 34px; }
+  .provenance dl { grid-template-columns: 1fr; gap: 2px; }
+  .provenance dd { margin-bottom: 8px; }
+}
+
+@media print {
+  body { font-size: 11pt; }
+  main { width: 100%; padding: 0; }
+  h1 { font-size: 28pt; }
+  .summary p { font-size: 13pt; }
+  .status { border-color: #999; }
+  .section { break-inside: avoid; }
+  details > * { display: block; }
+  footer { font-size: 9pt; }
+}
+</style></head><body><main><header class="page-header"><p class="brand"><a href="../index.html">Atlas de la Crisis</a></p><h1>Neo-Nazis and the Impotence of Trumponomics</h1><p class="byline"><a href="index.html"><strong>Paul Krugman</strong></a><span>Sep 07, 2026</span><a href="https://paulkrugman.substack.com/p/neo-nazis-and-the-impotence-of-trumponomics">Texto original ↗</a></p><p class="status">Pendiente de revisión humana</p></header><section class="summary"><h2>Síntesis</h2><p>Krugman utiliza el contraste entre Estados Unidos y Alemania para cuestionar las explicaciones que atribuyen el extremismo de derecha principalmente a los déficits comerciales, la pérdida de empleo industrial o el rezago regional. Alemania combina grandes superávits comerciales y una proporción comparativamente alta de empleo industrial, pero ello no la ha aislado del resentimiento políticamente radicalizador. El caso de Sachsen-Anhalt también lleva al autor a reconsiderar la vigencia de la explicación basada en regiones dejadas atrás: la antigua Alemania Oriental ya no sería una región profundamente deprimida, aunque persista allí una percepción de desventaja. Su conclusión es principalmente negativa: Trumponomics no eliminaría el resentimiento autoritario aun si alcanzara sus objetivos económicos, y los factores económicos simples no bastan para explicar el giro fascista.</p></section><aside class="limitations"><strong>Limitaciones</strong><ul><li>El cuerpo omite la figura anunciada sobre las balanzas comerciales de Estados Unidos y Alemania.</li>
+<li>El cuerpo omite la figura anunciada sobre las tendencias del empleo industrial.</li>
+<li>El cuerpo parece omitir el material empírico anunciado para mostrar que la caracterización de Alemania Oriental como región profundamente deprimida está desactualizada.</li>
+<li>El artículo formula una conclusión negativa sobre la insuficiencia de ciertos factores económicos, pero no desarrolla una explicación alternativa completa del extremismo de derecha.</li></ul></aside><article class="problem"><section class="section"><h3><span>01</span>Fenómeno o problema</h3><div class="item"><p>El problema central es la persistencia del resentimiento que alimenta movimientos de extrema derecha en Estados Unidos y Alemania, pese a sus diferencias en balanza comercial, empleo industrial y situación regional, lo que pone en duda que la desindustrialización y otras condiciones económicas simples expliquen por sí solas la radicalización política.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>And none of this appears to make a bit of difference to the resentment that underlies right-wing extremism on both sides of the Atlantic.</blockquote>
+<blockquote>Crude economic factors don’t explain the fascist shift in Germany. And Trumponomics, even if it worked (which it doesn’t) wouldn’t end the resentment feeding our own authoritarian movement.</blockquote></details></div></section><section class="section"><h3><span>02</span>Explicación o interpretación</h3><div class="item"><p>Krugman razona mediante un contraste comparativo: si los déficits comerciales y la reducción del empleo industrial fueran causas decisivas del resentimiento radicalizador, Alemania debería estar relativamente protegida porque posee grandes superávits y conserva más empleo industrial que Estados Unidos. La victoria de la AfD en Sachsen-Anhalt contradice esa expectativa. El autor añade que la antigua Alemania Oriental ya no encaja adecuadamente en la categoría de región profundamente deprimida, por lo que también reconsidera la explicación centrada en territorios dejados atrás. Su argumento no niega toda relación entre condiciones económicas y política, sino que sostiene que mejorar esos indicadores no bastaría para reducir el resentimiento autoritario.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>Has this insulated Germany from the bitterness and political extremism that many U.S. observers attribute to deindustrialization? Apparently not.</blockquote>
+<blockquote>And what the results in Sachsen-Anhalt show is that even if such a plan were to deliver the promised results (which it wouldn’t), it would do little if anything to reduce politically radicalizing resentment.</blockquote>
+<blockquote>But in any case the tale of East Germany as a deeply depressed region no longer fits the facts.</blockquote></details></div></section><section class="section"><h3><span>03</span>Elementos constitutivos</h3><div class="item"><p>Trumponomics vincula aranceles, eliminación de déficits comerciales y recuperación masiva del empleo manufacturero; Krugman reconstruye esta cadena como el componente económico de MAGA y rechaza que sus resultados prometidos puedan resolver el resentimiento político.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>He would do this by imposing tariffs to eliminate trade deficits, which, in his garbled version of economics, would end huge U.S. “giveaways” to surplus nations. And this would, in turn, lead to a huge revival of U.S. manufacturing employment.</blockquote></details></div>
+<div class="item"><p>Alemania funciona como caso comparativo contrario a Estados Unidos: mantiene grandes superávits comerciales y una proporción elevada de empleo industrial, condiciones que exceden las aspiraciones de Trumponomics sin impedir el avance de la extrema derecha.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Because in terms of both trade balances and manufacturing Germany is, in effect, the anti-America. Where we do indeed run large trade deficits, Germany runs huge surpluses.</blockquote>
+<blockquote>Indeed, relative to the size of its economy, Germany runs trade surpluses and retains large-scale manufacturing employment to an extent that lies far beyond the wildest dreams of Trumponomics.</blockquote></details></div>
+<div class="item"><p>La hipótesis de las regiones dejadas atrás relaciona el estancamiento de zonas rurales y pequeñas ciudades, especialmente la caída del empleo masculino en edad laboral, con problemas sociales y apoyo a políticos de derecha radical.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>These economically stranded regions have been plagued in particular by declining employment among men of prime working age, a decline that in turn is associated both with social problems and with strong support for Trump and hard-right politicians in general.</blockquote></details></div>
+<div class="item"><p>La antigua Alemania Oriental introduce una tensión para esa hipótesis: sufrió una prolongada falta de empleo masculino después de la reunificación, pero su caracterización actual como región profundamente deprimida ya no se ajustaría a los hechos, aunque sus residentes mantengan una percepción de desventaja económica.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Indeed, East Germany, which had near-full-employment among working-age men, went through an extended period of men-not-working after German reunification.</blockquote>
+<blockquote>Residents of the former DDR still consider themselves economically disadvantaged, and their incomes are somewhat lower than the national average — although not, as far as I can tell, as low in relative terms as poorer U.S. states.</blockquote></details></div>
+<div class="item"><span class="inference">Inferencia</span><p>El resentimiento políticamente radicalizador es la relación que articula ambos casos, pero el artículo no ofrece una teoría positiva completa sobre su origen; solo señala que el racismo constituye un componente importante de MAGA.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Make America Great Again meant different things to different people — racism, of course, being a key component.</blockquote>
+<blockquote>Mostly it’s negative: Crude economic factors don’t explain the fascist shift in Germany.</blockquote></details></div></section><section class="section"><h3><span>04</span>Evidencia</h3><div class="item"><p>La victoria de la AfD en una elección de Sachsen-Anhalt sirve como observación política que motiva el contraste entre Alemania y Estados Unidos.</p><p class="meta">resultado electoral referido en el cuerpo · Fuente no identificada</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Neo-Nazis — no point in euphemisms — just won big in the rough equivalent of a state-level election in Germany.</blockquote></details></div>
+<div class="item"><p>El autor alude a una comparación gráfica de las balanzas de bienes y servicios como porcentaje del PIB para Estados Unidos y Alemania, pero la figura y sus valores no aparecen en el cuerpo suministrado.</p><p class="meta">figura comparativa de balanza comercial · Fuente no identificada<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Here are balances in trade in goods and services for the two nations, expressed as a percent of GDP:</blockquote></details></div>
+<div class="item"><p>Una estimación de Robert Lawrence cuantifica el aumento contrafactual de la participación manufacturera en el empleo estadounidense si se eliminara el déficit comercial manufacturero.</p><p class="meta">estimación cuantitativa citada · Robert Lawrence, Peterson Institute for International Economics</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Robert Lawrence of the Peterson Institute for International Economics estimates that eliminating the deficit would raise the manufacturing share of employment from 7.9 to 9.7 percent, similar to my own back-of-the-envelope calculations.</blockquote></details></div>
+<div class="item"><p>El autor alude a tendencias comparadas del empleo industrial para respaldar que Alemania conserva una estructura laboral más industrial que Estados Unidos, pero la figura correspondiente está ausente.</p><p class="meta">figura de series temporales de empleo industrial · Fuente no identificada<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Here are trends in industrial employment — a bigger category than manufacturing alone, but the trends are similar:</blockquote></details></div>
+<div class="item"><p>El texto afirma que Alemania sigue siendo más industrial, según la localización sectorial del empleo, que Estados Unidos durante al menos los últimos 35 años.</p><p class="meta">comparación histórica descriptiva · Fuente no identificada</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Even Germany has gradually become “deindustrialized,” but even now it is more of an industrial nation, as measured by where the jobs are, than the United States has been for at least 35 years.</blockquote></details></div>
+<div class="item"><p>El cuerpo anuncia evidencia de que la interpretación de Alemania Oriental como región deprimida está desactualizada, pero el material que seguiría a esa afirmación no está disponible.</p><p class="meta">evidencia empírica no reproducida sobre empleo o condiciones regionales · Fuente no identificada<span class="unavailable">No disponible en el cuerpo</span></p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>But that story is now long out of date:</blockquote></details></div></section><section class="section"><h3><span>05</span>Teoría</h3><div class="item"><p class="item-title">Trumponomics<span class="meta">Rechazada</span></p><p>Marco de política económica atribuido a Trump según el cual los aranceles eliminarían los déficits comerciales y provocarían una gran recuperación del empleo manufacturero. Krugman lo discute y rechaza tanto su funcionamiento económico como su capacidad para reducir el resentimiento autoritario.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>The economic component of MAGA might be described as a plan, or maybe a concept of a plan, to make the U.S. economy more like what it was in the 1950s, when we didn’t run trade deficits and had a lot more men working in industry.</blockquote></details></div>
+<div class="item"><p class="item-title">Explicación de las regiones “left-behind”<span class="meta">Discutida</span></p><p>Marco que vincula el rezago de regiones rurales y de pequeñas ciudades, excluidas del auge de la economía del conocimiento, con la reducción del empleo masculino, problemas sociales y apoyo a la derecha radical. Krugman declara haberlo utilizado, pero reconsidera su suficiencia a partir del caso de Alemania Oriental.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Many U.S. observers, me included, have laid considerable stress on the problem of “left-behind” regions — rural and small-town areas bypassed by the rise of a knowledge economy, which tended to favor large, highly-educated metropolitan areas.</blockquote>
+<blockquote>I should mention one more lesson from the AfD’s victory, one that has me reconsidering some of my own beliefs.</blockquote></details></div>
+<div class="item"><p class="item-title">Eastern Heartland<span class="meta">Discutida</span></p><p>Concepto de Austin, Glaeser y Summers empleado como referencia para clasificar históricamente a la antigua Alemania Oriental entre las regiones económicamente rezagadas; el autor sostiene que esa aplicación ha perdido actualidad.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>For many years it has been common to think of the former East Germany, which includes Sachsen-Anhalt, as one of the many European analogues to what Austin, Glaeser and Summers called the Eastern Heartland.</blockquote></details></div>
+<div class="item"><p class="item-title">Identidad contable entre flujos de capital y balanza comercial<span class="meta">Utilizada</span></p><p>Proposición utilizada para contraponer a la interpretación de Trump la idea de que la entrada neta de inversión extranjera implica contablemente déficits comerciales.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>In his mind this means that we are being ripped off (as opposed to attracting large inflows of foreign investment, which as a matter of sheer accounting necessarily implies that we run trade deficits.)</blockquote></details></div></section></article><footer><details class="provenance"><summary>Procedencia</summary><p>Extracción automática. Las citas se comprobaron contra el documento local; la interpretación y la evidencia requieren revisión humana.</p><dl><dt>Documento</dt><dd>corpus/posts/paul_krugman/neo-nazis-and-the-impotence-of-trumponomics-c250e4c121.md</dd><dt>Recuperado</dt><dd>2026-09-07 20:56:18 UTC</dd><dt>SHA-256</dt><dd><code>cc27212f3c6b1256bf82db8a477871b2aa0cfec4a9bd2752be8beb3ffc2f839c</code></dd><dt>Contrato</dt><dd>v2</dd></dl></details></footer></main></body></html>

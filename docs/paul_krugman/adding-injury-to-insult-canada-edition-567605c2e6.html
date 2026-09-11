@@ -1,0 +1,202 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Adding Injury to Insult, Canada Edition · Atlas de la Crisis</title><style>:root {
+  --ink: #202421;
+  --muted: #66706a;
+  --line: #dfe3df;
+  --accent: #17645d;
+  --warm: #7b5628;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font: 17px/1.65 system-ui, sans-serif;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
+}
+main {
+  width: min(100% - 40px, 760px);
+  margin: 0 auto;
+  padding: 56px 0 72px;
+}
+h1, h2, h3 { line-height: 1.2; }
+h1 {
+  max-width: 720px;
+  margin: 14px 0 18px;
+  font: 400 clamp(34px, 7vw, 54px)/1.08 Georgia, serif;
+  letter-spacing: -.025em;
+}
+h2 { margin: 0; font-size: 22px; }
+h3 { margin: 0 0 18px; font-size: 18px; }
+p { margin: 0 0 14px; }
+.brand {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brand a { color: inherit; text-decoration: none; }
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.byline a:first-child { color: inherit; text-decoration: none; }
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary {
+  margin: 44px 0 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.summary h2 { margin-bottom: 12px; }
+.summary p { font: 20px/1.6 Georgia, serif; }
+.lede {
+  max-width: 680px;
+  color: var(--muted);
+  font: 20px/1.55 Georgia, serif;
+}
+.site-count { margin-top: 18px; color: var(--muted); font-size: 13px; }
+.listing { margin-top: 48px; }
+.listing > h2 { margin-bottom: 12px; }
+.author-link, .article-link {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.author-link h2, .article-link h2 { margin-bottom: 6px; }
+.author-link h2 a, .article-link h2 a {
+  color: var(--ink);
+  text-decoration-color: var(--line);
+}
+.author-link p, .article-link p { margin-bottom: 6px; }
+.author-link .meta, .article-link .meta { margin-left: 0; }
+.limitations {
+  margin: 0 0 36px;
+  padding: 16px 0 16px 18px;
+  border-left: 2px solid var(--warm);
+  color: #574c3d;
+  font-size: 14px;
+}
+.limitations ul { margin: 6px 0 0; padding-left: 20px; }
+.section {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+.section h3 span {
+  display: inline-block;
+  width: 34px;
+  color: var(--accent);
+  font: 700 12px system-ui, sans-serif;
+}
+.item + .item { margin-top: 22px; }
+.item p:last-of-type { margin-bottom: 0; }
+.item-title { font-weight: 700; }
+.meta {
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.item > p.meta { margin-left: 0; }
+.inference, .unavailable {
+  display: inline-block;
+  margin: 0 0 7px 10px;
+  color: var(--warm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.item > .inference:first-child { margin-left: 0; }
+.empty { color: var(--muted); font-style: italic; }
+details { margin-top: 10px; }
+summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+blockquote {
+  margin: 14px 0 6px;
+  padding-left: 16px;
+  border-left: 2px solid var(--line);
+  color: #4c554f;
+  font: 16px/1.6 Georgia, serif;
+  overflow-wrap: anywhere;
+}
+footer {
+  margin-top: 50px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.provenance dl {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 5px 12px;
+}
+.provenance dt { font-weight: 700; }
+.provenance dd { margin: 0; }
+.provenance code { font-size: 11px; }
+
+@media (max-width: 560px) {
+  main { width: min(100% - 32px, 760px); padding-top: 34px; }
+  .byline { display: grid; gap: 2px; }
+  .summary { margin-top: 34px; }
+  .provenance dl { grid-template-columns: 1fr; gap: 2px; }
+  .provenance dd { margin-bottom: 8px; }
+}
+
+@media print {
+  body { font-size: 11pt; }
+  main { width: 100%; padding: 0; }
+  h1 { font-size: 28pt; }
+  .summary p { font-size: 13pt; }
+  .status { border-color: #999; }
+  .section { break-inside: avoid; }
+  details > * { display: block; }
+  footer { font-size: 9pt; }
+}
+</style></head><body><main><header class="page-header"><p class="brand"><a href="../index.html">Atlas de la Crisis</a></p><h1>Adding Injury to Insult, Canada Edition</h1><p class="byline"><a href="index.html"><strong>Paul Krugman</strong></a><span>Sep 09, 2026</span><a href="https://paulkrugman.substack.com/p/adding-injury-to-insult-canada-edition">Texto original ↗</a></p><p class="status">Pendiente de revisión humana</p></header><section class="summary"><h2>Síntesis</h2><p>El artículo interpreta la escalada comercial entre Estados Unidos y Canadá como una crisis política gratuita, impulsada por los fracasos y el comportamiento de Donald Trump, que amenaza con causar daños económicos desproporcionados debido a la profunda integración y especialización productiva bilateral.</p></section><aside class="limitations"><strong>Limitaciones</strong><ul><li>El cuerpo no identifica fuentes documentales para las cifras comerciales, los acuerdos históricos ni las participaciones sectoriales mencionadas.</li>
+<li>La explicación sobre las motivaciones de Trump incluye caracterizaciones políticas y psicológicas del autor, no una demostración independiente de esas motivaciones.</li></ul></aside><article class="problem"><section class="section"><h3><span>01</span>Fenómeno o problema</h3><div class="item"><p>El fenómeno central es la escalada de un conflicto comercial entre Estados Unidos y Canadá, que el autor considera innecesaria y potencialmente dañina para la economía estadounidense pese al equilibrio general del comercio bilateral.</p><details class="quotes"><summary>4 citas de respaldo</summary><blockquote>But I don’t think there has ever been a dispute this stupid.</blockquote>
+<blockquote>Bear in mind that this crisis is entirely gratuitous.</blockquote>
+<blockquote>Overall trade between our nations was almost balanced.</blockquote>
+<blockquote>But beyond the embarrassment, it’s also important to realize that an escalating trade war with Canada will do real damage to the U.S. economy.</blockquote></details></div></section><section class="section"><h3><span>02</span>Explicación o interpretación</h3><div class="item"><p>El autor sostiene que el conflicto no responde a los intereses nacionales de Estados Unidos, sino a una reacción de Donald Trump ante sus propios fracasos políticos y económicos, expresada mediante el desprecio y la intimidación hacia Canadá. El daño económico se explica porque décadas de libre comercio produjeron integración y especialización productiva: aunque la economía canadiense es mucho menor, suministra una proporción elevada de bienes cruciales para Estados Unidos. Una guerra comercial total sería posible de absorber para Estados Unidos, pero costosa y lenta, mientras que Canadá sufriría un impacto mayor como porcentaje de su PIB. El autor deja incierto cuál país sufriría más daño en términos absolutos y plantea si los estadounidenses aceptarían costes económicos para satisfacer el orgullo de Trump.</p><details class="quotes"><summary>6 citas de respaldo</summary><blockquote>Clearly, we’re looking at a symptom of deranged Trump syndrome.</blockquote>
+<blockquote>That is, you should think of this conflict not as something reflecting U.S. national interests, but as a form of self-medication from a sundowning president.</blockquote>
+<blockquote>The essential thing to understand about U.S.-Canada trade is that our two economies have been closely integrated for a very long time.</blockquote>
+<blockquote>If the tit-for-tat with Canada were to escalate into all-out trade war, could the U.S. economy manage? Yes — but it would be expensive and take a great deal of time.</blockquote>
+<blockquote>What is clear is that because Canada’s economy is far smaller than ours, Canada would suffer much more damage from a trade war as a percentage of GDP than we would.</blockquote>
+<blockquote>Will Americans be willing to suffer economically to soothe Trump’s bruised ego?</blockquote></details></div></section><section class="section"><h3><span>03</span>Elementos constitutivos</h3><div class="item"><p>La ausencia de una justificación económica clara: Canadá no habría cometido una conducta perjudicial y el desequilibrio de bienes habría sido compensado en buena medida por el superávit estadounidense en servicios.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Canada has done nothing wrong.</blockquote>
+<blockquote>Last year Canada did run a modest trade surplus with the United States in goods, but more than half of this imbalance was offset by a U.S. surplus in services.</blockquote></details></div>
+<div class="item"><p>La conducta presidencial como detonante político del conflicto, vinculada por el autor con los fracasos de Trump y con una estrategia de desprecio e intimidación hacia Canadá.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>As Trump’s failures, from soaring fuel prices to plunging approval, multiply, he is doubling down on his disrespect for and attempted bullying of our northern neighbor and former ally.</blockquote></details></div>
+<div class="item"><p>La integración comercial acumulada entre ambos países mediante décadas de libre comercio, incluida la integración del sector automotor y un acuerdo general anterior a NAFTA.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>We’ve had free trade in autos and automotive products since 1965.</blockquote>
+<blockquote>We signed an overall free trade agreement in 1988, six years before the creation of NAFTA, which included Mexico.</blockquote>
+<blockquote>And all those decades of free trade have encouraged a great deal of specialization.</blockquote></details></div>
+<div class="item"><p>La especialización canadiense, basada tanto en recursos naturales como en la producción de una gama limitada de bienes y el intercambio de modelos y componentes automotores.</p><details class="quotes"><summary>3 citas de respaldo</summary><blockquote>Instead, Canada concentrates on producing a limited range of goods.</blockquote>
+<blockquote>In some cases Canada produces goods like lumber or aluminum that take advantage of Canada’s natural resources — vast forests and abundant hydropower, which generates the electricity used to smelt aluminum.</blockquote>
+<blockquote>In other cases, like autos, Canada achieves economies of scale by manufacturing a limited range of goods, exporting most of what it produces to the United States while importing the auto models and components it doesn’t produce.</blockquote></details></div>
+<div class="item"><p>La dependencia estadounidense de suministros canadienses relevantes, que convierte el tamaño agregado de la economía canadiense en un indicador insuficiente para medir el impacto de una interrupción comercial.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>while the U.S. economy is roughly a dozen times larger than Canada’s, Canada supplies a surprisingly large share of many crucial goods.</blockquote></details></div>
+<div class="item"><p>La asimetría de los costes: Estados Unidos podría adaptarse a una guerra comercial, pero con costes y demoras importantes; Canadá soportaría un daño mayor en relación con su PIB.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Yes — but it would be expensive and take a great deal of time.</blockquote>
+<blockquote>Canada would suffer much more damage from a trade war as a percentage of GDP than we would.</blockquote></details></div></section><section class="section"><h3><span>04</span>Evidencia</h3><div class="item"><p>El autor presenta el balance comercial bilateral para sostener que el conflicto no se justifica por una supuesta explotación comercial de Estados Unidos.</p><p class="meta">balance comercial de bienes y servicios · Fuente no identificada</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Last year Canada did run a modest trade surplus with the United States in goods, but more than half of this imbalance was offset by a U.S. surplus in services. Overall trade between our nations was almost balanced.</blockquote></details></div>
+<div class="item"><p>El autor invoca la historia de los acuerdos de libre comercio para fundamentar la existencia de una integración productiva duradera.</p><p class="meta">antecedentes institucionales e históricos · Fuente no identificada</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>We’ve had free trade in autos and automotive products since 1965. We signed an overall free trade agreement in 1988, six years before the creation of NAFTA, which included Mexico.</blockquote></details></div>
+<div class="item"><p>El autor utiliza participaciones sectoriales de suministros canadienses para mostrar la importancia de Canadá para la economía estadounidense.</p><p class="meta">participaciones sectoriales de suministro · Fuente no identificada</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Canada provides 70 percent of the oil refined in the U.S. Midwest. Canada supplies about 60 percent of US aluminum. Canada supplies almost all of America’s spruce-pine-fir lumber — preferred for framing in residential construction.</blockquote></details></div>
+<div class="item"><p>El autor refiere las posiciones públicas de Trump y Bessent como indicios de que las autoridades subestiman los costes de la interdependencia comercial.</p><p class="meta">declaraciones públicas de autoridades · Truth Social; Scott Bessent</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>Their expressed view is that Canada’s economy is too small — a “little yippy dog” — for a disruption of cross-border trade to matter.</blockquote>
+<blockquote>But we also have Scott Bessent, the Treasury Secretary, comparing our northern neighbor to a “little yippy dog.”</blockquote></details></div></section><section class="section"><h3><span>05</span>Teoría</h3><div class="item"><p class="item-title">Integración comercial y especialización productiva<span class="meta">Utilizada</span></p><p>El autor utiliza la integración comercial de largo plazo y la especialización entre economías para explicar por qué una economía menor puede ser un proveedor indispensable y por qué la interrupción del comercio genera costes elevados.</p><details class="quotes"><summary>2 citas de respaldo</summary><blockquote>And all those decades of free trade have encouraged a great deal of specialization.</blockquote>
+<blockquote>The essential thing to understand about U.S.-Canada trade is that our two economies have been closely integrated for a very long time.</blockquote></details></div>
+<div class="item"><p class="item-title">Economies of scale<span class="meta">Utilizada</span></p><p>El concepto de economías de escala organiza la explicación de la especialización canadiense en determinados bienes manufacturados, especialmente automóviles.</p><details class="quotes"><summary>Cita de respaldo</summary><blockquote>Canada achieves economies of scale by manufacturing a limited range of goods, exporting most of what it produces to the United States while importing the auto models and components it doesn’t produce.</blockquote></details></div></section></article><footer><details class="provenance"><summary>Procedencia</summary><p>Extracción automática. Las citas se comprobaron contra el documento local; la interpretación y la evidencia requieren revisión humana.</p><dl><dt>Documento</dt><dd>corpus/posts/paul_krugman/adding-injury-to-insult-canada-edition-567605c2e6.md</dd><dt>Recuperado</dt><dd>2026-09-09 21:17:25 UTC</dd><dt>SHA-256</dt><dd><code>a9f6e1ef115138733574171dad518edf856c73712135b45892b00511e972ea55</code></dd><dt>Contrato</dt><dd>v2</dd></dl></details></footer></main></body></html>
