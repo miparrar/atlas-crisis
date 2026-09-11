@@ -1,8 +1,8 @@
 .DEFAULT_GOAL := help
-.PHONY: help doctor setup bootstrap check latest update site install-monitor serve
+.PHONY: help doctor setup bootstrap check latest update site publish install-monitor serve
 
 help:
-	@printf '%s\n' 'make setup       Preparar el entorno R y comprobar la configuración' 'make doctor      Comprobar herramientas y autenticación de Codex' 'make check       Comprobar el proyecto sin instalar ni llamar al LLM' 'make latest      Tomar la publicación más reciente de cada fuente monitoreada' 'make update      Procesar publicaciones posteriores a la última ronda válida' 'make install-monitor  Programar make update diariamente (HOUR=8)' 'make site        Reconstruir el sitio del catálogo monitoreado' 'make serve       Servir corpus/reports en http://localhost:8000'
+	@printf '%s\n' 'make setup       Preparar el entorno R y comprobar la configuración' 'make doctor      Comprobar herramientas y autenticación de Codex' 'make check       Comprobar el proyecto sin instalar ni llamar al LLM' 'make latest      Tomar la publicación más reciente de cada fuente monitoreada' 'make update      Procesar publicaciones posteriores a la última ronda válida' 'make publish     Actualizar, generar y publicar la página con GitHub Pages' 'make install-monitor  Programar make update diariamente (HOUR=8)' 'make site        Reconstruir el sitio del catálogo monitoreado' 'make serve       Servir corpus/reports en http://localhost:8000'
 
 doctor:
 	@for tool in Rscript bash awk sed cut sha256sum mktemp codex; do \
@@ -36,6 +36,11 @@ site: check
 	@test -s data/manifests/catalog.txt || { printf 'Falta el catálogo: ejecuta make latest\n' >&2; exit 1; }
 	Rscript src/validate_analysis.R data/manifests/catalog.txt
 	Rscript src/render_analysis.R data/manifests/catalog.txt
+
+publish:
+	$(MAKE) update
+	$(MAKE) site
+	bash scripts/publish_pages.sh
 
 serve:
 	@command -v python3 >/dev/null 2>&1 || { printf 'Falta herramienta: python3\n' >&2; exit 1; }

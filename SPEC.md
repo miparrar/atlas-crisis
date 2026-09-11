@@ -154,8 +154,8 @@ This avoids publishing third-party copyrighted text as part of the Git repositor
 
 ## 10. Publication
 
-The publishable artifact is the generated static site under `corpus/reports/`, not the canonical Markdown corpus. Building the site requires only validated local JSON and Markdown; it does not download sources or call an LLM.
+The intermediate publishable artifact is the generated static site under `corpus/reports/`, not the canonical Markdown corpus. When GitHub Pages is enabled, `make publish` synchronizes that site into the versioned `docs/` directory, commits only the generated publication, and pushes `main`; `main/docs` is the remote publication target. Building the site requires only validated local JSON and Markdown; it does not download sources or call an LLM.
 
 The site is organized as a home page, one index per author, and one page per article. It can be served locally for human review before deployment. Remote hosting is configured separately and must publish only the generated site directory.
 
-Generated pages remain local by default. Choosing a hosting provider and making the site public are explicit release decisions, because article pages contain quotations from third-party texts.
+Generated pages remain local by default. This project explicitly enables GitHub Pages for `main/docs` as its publication target; article pages contain quotations from third-party texts and must therefore be reviewed before `make publish`.

@@ -85,6 +85,14 @@ Para reconstruir el sitio sin descargar ni invocar el LLM:
 make site
 ```
 
+Para actualizar la página pública en un solo paso:
+
+```bash
+make publish
+```
+
+Este objetivo consulta las fuentes, valida los análisis, genera el HTML, sincroniza la salida en `docs/`, crea el commit de publicación y ejecuta `git push origin main`. Requiere que GitHub Pages esté configurado para publicar `main/docs`.
+
 Para revisarlo localmente:
 
 ```bash
@@ -92,7 +100,7 @@ make serve
 # http://localhost:8000
 ```
 
-El sitio queda en `corpus/reports/` y contiene una portada, un índice por autor y una ficha por artículo. El corpus Markdown y los JSON permanecen separados. La publicación remota debe exponer únicamente `corpus/reports/`; el proveedor de hosting todavía no está configurado.
+El sitio intermedio queda en `corpus/reports/` y contiene una portada, un índice por autor y una ficha por artículo. `make publish` sincroniza ese sitio en `docs/`, que es el artefacto versionado para GitHub Pages. El corpus Markdown y los JSON permanecen separados.
 
 ## Principios
 
