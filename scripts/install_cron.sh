@@ -2,6 +2,18 @@
 set -euo pipefail
 
 hour="${1:-8}"
+llm="${LLM:-deepseek}"
+model="${MODEL:-}"
+case "$llm" in
+  codex) ;;
+  gpt) model="${model:-gpt-5}" ;;
+  deepseek) model="${model:-deepseek-v4-pro}" ;;
+  *) printf 'backend LLM inválido: %s\n' "$llm" >&2; exit 1 ;;
+esac
+if [[ ! "$llm" =~ ^[a-z0-9_-]+$ || ! "$model" =~ ^[a-zA-Z0-9._-]*$ ]]; then
+  printf 'backend o modelo inválido para cron.\n' >&2
+  exit 1
+fi
 if [[ ! "$hour" =~ ^([0-9]|1[0-9]|2[0-3])$ ]]; then
   printf 'usage: scripts/install_cron.sh [hour-0-23]\n' >&2
   exit 1
@@ -25,7 +37,7 @@ end="# END atlas-crisis monitor"
 flock_path="$(command -v flock)"
 bash_path="$(command -v bash)"
 make_path="$(command -v make)"
-job="0 $hour * * * $flock_path -n /tmp/atlas-crisis-update.lock $bash_path -lc 'cd \"$repo_root\" && mkdir -p logs && $make_path update >> logs/update.log 2>&1'"
+job="0 $hour * * * $flock_path -n /tmp/atlas-crisis-update.lock $bash_path -lc 'cd \"$repo_root\" && if [ -f .Renviron ]; then set -a; . ./.Renviron; set +a; fi; mkdir -p logs && LLM=$llm MODEL=$model $make_path publish >> logs/update.log 2>&1'"
 
 current="$(crontab -l 2>/dev/null || true)"
 cron_file="$(mktemp)"

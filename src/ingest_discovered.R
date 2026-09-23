@@ -15,6 +15,9 @@ normalize_body <- function(text) {
     stringr::str_trim()
 }
 
+short_body_threshold <- 300L
+short_body_note <- "Texto demasiado breve para elaborar una ficha analítica."
+
 pick_node <- function(html, selector) {
   if (is.null(selector) || !nzchar(selector)) return(NULL)
   node <- rvest::html_element(html, selector)
@@ -80,11 +83,18 @@ ingest_one <- function(source_id, feed_title, url, feed_published_at, discovered
 
   title <- pick_text(html, source$selectors$title)
   if (is.na(title) || !nzchar(title)) title <- feed_title
+  source_links <- body_node |>
+    rvest::html_elements("a[href]") |>
+    purrr::map_chr(\(node) xml2::xml_attr(node, "href")) |>
+    stringr::str_trim() |>
+    purrr::discard(\(url) !nzchar(url)) |>
+    unique()
   body <- rvest::html_text2(body_node) |> normalize_body()
   if (!is.null(source$selectors$truncate_at) &&
       stringr::str_detect(body, stringr::fixed(source$selectors$truncate_at))) {
     body <- stringr::str_split_i(body, stringr::fixed(source$selectors$truncate_at), 1L) |> stringr::str_trim()
   }
+  if (!nzchar(body)) stop("Cuerpo vacío: ", url)
   published_at <- pick_text(html, source$selectors$date)
   if (is.na(published_at) || !nzchar(published_at)) published_at <- feed_published_at
 
@@ -96,7 +106,7 @@ ingest_one <- function(source_id, feed_title, url, feed_published_at, discovered
   if (nchar(body) < 800L || stringr::str_detect(body, partial_markers)) {
     access_status <- "partial_candidate"
   }
-  if (nchar(body) < 300L) stop("Cuerpo demasiado corto: ", url)
+  ingestion_note <- if (nchar(body) < short_body_threshold) short_body_note else NULL
 
   content_sha256 <- digest::digest(body, algo = "sha256", serialize = FALSE)
   output_dir <- file.path("corpus", "posts", source_id)
@@ -108,6 +118,11 @@ ingest_one <- function(source_id, feed_title, url, feed_published_at, discovered
   }
   document_id <- tools::file_path_sans_ext(basename(output))
 
+  source_links_yaml <- if (length(source_links) == 0L) {
+    "source_links: []"
+  } else {
+    c("source_links:", paste0("  - ", purrr::map_chr(source_links, quote_yaml)))
+  }
   front_matter <- c(
     "---",
     paste0("source_id: ", quote_yaml(source_id)),
@@ -119,11 +134,16 @@ ingest_one <- function(source_id, feed_title, url, feed_published_at, discovered
     paste0("source_url: ", quote_yaml(url)),
     paste0("discovered_at: ", quote_yaml(discovered_at)),
     paste0("retrieved_at: ", quote_yaml(format(Sys.time(), tz = "UTC", usetz = TRUE))),
+    if (is.null(ingestion_note)) character() else paste0("ingestion_note: ", quote_yaml(ingestion_note)),
+    source_links_yaml,
     paste0("access_status: ", quote_yaml(access_status)),
     paste0("content_sha256: ", quote_yaml(content_sha256)),
     "---", "", body, ""
   )
-  readr::write_lines(front_matter, output)
+  temporary <- tempfile("document-", tmpdir = output_dir, fileext = ".md")
+  on.exit(unlink(temporary), add = TRUE)
+  readr::write_lines(front_matter, temporary)
+  if (!file.rename(temporary, output)) stop("No se pudo promover el documento: ", output)
   message("Ingerido: ", output, " [", access_status, "]")
   output
 }

@@ -36,6 +36,11 @@ partial$document_status <- "parcial"
 partial$limitations <- list("Solo se dispone de un adelanto.")
 partial["problem"] <- list(NULL)
 validate_analysis(partial, document, schema)
+
+short <- short_document_analysis("Texto demasiado breve para elaborar una ficha analítica.")
+validate_analysis(short, document, schema)
+stopifnot(short$document_status == "sin_contenido_analitico", is.null(short$problem))
+
 invalid <- valid
 invalid$problems <- list(problem, problem)
 reject(invalid)
@@ -46,7 +51,22 @@ invalid$problem$theory <- list(list(name = "Marco", description = "Interpretaci�
 reject(invalid)
 # El hash canónico se comprueba independientemente del JSON.
 path <- tempfile(fileext = ".md")
-writeLines(c("---", paste0('content_sha256: "', digest::digest(body, algo = "sha256", serialize = FALSE), '"'), "---", "", body), path)
+content_hash <- digest::digest(body, algo = "sha256", serialize = FALSE)
+writeLines(c(
+  "---",
+  'source_id: "test"',
+  'document_id: "test-document"',
+  'author: "Autor"',
+  'publication: "Publicación"',
+  'title: "Título"',
+  'published_at: ""',
+  'source_url: "https://example.test/post"',
+  'discovered_at: "2026-09-21T00:00:00Z"',
+  'retrieved_at: "2026-09-21T00:00:00Z"',
+  'access_status: "full_text_candidate"',
+  paste0('content_sha256: "', content_hash, '"'),
+  "---", "", body
+), path)
 stopifnot(identical(read_canonical_document(path)$body, body))
 cat("\nCambio", file = path, append = TRUE)
 stopifnot(inherits(tryCatch({read_canonical_document(path); NULL}, error = identity), "error"))

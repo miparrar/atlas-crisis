@@ -9,6 +9,9 @@ logs/
 .tmp/
 *.tmp
 
+# Secrets and local environment
+.Renviron
+
 # R
 .Rhistory
 .RData

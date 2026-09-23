@@ -96,6 +96,15 @@ p { margin: 0 0 14px; }
   padding: 28px 0;
   border-bottom: 1px solid var(--line);
 }
+.dimension + .dimension { margin-top: 24px; }
+.dimension h4 {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
 .section h3 span {
   display: inline-block;
   width: 34px;

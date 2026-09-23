@@ -1,0 +1,3 @@
+# Copiar como .Renviron y completar localmente. No versionar .Renviron.
+DEEPSEEK_API_KEY=
+# OPENAI_API_KEY=

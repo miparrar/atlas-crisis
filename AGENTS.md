@@ -9,7 +9,7 @@ Build Atlas de la Crisis as a reproducible research system to cartograph competi
 1. The project studies economic crisis broadly. Do not privilege profitability, finance, inflation, debt, technology, labour, or any other mechanism a priori.
 2. Sources are curated explicitly in `config/sources.yml`. Do not perform open-web discovery unless the spec is changed.
 3. The canonical local document is normalized Markdown with provenance and a SHA-256 hash of the normalized body.
-4. Batch LLM work is invoked from Bash with `codex exec`. R must not call an LLM API.
+4. Batch LLM work is invoked from Bash through an explicit provider adapter (`codex`, `gpt` or `deepseek`). R must not call an LLM API.
 5. R is used for ingestion, transformation, validation, and analysis.
 6. R code follows tidyverse style: clear pipelines, snake_case names, small functions, explicit transformations, and no avoidable loops.
 7. GNU Make orchestrates dependencies between stages.

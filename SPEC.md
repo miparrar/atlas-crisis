@@ -79,22 +79,21 @@ Front matter must contain at least:
 
 ## 5. LLM contract
 
-LLM processing is performed only through Bash invoking Codex CLI.
+LLM processing is performed only through Bash provider adapters. The supported backends are:
 
-Canonical invocation pattern:
+- `codex`: Codex CLI, optionally pinned with `MODEL`;
+- `gpt`: OpenAI-compatible Chat Completions API, using `OPENAI_API_KEY`;
+- `deepseek`: DeepSeek Chat Completions API, using `DEEPSEEK_API_KEY`.
+
+The backend and model are selected explicitly through Make:
 
 ```bash
-codex exec \
-  --sandbox read-only \
-  --skip-git-repo-check \
-  --output-schema config/analysis_schema.json \
-  --output-last-message OUTPUT \
-  -
+make update LLM=deepseek MODEL=deepseek-v4-pro
+make update LLM=gpt MODEL=gpt-5
+make update LLM=codex MODEL=<codex-model>
 ```
 
-The prompt is passed through stdin.
-
-R must not call OpenAI, ellmer, LangChain, or another LLM client for batch document analysis.
+The adapter receives the prompt and schema, writes only the model's JSON output, and the same R contract validates it before promotion. R must not call OpenAI, DeepSeek, ellmer, LangChain, or another LLM client for batch document analysis.
 
 ## 6. Structured analysis
 
@@ -116,9 +115,9 @@ The JSON Schema in `config/analysis_schema.json` is the authoritative output con
 
 The normalized source URL is the stable publication identity. A new URL creates a document; an existing URL reuses its corpus path. A document is reprocessed when its verified `content_sha256`, JSON Schema hash, or prompt hash changes. Retrieval timestamps alone must not invalidate the semantic analysis cache.
 
-A cached JSON file is reusable only if it still passes schema, document-hash, and exact-quotation validation. Legacy analysis files do not satisfy version 2 and must be regenerated before validation or rendering.
+A cached JSON file is reusable only if it still passes schema, document-hash, exact-quotation validation, and current LLM metadata. Legacy analysis files do not satisfy version 2 and must be regenerated explicitly with `make reanalyze` before validation or rendering.
 
-Feed state is transactional. Discovery writes a pending state; the confirmed state and cumulative monitored catalog advance only after the complete pending batch has been ingested, analyzed, and validated.
+Feed state is transactional. Discovery writes a pending state; the confirmed state and cumulative monitored catalog advance only after the complete pending batch has been ingested, analyzed, and validated. A failed batch preserves its pending manifest and per-document checkpoint, so a later run resumes validated documents instead of restarting the batch; `RESUME=0` explicitly discards that pending round.
 
 ## 8. Validation
 
@@ -154,8 +153,8 @@ This avoids publishing third-party copyrighted text as part of the Git repositor
 
 ## 10. Publication
 
-The intermediate publishable artifact is the generated static site under `corpus/reports/`, not the canonical Markdown corpus. When GitHub Pages is enabled, `make publish` synchronizes that site into the versioned `docs/` directory, commits only the generated publication, and pushes `main`; `main/docs` is the remote publication target. Building the site requires only validated local JSON and Markdown; it does not download sources or call an LLM.
+The intermediate publishable artifact is the generated static site under `corpus/reports/`, not the canonical Markdown corpus. `make publish` updates the catalog, validates the outputs, renders the site, and deploys it to the configured Posit Connect application through `rsconnect::deployApp()`. Building the site requires only validated local JSON and Markdown; it does not download sources or call an LLM.
 
 The site is organized as a home page, one index per author, and one page per article. It can be served locally for human review before deployment. Remote hosting is configured separately and must publish only the generated site directory.
 
-Generated pages remain local by default. This project explicitly enables GitHub Pages for `main/docs` as its publication target; article pages contain quotations from third-party texts and must therefore be reviewed before `make publish`.
+Generated pages remain local until `make publish` sends the validated site to Posit Connect. Article pages contain quotations from third-party texts and must therefore be reviewed before publication.

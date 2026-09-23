@@ -1,6 +1,12 @@
-Extrae una ficha de investigación para Atlas de la Crisis a partir exclusivamente del documento suministrado. Devuelve solo el JSON exigido por el esquema, con schema_version "2".
+Extrae una ficha de lectura para Atlas de la Crisis a partir exclusivamente del documento suministrado. Devuelve solo el JSON exigido por el esquema, con schema_version "2".
 
 Escribe en español académico claro: frases precisas, párrafos breves y sin grandilocuencia. Conserva nombres propios y citas en su idioma original. Atribuye las conclusiones al autor. No evalúes si su explicación es verdadera ni aportes información externa.
+
+Prioriza una ficha breve y selectiva:
+- Escribe un `summary` de dos o tres frases.
+- Mantén cada descripción en una o dos frases y elimina repeticiones.
+- Conserva solo los elementos indispensables; como regla general, no más de tres elementos en cada lista de elementos, evidencia o teoría.
+- Si una dimensión no aporta a la explicación central, usa `null` o `[]` según corresponda.
 
 Primero examina el material:
 - El front matter identifica el documento, pero no es evidencia del argumento. Usa únicamente el cuerpo para las citas.
@@ -22,8 +28,8 @@ Un artículo puede contener aspectos, tensiones o derivaciones distintas, pero n
 5. theory — ¿Qué conceptos, proposiciones, autores o marcos organizan la interpretación? Distingue su role y attribution. No atribuyas teorías por la identidad o escuela del autor ni confundas una mención con adopción. Devuelve [] si no hay respaldo suficiente.
 
 Trazabilidad y síntesis:
-- Cada afirmación, evidencia y referencia teórica debe incluir supporting_quotes literales, contiguas y no vacías del cuerpo.
-- Cada supporting_quote debe ser una subcadena exacta del cuerpo: conserva comillas, asteriscos Markdown, guiones, apóstrofos, mayúsculas, espacios y puntuación; no agregues comillas exteriores ni corrijas, completes o recortes el texto. Antes de devolver el JSON, comprueba cada cita carácter por carácter contra el documento; si no puedes hacerlo, omite esa cita o el elemento. Por ejemplo, si el cuerpo dice "You see, many governments...", no uses "Many governments...".
+- Cada afirmación, evidencia y referencia teórica debe quedar respaldada por uno o más bloques identificados del cuerpo.
+- Cada supporting_quotes debe contener únicamente identificadores de bloques del cuerpo, como `Q0001`; no escribas, reescribas ni completes el texto de la cita. El sistema copiará literalmente el bloque identificado y rechazará referencias inexistentes.
 - Usa el conjunto mínimo de citas que respalde cada descripción. Evita repetir una cita en varios campos salvo que sea indispensable.
 - Marca attribution = "explicita" cuando la formulación se reconstruye directamente del texto e "inferencia" cuando exige una conexión interpretativa. No uses inferencias para añadir hechos o causas externas.
 - Fusiona elementos relacionados. Si un campo carece de respaldo, utiliza null o [] donde el esquema lo permite; nunca lo rellenes por simetría.

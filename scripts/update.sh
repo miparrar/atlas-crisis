@@ -13,8 +13,13 @@ pending_manifest="data/manifests/pending.txt"
 catalog="data/manifests/catalog.txt"
 state="data/discovery/state.yml"
 
-Rscript src/discover.R "$mode"
-Rscript src/ingest_discovered.R "$pending_csv" "$pending_manifest"
+if [[ "${RESUME:-1}" == "1" && -s "$pending_manifest" && -s "$pending_state" ]]; then
+  printf 'Reanudando lote pendiente: %s\n' "$pending_manifest"
+else
+  rm -f "$pending_csv" "$pending_manifest" "$pending_state"
+  Rscript src/discover.R "$mode"
+  Rscript src/ingest_discovered.R "$pending_csv" "$pending_manifest"
+fi
 
 if [[ ! -s "$pending_manifest" ]]; then
   printf 'No hay publicaciones nuevas; no se modifica el catálogo ni el sitio.\n'
@@ -24,5 +29,4 @@ fi
 bash scripts/analyze_batch.sh "$pending_manifest"
 Rscript src/validate_analysis.R "$pending_manifest"
 Rscript src/commit_discovery.R "$pending_manifest" "$pending_state" "$catalog" "$state"
-Rscript src/validate_analysis.R "$catalog"
-Rscript src/render_analysis.R "$catalog"
+rm -f "$pending_csv" "$pending_manifest" "$pending_state"

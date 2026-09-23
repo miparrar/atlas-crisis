@@ -1,6 +1,6 @@
 # Monitoreo de fuentes
 
-Atlas no busca autores ni artículos en la web abierta. Consulta únicamente los RSS de las fuentes declaradas en `monitored_source_ids` dentro de `config/sources.yml`: actualmente Michael Roberts, Adam Tooze y Paul Krugman. Los demás autores permanecen en el catálogo curatorial sin automatización.
+Atlas no busca autores ni artículos en la web abierta. Consulta únicamente los RSS de las fuentes declaradas en `monitored_source_ids` dentro de `config/sources.yml`: actualmente Michael Roberts, Adam Tooze, Paul Krugman y Kate Mackenzie. Los demás autores permanecen en el catálogo curatorial sin automatización.
 
 ## Primera ronda
 
@@ -16,9 +16,23 @@ Este comando toma una publicación —la más reciente— de cada fuente monitor
 make update
 ```
 
+El backend por defecto es DeepSeek con `deepseek-v4-pro`. Para seleccionar otro proveedor y modelo:
+
+```bash
+make update LLM=deepseek MODEL=deepseek-v4-pro
+make update LLM=gpt MODEL=gpt-5
+```
+
 El comando compara cada RSS con `data/discovery/state.yml`. Procesa las entradas que aparecen antes del último URL observado, es decir, las publicadas después de la ronda anterior. Si ese URL ya no aparece en el RSS, se detiene para evitar saltarse publicaciones silenciosamente.
 
 La actualización es transaccional: primero se escribe un estado pendiente; el estado estable solo avanza cuando todo el lote pasó ingesta, análisis y validación. Una falla deja los artículos pendientes para el siguiente intento.
+
+Si cambia el prompt o el esquema analítico, las salidas existentes quedan obsoletas por diseño. Regenera el catálogo antes de continuar:
+
+```bash
+make reanalyze
+make update
+```
 
 ## Identidad, cambios y procedencia
 
@@ -38,7 +52,7 @@ Los artefactos operativos son:
 
 ## Automatización
 
-Para instalar una tarea cron local diaria a las 08:00:
+Para instalar una tarea cron local diaria a las 08:00, incluyendo la publicación en Posit Connect:
 
 ```bash
 make install-monitor

@@ -87,19 +87,39 @@ render_section <- function(number, title, content) {
   )
 }
 
+render_labeled_claim <- function(label, claim) {
+  paste0(
+    '<div class="dimension"><h4>', label, "</h4>",
+    render_claim(claim),
+    "</div>"
+  )
+}
+
+render_labeled_list <- function(label, items, render) {
+  paste0(
+    '<div class="dimension"><h4>', label, "</h4>",
+    render_list(items, render),
+    "</div>"
+  )
+}
+
 render_problem <- function(problem) {
   if (is.null(problem)) return("")
   paste0(
     '<article class="problem">',
-    render_section("01", "Fenómeno o problema", render_claim(problem$phenomenon)),
-    render_section("02", "Explicación o interpretación", render_claim(problem$explanation)),
-    render_section("03", "Elementos constitutivos", render_list(problem$constitutive_elements, render_claim)),
-    render_section("04", "Evidencia", render_list(problem$evidence, render_evidence)),
-    render_section("05", "Teoría", render_list(problem$theory, render_theory)),
+    render_section("01", "Problema y explicación", paste0(
+      render_labeled_claim("Fenómeno", problem$phenomenon),
+      render_labeled_claim("Explicación", problem$explanation)
+    )),
+    render_section("02", "Mecanismo y marco", paste0(
+
+      render_labeled_list("Elementos", problem$constitutive_elements, render_claim),
+      render_labeled_list("Teoría", problem$theory, render_theory)
+    )),
+    render_section("03", "Evidencia", render_list(problem$evidence, render_evidence)),
     "</article>"
   )
 }
-
 render_limitations <- function(limitations) {
   if (length(limitations) == 0L) return("")
   paste0(
@@ -123,9 +143,9 @@ status_label <- function(status) {
 }
 
 read_entry <- function(path, schema) {
-  document <- read_canonical_document(path)
-  analysis <- jsonlite::fromJSON(analysis_path(path), simplifyVector = FALSE)
-  validate_analysis(analysis, document, schema)
+  validated <- validate_analysis_output(path, schema)
+  document <- validated$document
+  analysis <- validated$analysis
   relative <- path |>
     stringr::str_remove("^corpus/posts/") |>
     stringr::str_replace("\\.md$", ".html")

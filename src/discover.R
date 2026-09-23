@@ -74,12 +74,22 @@ select_items <- function(items, source_id) {
 pending <- purrr::imap(feeds, select_items) |>
   purrr::list_rbind() |>
   dplyr::mutate(discovered_at = format(Sys.time(), tz = "UTC", usetz = TRUE))
+feed_state <- function(items, source_id) {
+  if (nrow(items) > 0L) {
+    return(list(latest_url = items$url[[1]], latest_title = items$feed_title[[1]]))
+  }
+  previous <- state$sources[[source_id]]
+  if (mode == "new" && !is.null(previous$latest_url)) {
+    return(previous)
+  }
+  stop("No hay publicaciones elegibles para establecer baseline en ", source_id,
+       "; se requiere revisión manual.")
+}
+
 next_state <- list(
   version = 1,
   updated_at = format(Sys.time(), tz = "UTC", usetz = TRUE),
-  sources = purrr::map(feeds, function(items) {
-    list(latest_url = items$url[[1]], latest_title = items$feed_title[[1]])
-  })
+  sources = purrr::imap(feeds, feed_state)
 )
 
 discovery_dir <- file.path("data", "discovery")
